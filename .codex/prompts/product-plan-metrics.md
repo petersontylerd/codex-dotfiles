@@ -36,9 +36,9 @@ Your role is to help me define a set of **metrics** that will measure product su
 - Define input/leading metrics (adoption, usage, funnel steps).  
 - Define proxy metrics (intermediate measures of value).  
 
-**Round 3 – Product Health Metrics**  
-- Capture reliability, latency, cost, usability, adoption, retention.  
-- Include AI eval metrics if relevant.  
+**Round 3 – Product Health Metrics**
+- Capture reliability, latency, cost, usability, adoption, retention.
+- Include approach-specific evaluation metrics for descriptive analytics, machine learning, and generative AI as relevant.  
 
 **Round 4 – Horizon Sequencing**  
 - Assign metrics to **short/mid/long-term** horizons.  

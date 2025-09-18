@@ -54,6 +54,9 @@ market:
   competitors_alternatives: []
   differentiators: []
   adoption_risks: []               # pricing/GTM intentionally excluded here
+  problem_frequency_evidence: ""   # where/how often problem heard, demand signals
+  client_spending_on_alternatives: []  # what clients currently pay for solutions
+  client_kpi_alignment: []         # high-visibility metrics clients are accountable for
 
 data:
   sources: []
@@ -65,28 +68,36 @@ data:
   pii_sensitivity: ""              # none|low|medium|high
   governance_notes: ""
 
-ai_plan:
-  candidate_approaches: []
-  selected_approach: ""
-  model_options: []
-  retrieval_plan:
-    use_rag: false
-    sources: []
-    chunking: ""
-    freshness_policy: ""
-  prompting_evals:
-    eval_metrics: []
-    eval_methods: []
-    target_thresholds: {}
-  guardrails_safety:
-    pii_handling: ""
-    jailbreak_protection: ""
-    content_safety: ""
-    human_in_the_loop: ""
-  telemetry:
-    quality_signals: []
-    cost_per_request_target: ""
-    latency_target_ms: 0
+descriptive_analytics:
+  business_rules: []                   # [rule description and logic]
+  statistical_methods: []             # [statistical approaches for analysis]
+  heuristics: []                      # [decision rules and shortcuts]
+  dashboard_requirements: []          # [visualization and reporting needs]
+  end_user_value: ""                  # how this solves user pain points
+  roi_drivers: []                     # [business value and impact areas]
+
+machine_learning:
+  candidate_models: []                # [model types and approaches]
+  prediction_targets: []              # [what outcomes to predict]
+  feature_requirements: []           # [data inputs and transformations]
+  end_user_value: ""                 # how this solves user pain points
+  roi_drivers: []                    # [business value and impact areas]
+  interpretability_needs: ""         # transparency and explainability requirements
+
+generative_ai:
+  llm_use_cases: []                  # [specific applications and scenarios]
+  rag_requirements: []               # [retrieval and context needs]
+  agent_workflows: []                # [autonomous task sequences]
+  prompting_strategy: ""             # approach to prompt design and optimization
+  end_user_value: ""                 # how this solves user pain points
+  roi_drivers: []                    # [business value and impact areas]
+  cost_management: ""                # token usage and expense considerations
+
+ai_integration:
+  interdependencies: []              # [how approaches complement each other]
+  data_flow: ""                      # data movement between analytical methods
+  combined_workflows: []             # [end-to-end processes using multiple approaches]
+  orchestration_needs: ""            # coordination and sequencing requirements
 
 value_roi:
   outcomes: []
@@ -97,6 +108,12 @@ value_roi:
       unit: ""
       source: ""
   payback_period_months: 0
+
+commercialization:
+  willingness_to_pay_evidence: []   # [market validation signals, evidence of payment behavior]
+  monetization_path_options: []     # [revenue model candidates, pricing approaches]
+  competitive_spend_analysis: ""    # what market pays for similar solutions
+  strategic_timing_rationale: ""    # why test now vs later, urgency drivers
 
 requirements:
   functional_hypotheses: []

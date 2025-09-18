@@ -23,6 +23,8 @@ time_horizons:
         linked_goals: []         # SG IDs
         linked_themes: []        # THEME IDs
         dependencies: []         # milestone IDs this depends on (optional)
+        timing_rationale: ""     # market timing and competitive considerations
+        risk_of_delay: ""        # impact if this milestone is delayed
 
   mid_term:
     goals:
@@ -36,6 +38,8 @@ time_horizons:
         linked_goals: []
         linked_themes: []
         dependencies: []
+        timing_rationale: ""
+        risk_of_delay: ""
 
   long_term:
     goals:
@@ -49,6 +53,8 @@ time_horizons:
         linked_goals: []
         linked_themes: []
         dependencies: []
+        timing_rationale: ""
+        risk_of_delay: ""
 
 risks_assumptions:
   - id: ""                      # e.g., "RM-R-01"

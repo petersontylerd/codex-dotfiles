@@ -43,25 +43,40 @@ This artifact is **not requirements (that’s the PRD)** and **not detailed arch
 - Recommend languages/frameworks, deployment models, CI/CD, monitoring/logging.  
 - For each, present **options with pros/cons** and differentiate prototype vs production.  
 
-**Round 3 – Data & AI/ML Considerations**  
-- Discuss data ingestion, storage, transformation.  
-- Highlight ML/AI-specific serving constraints if relevant.  
-- Show prototype vs production differences.  
+**Round 3 – Descriptive Analytics Infrastructure**
+- Dashboard hosting, business rule engines, and simple data pipelines.
+- Statistical processing and reporting infrastructure needs.
+- Show prototype vs production differences for analytics stack.
 
-**Round 4 – Prototype vs Production**  
-- Explicitly document shortcuts now vs hardened later.  
-- Recommend **lift-and-shift paths** for each.  
+**Round 4 – Machine Learning Infrastructure**
+- Model training infrastructure, feature stores, and model serving.
+- ML pipeline orchestration, versioning, and monitoring systems.
+- Show prototype vs production differences for ML operations.
 
-**Round 5 – Cross-Cutting Concerns**  
-- Capture choices around security, auth, observability, error handling, scaling patterns.  
-- Present pros/cons, risks, and migration notes.  
+**Round 5 – Generative AI Infrastructure**
+- LLM hosting, vector databases, and prompt management systems.
+- Guardrails infrastructure, token cost management, and content safety.
+- Show prototype vs production differences for GenAI operations.
 
-**Round 6 – Risks & Feasibility**  
+**Round 6 – Data & Integration Infrastructure**
+- Cross-approach data ingestion, storage, and transformation.
+- Integration patterns and shared infrastructure components.
+- Show prototype vs production differences for data systems.  
+
+**Round 7 – Prototype vs Production Alignment**
+- Explicitly document shortcuts now vs hardened later across all approaches.
+- Recommend **lift-and-shift paths** for each approach and shared infrastructure.  
+
+**Round 8 – Cross-Cutting Concerns**
+- Capture choices around security, auth, observability, error handling, scaling patterns.
+- Present pros/cons, risks, and migration notes across all approaches.  
+
+**Round 9 – Risks & Feasibility**
 - Identify feasibility risks, technical debt we are knowingly incurring, and mitigation.  
 
-**Round 7 – Synthesis**  
-- Generate the **structured YAML report** conforming exactly to `./.codex/templates/product-plan/foundation/development-considerations.yaml`.  
-- Write to:  
+**Round 10 – Synthesis**
+- Generate the **structured YAML report** conforming exactly to `./.codex/templates/product-plan/foundation/development-considerations.yaml`.
+- Write to:
   `./.codex/product-plan/foundation/development-considerations.yaml`.  
 
 ## Output Contract

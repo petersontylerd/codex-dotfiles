@@ -45,39 +45,64 @@ functional_requirements:
     dependencies: []                
     notes: ""                       
 
-ai_data_design:
-  data_sources: []                  
-  data_quality_freshness: ""        
-  governance_notes: ""              
-  ai_approach:
-    type: ""                        
-    rationale: ""                   
-    model_options: []               
+descriptive_analytics_design:
+  business_rules: []                # [rule definitions and logic]
+  statistical_methods: []          # [analytical approaches and formulas]
+  heuristics: []                   # [decision rules and shortcuts]
+  dashboard_requirements: []       # [visualization and reporting specs]
+  data_sources: []                 # [source systems and datasets]
+  data_quality_needs: ""           # statistical validity and bias considerations
+  governance_notes: ""             # access controls and data handling
+  user_value_drivers: []           # [how this solves specific user pain points]
+
+machine_learning_design:
+  model_candidates: []             # [model types and approaches]
+  prediction_targets: []           # [outcomes to predict]
+  training_data_requirements: []   # [datasets, volumes, labeling needs]
+  feature_engineering: []          # [feature definitions and transformations]
+  evaluation_framework:
+    metrics: []                    # [accuracy, precision, recall, etc.]
+    methods: []                    # [validation approaches]
+    targets: {}                    # [threshold values]
+  performance_monitoring:
+    drift_detection: ""            # approach to model drift
+    retraining_triggers: []        # [conditions for model updates]
+  interpretability_needs: ""       # transparency and explainability requirements
+  user_value_drivers: []           # [how this solves specific user pain points]
+
+generative_ai_design:
+  llm_use_cases: []                # [specific applications and scenarios]
+  model_selection:
+    candidates: []                 # [model options and rationale]
+    hosting_approach: ""           # cloud API vs self-hosted
   retrieval_indexing:
     use_rag: false
-    sources: []                     
-    chunking_policy: ""
-    freshness_policy: ""
+    sources: []                    # [knowledge bases and document stores]
+    chunking_policy: ""            # text segmentation strategy
+    freshness_policy: ""           # update frequency and triggers
   prompting_generation:
-    patterns: []                    
-    prompt_specs: []                
-  evaluation:
-    metrics: []                     
-    methods: []                     
-    targets: {}                     
+    patterns: []                   # [prompt templates and strategies]
+    prompt_specs: []               # [specific prompt requirements]
   safety_guardrails:
-    pii_handling: ""                # mandatory stance
-    jailbreak_protection: ""
-    content_safety: ""
-    human_in_the_loop: ""
-    fallback_behavior: ""
-  runtime_targets:
-    latency_target_ms: 0
-    cost_per_request_target: ""
-  versioning_monitoring:
-    model_versioning: ""
-    telemetry_signals: []
-    dashboards: []
+    pii_handling: ""               # mandatory stance on sensitive data
+    jailbreak_protection: ""       # prompt injection prevention
+    content_safety: ""             # harmful content filtering
+    human_in_the_loop: ""          # review and approval workflows
+    fallback_behavior: ""          # handling when AI fails
+  cost_management:
+    token_budgets: ""              # usage limits and controls
+    cost_per_request_target: ""    # target cost thresholds
+  user_value_drivers: []           # [how this solves specific user pain points]
+
+ai_integration_design:
+  interdependencies: []            # [how approaches work together]
+  data_flow: ""                    # movement between analytical methods
+  orchestration_requirements: []   # [coordination and sequencing needs]
+  combined_workflows: []           # [end-to-end processes using multiple approaches]
+  shared_infrastructure: []        # [common data sources, APIs, dashboards]
+  performance_targets:
+    end_to_end_latency_ms: 0      # total user experience latency
+    system_availability: ""        # uptime requirements across approaches
 
 interfaces_experience:
   ux_flows:

@@ -55,8 +55,19 @@ secondary_personas:
       expected_roi: ""
       contribution: ""
 
-buyers: []                          # list of buyer roles/titles (semi-simple)
-influencers: []                     # list of influencer roles/titles (semi-simple)
+buyers:                             # buyer personas with decision criteria
+  - role: ""                        # job title/role
+    budget_authority: ""             # budget range and approval process
+    decision_criteria: []            # [key factors in purchase decisions]
+    approval_process: ""             # how decisions get made and approved
+    current_spending: ""             # what they currently pay for alternatives
+    buying_triggers: []              # [events that trigger purchase consideration]
+
+influencers:                        # influencer personas
+  - role: ""                        # job title/role
+    influence_type: ""               # technical | business | compliance | user_advocate
+    concerns: []                     # [primary concerns and objections]
+    success_metrics: []              # [how they measure success]
 
 open_questions:
   - id: ""                          

@@ -37,6 +37,12 @@ strategic_themes:
     linked_pillars: []        # vision pillar IDs (optional)
     linked_personas: []       # brainstorm persona IDs (optional)
 
+commercialization_approach:
+  revenue_model: ""           # how we plan to monetize (subscription, usage-based, license, etc.)
+  pricing_strategy_notes: ""  # high-level pricing approach and considerations
+  monetization_timeline: ""   # when commercialization becomes viable
+  linked_choices: []          # strategic choice IDs that enable commercialization
+
 risks_assumptions:
   - id: ""                    # e.g., "STRAT-R-01"
     description: ""

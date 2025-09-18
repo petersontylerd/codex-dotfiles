@@ -53,9 +53,38 @@ health_metrics:
     linked_strategy_goals: []
     linked_prd_frs: []
 
-ai_eval_metrics:                     # optional; only if AI features exist
-  - id: ""                           # e.g., "AI-01"
-    name: ""                         # accuracy | hallucination rate | latency | cost/request
+business_metrics:
+  - id: ""                          # e.g., "BM-01"
+    category: ""                    # revenue | commercialization | market_validation | competitive
+    name: ""                        # e.g., customer_acquisition_cost, willingness_to_pay_validation, market_penetration
+    description: ""
+    formula: ""
+    target: ""
+    time_horizon: ""
+    linked_strategy_goals: []
+    linked_commercialization: []     # commercialization approach elements
+
+descriptive_analytics_metrics:        # only if descriptive analytics features exist
+  - id: ""                           # e.g., "DA-01"
+    name: ""                         # data_quality_score | statistical_validity | dashboard_load_time
+    description: ""
+    formula: ""
+    target: ""
+    time_horizon: ""
+    linked_prd_frs: []               # optional
+
+machine_learning_metrics:            # only if ML features exist
+  - id: ""                           # e.g., "ML-01"
+    name: ""                         # accuracy | precision | recall | f1_score | model_drift
+    description: ""
+    formula: ""
+    target: ""
+    time_horizon: ""
+    linked_prd_frs: []               # optional
+
+generative_ai_metrics:               # only if GenAI features exist
+  - id: ""                           # e.g., "GAI-01"
+    name: ""                         # hallucination_rate | content_safety_score | prompt_effectiveness | cost_per_token
     description: ""
     formula: ""
     target: ""

@@ -40,28 +40,43 @@ Your job is to run a rigorous, Q&A-driven working session and produce a **canoni
 **Round 3 – Functional Requirements**  
 - Elicit **FR-###** items with: title, description, user value, acceptance criteria (Gherkin where fits), MoSCoW priority, roadmap horizon, and traceability links.  
 
-**Round 4 – AI/Data & Analytics**  
-- Data sources, governance, and requirements.  
-- AI/ML requirements (optional if relevant): approach, evals, guardrails, fallbacks.  
-- Descriptive analytics requirements (if applicable).  
+**Round 4 – Descriptive Analytics Design**
+- Business rules, heuristics, and statistical methods for solving user pain points.
+- Dashboard and reporting requirements, data quality and statistical validity.
+- ROI drivers and functional capabilities focused on descriptive insights.
 
-**Round 5 – Interfaces & Experience**  
-- UX flows and states.  
-- Content rules and disclosures.  
+**Round 5 – Machine Learning Design**
+- Predictive models, classification, and clustering approaches for user value.
+- Training data requirements, feature engineering, and model evaluation frameworks.
+- Performance monitoring, drift detection, and interpretability needs.
+
+**Round 6 – Generative AI Design**
+- LLM use cases, RAG requirements, and agent workflows for user problems.
+- Prompting strategies, content generation, and safety guardrails.
+- Cost management, human-in-the-loop workflows, and fallback behaviors.
+
+**Round 7 – AI Integration & Dependencies**
+- How approaches complement each other in solving user needs.
+- Data flow between methods and orchestration requirements.
+- Combined workflows and integration points for maximum value.  
+
+**Round 8 – Interfaces & Experience**
+- UX flows and states.
+- Content rules and disclosures.
 - APIs: high-level endpoints only (method/path/auth + notes).  
 
-**Round 6 – Non-Functional Requirements**  
-- Performance, reliability, scalability, observability.  
-- Security & privacy (PII stance mandatory).  
+**Round 9 – Non-Functional Requirements**
+- Performance, reliability, scalability, observability.
+- Security & privacy (PII stance mandatory).
 - Accessibility & localization.  
 
-**Round 7 – Dependencies, Risks, Rollout**  
-- Dependencies (internal/external).  
-- Strategy-specific risks.  
+**Round 10 – Dependencies, Risks, Rollout**
+- Dependencies (internal/external).
+- Strategy-specific risks.
 - Rollout phases (customizable).  
 
-**Round 8 – Synthesis & Validation**  
-- Generate the **structured YAML report** conforming exactly to `./.codex/templates/product-plan/foundation/prd.yaml`.  
+**Round 11 – Synthesis & Validation**
+- Generate the **structured YAML report** conforming exactly to `./.codex/templates/product-plan/foundation/prd.yaml`.
 - Write to: `./.codex/product-plan/foundation/prd.yaml`.  
 
 ## Output Contract
