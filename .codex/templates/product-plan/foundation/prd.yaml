@@ -1,0 +1,154 @@
+# schema_version: 1.0.0
+metadata:
+  project_code: ""                  
+  product_name: ""                  
+  date: ""                          
+  facilitator: ""                   
+  based_on_artifacts:
+    - "brainstorm-summary.yaml"
+    - "vision.yaml"
+    - "strategy.yaml"
+    - "roadmap.yaml"
+  schema_version: "1.0.0"
+
+overview:
+  summary: ""                       
+  goals: []                         
+  non_goals: []                     
+  success_metrics: []               
+  assumptions: []                   
+  out_of_scope: []                  
+
+users_use_cases:
+  personas:
+    - "P-01"
+  primary_use_cases:
+    - id: ""                        
+      name: ""
+      description: ""
+      linked_personas: []           
+      linked_workflows: []          
+      value_hypothesis: ""          
+
+functional_requirements:
+  - id: ""                          
+    title: ""
+    description: ""                 
+    user_value: ""                  
+    acceptance_criteria:            
+      - ""                          # Gherkin preferred, freeform allowed
+    priority: ""                    # Must | Should | Could | Won’t
+    roadmap_time_horizon: ""        # short-term | mid-term | long-term
+    linked_personas: []             # optional but encouraged
+    linked_workflows: []            # optional but encouraged
+    linked_strategy_goals: []       # optional but encouraged
+    dependencies: []                
+    notes: ""                       
+
+ai_data_design:
+  data_sources: []                  
+  data_quality_freshness: ""        
+  governance_notes: ""              
+  ai_approach:
+    type: ""                        
+    rationale: ""                   
+    model_options: []               
+  retrieval_indexing:
+    use_rag: false
+    sources: []                     
+    chunking_policy: ""
+    freshness_policy: ""
+  prompting_generation:
+    patterns: []                    
+    prompt_specs: []                
+  evaluation:
+    metrics: []                     
+    methods: []                     
+    targets: {}                     
+  safety_guardrails:
+    pii_handling: ""                # mandatory stance
+    jailbreak_protection: ""
+    content_safety: ""
+    human_in_the_loop: ""
+    fallback_behavior: ""
+  runtime_targets:
+    latency_target_ms: 0
+    cost_per_request_target: ""
+  versioning_monitoring:
+    model_versioning: ""
+    telemetry_signals: []
+    dashboards: []
+
+interfaces_experience:
+  ux_flows:
+    - id: ""                        
+      name: ""
+      description: ""               
+      references: []                
+  ui_content_rules: []              
+  empty_error_states: []            
+  api_endpoints:
+    - id: ""                        
+      direction: ""                 
+      method: ""                    
+      path: ""                      
+      auth: ""                      
+      notes: ""                     
+
+non_functional_requirements:
+  performance:
+    p95_latency_ms: 0
+    throughput_rps: 0
+  availability_reliability:
+    availability: ""                
+    error_budget_notes: ""
+  scalability:
+    approach: ""                    
+  observability:
+    metrics: []                     
+    logs_traces: []                 
+  security_privacy:
+    data_handling_notes: ""
+    access_controls: ""
+  accessibility_localization:
+    accessibility: ""               
+    localization: []                
+
+dependencies:
+  internal: []                      
+  external: []                      
+  tech_constraints: []              
+
+risks:
+  - id: ""                          
+    description: ""
+    type: ""                        
+    mitigation: ""
+    owner: ""
+
+rollout_plan:
+  phases:
+    - id: ""                        
+      name: ""                      # Alpha | Beta | GA or Pilot | Limited | Full GA
+      entry_criteria: []            
+      exit_criteria: []             
+      notes: ""
+  migration_backward_compat: ""     
+  rollback_strategy: ""             
+
+acceptance_validation:
+  test_plan_summary: ""             
+  acceptance_matrix:
+    - fr_id: ""                     
+      tests:
+        - id: ""                    
+          description: ""
+          owner: ""
+  signoff_owners: []                
+
+glossary: []                        
+open_questions:
+  - id: ""                          
+    question: ""
+    blocking: false
+    owner: ""

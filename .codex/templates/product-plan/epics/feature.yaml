@@ -1,0 +1,51 @@
+# schema_version: 1.0.0
+metadata:
+  feature_id: ""                   # e.g., "F-101"
+  parent_epic: ""                  # e.g., "E-101"
+  feature_name: ""                 
+  date: ""                         
+  facilitator: ""                  
+  based_on_artifacts:
+    - "brainstorm-summary.yaml"
+    - "vision.yaml"
+    - "strategy.yaml"
+    - "roadmap.yaml"
+    - "development-considerations.yaml"
+    - "prd.yaml"
+    - "personas/"
+    - "metrics/"
+  schema_version: "1.0.0"
+
+overview:
+  description: ""                  # 2–4 sentence summary of functionality/value
+  user_value: ""                   # why users care
+  in_scope: []                     # [string] functionality included
+  out_of_scope: []                 # [string] functionality explicitly excluded
+  personas_served: []              # persona IDs
+  workflows_addressed: []          # workflow IDs
+  linked_prd_frs: []               # FR IDs
+  linked_strategy_goals: []        # SG IDs
+  linked_roadmap_horizons: []      # short-term | mid-term | long-term
+  linked_metrics: []               # metric IDs (M-01, NS-01, etc.)
+  dev_considerations_notes: ""     # feasibility/system notes from dev-considerations
+
+dependencies:
+  internal_features: []            # other feature IDs
+  external_dependencies: []        # vendor/API/platform dependencies
+
+success_criteria:
+  - id: ""                         # e.g., "FSC-01"
+    metric: ""                     # reference metric ID
+    target: ""                     # measurable success signal
+    notes: ""
+
+risks_assumptions:
+  - id: ""                         
+    description: ""
+    type: ""                       # tech | data | ops | adoption
+    mitigation: ""
+    owner: ""
+
+prioritization:
+  priority: ""                     # Must | Should | Could | Won’t
+  rationale: ""

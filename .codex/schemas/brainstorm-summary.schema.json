@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/brainstorm-summary.schema.json",
+  "title": "Product Plan Brainstorm Summary",
+  "type": "object",
+  "required": ["metadata","context","personas","workflows","market","data","ai_plan","value_roi","requirements","metrics","risks","experiments","decision_log","open_questions"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["project_code","product_name","date","facilitator","stakeholders","schema_version"],
+      "properties": {
+        "project_code": {"type": "string", "minLength": 1},
+        "product_name": {"type": "string", "minLength": 1},
+        "date": {"type": "string", "format": "date"},
+        "facilitator": {"type": "string", "minLength": 1},
+        "stakeholders": {"type": "array", "items": {"type": "string"}},
+        "schema_version": {"const": "1.0.0"}
+      },
+      "additionalProperties": false
+    },
+    "context": {
+      "type": "object",
+      "required": ["elevator_pitch_one_liner","elevator_pitch_30sec","problem_statement","non_goals","assumptions"],
+      "properties": {
+        "elevator_pitch_one_liner": {"type": "string", "minLength": 1},
+        "elevator_pitch_30sec": {"type": "string", "minLength": 1},
+        "problem_statement": {"type": "string", "minLength": 1},
+        "non_goals": {"type": "array", "items": {"type": "string"}},
+        "assumptions": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "personas": {
+      "type": "object",
+      "required": ["primary","secondary","buyers","influencers"],
+      "properties": {
+        "primary": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id","name","role","jtbd","pains","success_criteria","environment","data_literacy","ai_comfort"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^P-\\d{2}$"},
+              "name": {"type": "string"},
+              "role": {"type": "string"},
+              "jtbd": {"type": "array", "items": {"type": "string"}},
+              "pains": {"type": "array", "items": {"type": "string"}},
+              "success_criteria": {"type": "array", "items": {"type": "string"}},
+              "environment": {
+                "type": "object",
+                "required": ["devices","systems"],
+                "properties": {
+                  "devices": {"type": "array", "items": {"type": "string"}},
+                  "systems": {"type": "array", "items": {"type": "string"}}
+                },
+                "additionalProperties": false
+              },
+              "data_literacy": {"type": "string", "enum": ["low","medium","high"]},
+              "ai_comfort": {"type": "string", "enum": ["low","medium","high"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "secondary": {"type": "array"},
+        "buyers": {"type": "array", "items": {"type": "string"}},
+        "influencers": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "workflows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id","name","trigger","actors","preconditions","steps","success_criteria","failure_modes","systems","inputs","outputs","slas"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^WF-\\d{2}$"},
+          "name": {"type": "string"},
+          "trigger": {"type": "string"},
+          "actors": {"type": "array", "items": {"type": "string"}},
+          "preconditions": {"type": "array", "items": {"type": "string"}},
+          "steps": {"type": "array", "items": {"type": "string"}},
+          "success_criteria": {"type": "array", "items": {"type": "string"}},
+          "failure_modes": {"type": "array", "items": {"type": "string"}},
+          "systems": {"type": "array", "items": {"type": "string"}},
+          "inputs": {"type": "array", "items": {"type": "string"}},
+          "outputs": {"type": "array", "items": {"type": "string"}},
+          "slas": {
+            "type": "object",
+            "required": ["latency_ms","availability","data_freshness"],
+            "properties": {
+              "latency_ms": {"type": "integer", "minimum": 0},
+              "availability": {"type": "string"},
+              "data_freshness": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "market": {
+      "type": "object",
+      "required": ["segments","icp","competitors_alternatives","differentiators","adoption_risks"],
+      "properties": {
+        "segments": {"type": "array", "items": {"type": "string"}},
+        "icp": {"type": "string"},
+        "competitors_alternatives": {"type": "array", "items": {"type": "string"}},
+        "differentiators": {"type": "array", "items": {"type": "string"}},
+        "adoption_risks": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+      "required": ["sources","ownership","volume_scale","freshness","quality_issues","access_constraints","pii_sensitivity","governance_notes"],
+      "properties": {
+        "sources": {"type": "array", "items": {"type": "string"}},
+        "ownership": {"type": "string"},
+        "volume_scale": {"type": "string"},
+        "freshness": {"type": "string"},
+        "quality_issues": {"type": "array", "items": {"type": "string"}},
+        "access_constraints": {"type": "array", "items": {"type": "string"}},
+        "pii_sensitivity": {"type": "string", "enum": ["none","low","medium","high"]},
+        "governance_notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "ai_plan": {
+      "type": "object",
+      "required": ["candidate_approaches","selected_approach","model_options","retrieval_plan","prompting_evals","guardrails_safety","telemetry"],
+      "properties": {
+        "candidate_approaches": {"type": "array", "items": {"type": "string"}},
+        "selected_approach": {"type": "string"},
+        "model_options": {"type": "array", "items": {"type": "string"}},
+        "retrieval_plan": {
+          "type": "object",
+          "required": ["use_rag","sources","chunking","freshness_policy"],
+          "properties": {
+            "use_rag": {"type": "boolean"},
+            "sources": {"type": "array", "items": {"type": "string"}},
+            "chunking": {"type": "string"},
+            "freshness_policy": {"type": "string"}
+          },
+          "additionalProperties": false
+        },
+        "prompting_evals": {
+          "type": "object",
+          "required": ["eval_metrics","eval_methods","target_thresholds"],
+          "properties": {
+            "eval_metrics": {"type": "array", "items": {"type": "string"}},
+            "eval_methods": {"type": "array", "items": {"type": "string"}},
+            "target_thresholds": {"type": "object"}
+          },
+          "additionalProperties": false
+        },
+        "guardrails_safety": {
+          "type": "object",
+          "required": ["pii_handling","jailbreak_protection","content_safety","human_in_the_loop"],
+          "properties": {
+            "pii_handling": {"type": "string"},
+            "jailbreak_protection": {"type": "string"},
+            "content_safety": {"type": "string"},
+            "human_in_the_loop": {"type": "string"}
+          },
+          "additionalProperties": false
+        },
+        "telemetry": {
+          "type": "object",
+          "required": ["quality_signals","cost_per_request_target","latency_target_ms"],
+          "properties": {
+            "quality_signals": {"type": "array", "items": {"type": "string"}},
+            "cost_per_request_target": {"type": "string"},
+            "latency_target_ms": {"type": "integer", "minimum": 0}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "value_roi": {
+      "type": "object",
+      "required": ["outcomes","roi_formula","roi_inputs","payback_period_months"],
+      "properties": {
+        "outcomes": {"type": "array", "items": {"type": "string"}},
+        "roi_formula": {"type": "string", "minLength": 1},
+        "roi_inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name","value","unit","source"],
+            "properties": {
+              "name": {"type": "string"},
+              "value": {"type": "number"},
+              "unit": {"type": "string"},
+              "source": {"type": "string"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "payback_period_months": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "requirements": {
+      "type": "object",
+      "required": ["functional_hypotheses","non_functional"],
+      "properties": {
+        "functional_hypotheses": {"type": "array", "items": {"type": "string"}},
+        "non_functional": {
+          "type": "object",
+          "required": ["availability","latency_ms_p95","throughput_rps","privacy_compliance","localization","observability"],
+          "properties": {
+            "availability": {"type": "string"},
+            "latency_ms_p95": {"type": "integer", "minimum": 0},
+            "throughput_rps": {"type": "integer", "minimum": 0},
+            "privacy_compliance": {"type": "array", "items": {"type": "string"}},
+            "localization": {"type": "array", "items": {"type": "string"}},
+            "observability": {"type": "array", "items": {"type": "string"}}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["north_star","input_metrics","proxy_metrics"],
+      "properties": {
+        "north_star": {"type": "string"},
+        "input_metrics": {"type": "array", "items": {"type": "string"}},
+        "proxy_metrics": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id","description","type","mitigation","owner"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^R-\\d{2}$"},
+          "description": {"type": "string"},
+          "type": {"type": "string", "enum": ["tech","data","legal","market","ops"]},
+          "mitigation": {"type": "string"},
+          "owner": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id","hypothesis","test","success_metric","expected_effect","next_step_if_win","next_step_if_lose","status"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^EXP-\\d{2}$"},
+          "hypothesis": {"type": "string"},
+          "test": {"type": "string"},
+          "success_metric": {"type": "string"},
+          "expected_effect": {"type": "string"},
+          "next_step_if_win": {"type": "string"},
+          "next_step_if_lose": {"type": "string"},
+          "status": {"type": "string", "enum": ["planned","running","done"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "decision_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id","decision","rationale","date","owners"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^D-\\d{2}$"},
+          "decision": {"type": "string"},
+          "rationale": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "owners": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id","question","blocking","owner"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^Q-\\d{2}$"},
+          "question": {"type": "string"},
+          "blocking": {"type": "boolean"},
+          "owner": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

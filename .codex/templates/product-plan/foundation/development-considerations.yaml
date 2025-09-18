@@ -1,0 +1,96 @@
+# schema_version: 1.0.0
+metadata:
+  project_code: ""                  
+  product_name: ""                  
+  date: ""                          
+  facilitator: ""                   
+  based_on_artifacts:
+    - "brainstorm-summary.yaml"
+    - "vision.yaml"
+    - "strategy.yaml"
+    - "roadmap.yaml"
+    - "prd.yaml"
+  schema_version: "1.0.0"
+
+tech_stack_infra:
+  languages_frameworks:
+    prototype: []                   # required; e.g., ["Python", "Streamlit"]
+    production: []                   # required; e.g., ["Python", "FastAPI", "React"]
+    rationale: ""                    # pros/cons and lift-and-shift notes
+  data_infra:
+    prototype: []                   # required
+    production: []                   # required
+    rationale: ""
+  deployment_targets:
+    prototype: []                   # required
+    production: []                   # required
+    rationale: ""
+  ci_cd:
+    prototype: []                   # required
+    production: []                   # required
+    rationale: ""
+  monitoring_logging:
+    prototype: []                   # required
+    production: []                   # required
+    rationale: ""
+  vendor_constraints:
+    prototype: []                   # required
+    production: []                   # required
+    rationale: ""
+
+data_ml_considerations:
+  ingestion:
+    prototype: ""                   # required
+    production: ""                  # required
+    rationale: ""
+  storage:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+  transformation:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+  model_serving:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+  governance_notes:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+
+cross_cutting_concerns:
+  security_auth:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+  observability:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+  error_handling:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+  scaling_patterns:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+  performance_notes:
+    prototype: ""                   
+    production: ""                  
+    rationale: ""
+
+feasibility_risks:
+  - id: ""                          
+    description: ""
+    type: ""                        # infra | data | ai | scaling | security
+    mitigation: ""
+    owner: ""
+
+open_questions:
+  - id: ""                          
+    question: ""
+    blocking: false
+    owner: ""

@@ -1,0 +1,69 @@
+# schema_version: 1.0.0
+metadata:
+  project_code: ""                  
+  product_name: ""                  
+  date: ""                          
+  facilitator: ""                   
+  based_on_artifacts:
+    - "brainstorm-summary.yaml"
+    - "vision.yaml"
+    - "strategy.yaml"
+    - "roadmap.yaml"
+    - "prd.yaml"
+  schema_version: "1.0.0"
+
+north_star_metric:
+  id: ""                            # e.g., "NS-01"
+  name: ""                          # short name
+  description: ""                   # what it measures and why
+  formula: ""                       # explicit calculation
+  target: ""                        # numeric or % goal
+  time_horizon: ""                  # short-term | mid-term | long-term
+  linked_strategy_goals: []         # optional but encouraged
+  linked_prd_frs: []                # optional but encouraged
+
+input_metrics:
+  - id: ""                          # e.g., "IM-01"
+    name: ""
+    description: ""
+    formula: ""
+    target: ""
+    time_horizon: ""
+    linked_strategy_goals: []
+    linked_prd_frs: []
+
+proxy_metrics:
+  - id: ""                          # e.g., "PM-01"
+    name: ""
+    description: ""
+    formula: ""
+    target: ""
+    time_horizon: ""
+    linked_strategy_goals: []
+    linked_prd_frs: []
+
+health_metrics:
+  - id: ""                          # e.g., "HM-01"
+    category: ""                    # reliability | performance | cost | trust | usability | adoption | retention
+    name: ""
+    description: ""
+    formula: ""
+    target: ""
+    time_horizon: ""
+    linked_strategy_goals: []
+    linked_prd_frs: []
+
+ai_eval_metrics:                     # optional; only if AI features exist
+  - id: ""                           # e.g., "AI-01"
+    name: ""                         # accuracy | hallucination rate | latency | cost/request
+    description: ""
+    formula: ""
+    target: ""
+    time_horizon: ""
+    linked_prd_frs: []               # optional
+
+open_questions:
+  - id: ""                          
+    question: ""
+    blocking: false
+    owner: ""
