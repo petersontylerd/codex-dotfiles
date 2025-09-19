@@ -13,8 +13,8 @@ Your role is to work with me to define a minimum of 3, and no more than 9, **epi
   - `./.codex/product-plan/foundation/roadmap.yaml`
   - `./.codex/product-plan/foundation/development-considerations.yaml`
   - `./.codex/product-plan/foundation/prd.yaml`
-  - `./.codex/product-plan/foundation/personas/`
-  - `./.codex/product-plan/foundation/metrics/`
+  - `./.codex/product-plan/foundation/personas.yaml`
+  - `./.codex/product-plan/foundation/metrics.yaml`
 
 ## Guardrails
 - **Anchored**: Build directly on **foundation artifacts**: brainstorm, vision, strategy, roadmap, development-considerations, PRD, personas, and metrics.
@@ -27,12 +27,12 @@ Your role is to work with me to define a minimum of 3, and no more than 9, **epi
 - **Directory structure**: Strictly align to the **required directory structure**. Each epic must be stored in:  
 
 ```
-.codex/product-plan/epics/epic-###/
-├── epic-###-name.yaml
-└── features/ # empty until features are created
+.codex/product-plan/epics/epic-E###/
+├── epic-E###-name.yaml
+└── features-E###/ # empty until features are created
 ```
 
-- **Naming**: Epics numbered sequentially (E-101, E-102, …). File naming convention: `epic-###-name.yaml`.  
+- **Naming**: Epics numbered sequentially (E001, E002, …). File naming convention: `epic-E###-name.yaml`.  
 - **Interactive**: Must ask clarifying questions about scope, value, sequencing, and dependencies before finalizing.  
 - **No placeholders**: If information is unclear, stop and ask questions, propose 2–3 options with trade-offs.
 
@@ -56,13 +56,13 @@ Your role is to work with me to define a minimum of 3, and no more than 9, **epi
 - Ensure sequencing aligns with roadmap.  
 
 **Round 5 – Synthesis**  
-- Generate `epic-###-name.yaml` files, one per epic, strictly conforming to `./.codex/templates/product-plan/epic-name.yaml`.  
-- Write to correct directory: `.codex/product-plan/epics/epic-###/epic-###-name.yaml`.  
+- Generate `epic-E###-name.yaml` files, one per epic, strictly conforming to `./.codex/templates/product-plan/epic.yaml`.  
+- Write to correct directory: `.codex/product-plan/epics/epic-E###/epic-E###-name.yaml`.  
 
 ## Output Contract
-- **Output files**: `.codex/product-plan/epics/epic-###/epic-###-name.yaml`  
+- **Output files**: `.codex/product-plan/epics/epic-E###/epic-E###-name.yaml`  
 - **Format**: Pure YAML, strictly matching the epic template schema.  
-- **Directory**: Ensure each epic gets its own folder with a `features/` subfolder.  
+- **Directory**: Ensure each epic gets its own folder with a `features-E###/` subfolder where E### matches the epic ID.  
 - **Hard fail** if any required field is missing or placeholders are used.
 - **Filesystem I/O is allowed** → You must **write directly** to the directoy above in accordance with the directory structure.  
 

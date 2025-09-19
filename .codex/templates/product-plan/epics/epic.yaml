@@ -1,6 +1,6 @@
 # schema_version: 1.0.0
 metadata:
-  epic_id: ""                       # e.g., "E-101"
+  epic_id: ""                       # e.g., "E001"
   epic_name: ""                     # short descriptive title
   date: ""                          
   facilitator: ""                   
@@ -11,15 +11,15 @@ metadata:
     - "roadmap.yaml"
     - "development-considerations.yaml"
     - "prd.yaml"
-    - "personas/"
-    - "metrics/"
+    - "personas.yaml"
+    - "metrics.yaml"
   schema_version: "1.0.0"
 
 overview:
   description: ""                   # 2–4 sentences of value delivered
   in_scope: []                      # [string] capabilities included
   out_of_scope: []                  # [string] capabilities explicitly excluded
-  personas_served: []               # persona IDs from personas/
+  personas_served: []               # persona IDs from personas.yaml
   workflows_addressed: []           # workflow IDs from brainstorm
   linked_strategy_goals: []         # SG IDs
   linked_roadmap_horizons: []       # short-term | mid-term | long-term
@@ -32,7 +32,7 @@ dependencies:
   external_dependencies: []         # vendor/API/platform dependencies
 
 success_criteria:
-  - id: ""                          # e.g., "SC-01"
+  - id: ""                          # e.g., "SC01"
     metric: ""                      # reference metric ID
     target: ""                      # measurable success signal
     notes: ""

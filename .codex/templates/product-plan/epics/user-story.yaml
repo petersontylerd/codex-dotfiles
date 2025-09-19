@@ -1,8 +1,8 @@
 # schema_version: 1.0.0
 metadata:
-  user_story_id: ""                # e.g., "US-1001"
-  parent_feature: ""               # e.g., "F-101"
-  parent_epic: ""                  # e.g., "E-101"
+  user_story_id: ""                # e.g., "US0001" (sequential within feature)
+  parent_feature: ""               # e.g., "F001" (inherits E### from parent epic)
+  parent_epic: ""                  # e.g., "E001" (must match parent epic ID)
   user_story_name: ""              # short descriptive name
   date: ""
   facilitator: ""
@@ -13,8 +13,8 @@ metadata:
     - "roadmap.yaml"
     - "development-considerations.yaml"
     - "prd.yaml"
-    - "personas/"
-    - "metrics/"
+    - "personas.yaml"
+    - "metrics.yaml"
   schema_version: "1.0.0"
 
 story:
@@ -24,11 +24,11 @@ story:
   description: ""                  # elaboration (scope, context, constraints)
 
 acceptance_criteria:               # MANDATORY Gherkin; at least one positive + (ideally) one edge/negative
-  - id: ""                         # e.g., "AC-01"
+  - id: ""                         # e.g., "AC01"
     given: ""                      # preconditions / context
     when: ""                       # action the user/system takes
     then: ""                       # observable outcome (testable)
-  - id: ""                         # e.g., "AC-02" (edge/negative case)
+  - id: ""                         # e.g., "AC02" (edge/negative case)
     given: ""
     when: ""
     then: ""

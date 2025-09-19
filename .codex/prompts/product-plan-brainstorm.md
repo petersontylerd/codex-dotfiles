@@ -89,8 +89,7 @@ You must be objective, constructive, and challenging. Do not accept vague claims
 - Output must **match schema exactly**. If invalid → stop, ask questions, re-synthesize.  
 
 ## Output Contract
-- **Output file**: `./.codex/product-plan/foundation/product-plan-brainstorm.md`  
-- **File content**: One fenced `yaml` block strictly matching schema.  
+- **Output file**: `./.codex/product-plan/foundation/product-plan-brainstorm.yaml`  
 - **Filesystem I/O is allowed** → You must **write directly** to the path above.  
 
 ## Ready Prompt — Kickoff

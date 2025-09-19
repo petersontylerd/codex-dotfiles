@@ -43,13 +43,10 @@ The vision must directly reference brainstorm artifacts for consistency and enfo
 
 **Round 5 – Synthesis**
 - Generate the **structured YAML report** conforming exactly to `./.codex/templates/product-plan/foundation/vision.yaml`.  
-- Write the YAML to:  
-  `./.codex/product-plan/foundation/vision.md`  
-  (file must contain only a fenced YAML block).  
+- Write the YAML to: `./.codex/product-plan/foundation/vision.yaml`
 
 ## Output Contract
-- **Output file**: `./.codex/product-plan/foundation/vision.md`  
-- **Content**: one fenced `yaml` block strictly following the template schema.  
+- **Output file**: `./.codex/product-plan/foundation/vision.yaml`  
 - **Hard fail** if required fields are missing, placeholders used, or cross-links are absent in pillars.  
 - **Filesystem I/O is allowed** → You must **write directly** to the path above.  
 

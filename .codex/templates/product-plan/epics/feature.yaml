@@ -1,7 +1,7 @@
 # schema_version: 1.0.0
 metadata:
-  feature_id: ""                   # e.g., "F-101"
-  parent_epic: ""                  # e.g., "E-101"
+  feature_id: ""                   # e.g., "F001" (sequential within epic)
+  parent_epic: ""                  # e.g., "E001" (must match parent epic ID)
   feature_name: ""                 
   date: ""                         
   facilitator: ""                  
@@ -12,8 +12,8 @@ metadata:
     - "roadmap.yaml"
     - "development-considerations.yaml"
     - "prd.yaml"
-    - "personas/"
-    - "metrics/"
+    - "personas.yaml"
+    - "metrics.yaml"
   schema_version: "1.0.0"
 
 overview:
@@ -34,7 +34,7 @@ dependencies:
   external_dependencies: []        # vendor/API/platform dependencies
 
 success_criteria:
-  - id: ""                         # e.g., "FSC-01"
+  - id: ""                         # e.g., "FSC01"
     metric: ""                     # reference metric ID
     target: ""                     # measurable success signal
     notes: ""
