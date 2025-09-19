@@ -10,7 +10,7 @@ Your job is to run a rigorous, Q&A-driven working session and produce a **canoni
 - Inclusive of **AI-driven and non-AI features**.
 
 ## Inputs
-- `./.codex/product-plan/foundation/brainstorm-summary.yaml`
+- `./.codex/product-plan/foundation/brainstorm.yaml`
 - `./.codex/product-plan/foundation/vision.yaml`
 - `./.codex/product-plan/foundation/strategy.yaml`
 - `./.codex/product-plan/foundation/roadmap.yaml`

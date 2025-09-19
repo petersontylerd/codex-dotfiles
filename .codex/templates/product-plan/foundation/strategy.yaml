@@ -5,7 +5,7 @@ metadata:
   date: ""                    # ISO 8601
   facilitator: ""             # string
   based_on_artifacts:
-    - "brainstorm-summary.yaml"
+    - "brainstorm.yaml"
     - "vision.yaml"
   schema_version: "1.0.0"
 

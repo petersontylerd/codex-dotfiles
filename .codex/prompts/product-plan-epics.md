@@ -7,7 +7,7 @@ Your role is to work with me to define a minimum of 3, and no more than 9, **epi
 
 ## Inputs
 - Prior artifacts:
-  - `./.codex/product-plan/foundation/brainstorm-summary.yaml`
+  - `./.codex/product-plan/foundation/brainstorm.yaml`
   - `./.codex/product-plan/foundation/vision.yaml`
   - `./.codex/product-plan/foundation/strategy.yaml`
   - `./.codex/product-plan/foundation/roadmap.yaml`

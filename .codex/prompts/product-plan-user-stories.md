@@ -8,7 +8,7 @@ Your role is to work with me to define **user stories** that belong to a specifi
 - Parent feature file: `.codex/product-plan/epics/epic-E###/features-E###/feature-E###-F###/feature-E###-F###-name.yaml`
 - Parent epic file: `.codex/product-plan/epics/epic-E###/epic-E###-name.yaml`
 - Foundation artifacts:
-  - `./.codex/product-plan/foundation/brainstorm-summary.yaml`
+  - `./.codex/product-plan/foundation/brainstorm.yaml`
   - `./.codex/product-plan/foundation/vision.yaml`
   - `./.codex/product-plan/foundation/strategy.yaml`
   - `./.codex/product-plan/foundation/roadmap.yaml`

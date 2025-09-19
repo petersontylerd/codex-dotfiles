@@ -8,7 +8,7 @@ This artifact is **not requirements (that’s the PRD)** and **not detailed arch
 
 ## Inputs
 - Prior artifacts:
-  - `./.codex/product-plan/foundation/brainstorm-summary.yaml`
+  - `./.codex/product-plan/foundation/brainstorm.yaml`
   - `./.codex/product-plan/foundation/vision.yaml`
   - `./.codex/product-plan/foundation/strategy.yaml`
   - `./.codex/product-plan/foundation/roadmap.yaml`

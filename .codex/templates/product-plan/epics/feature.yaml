@@ -6,7 +6,7 @@ metadata:
   date: ""                         
   facilitator: ""                  
   based_on_artifacts:
-    - "brainstorm-summary.yaml"
+    - "brainstorm.yaml"
     - "vision.yaml"
     - "strategy.yaml"
     - "roadmap.yaml"

@@ -4,7 +4,7 @@ metadata:
   product_name: ""            # must match brainstorm
   date: ""                    # ISO 8601
   facilitator: ""             # string
-  based_on_artifact: "brainstorm-summary.yaml"
+  based_on_artifact: "brainstorm.yaml"
   schema_version: "1.0.0"
 
 vision_statement:

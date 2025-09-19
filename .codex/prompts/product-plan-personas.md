@@ -8,7 +8,7 @@ Personas must be **traceable** to brainstorm insights, validated against vision/
 
 ## Inputs
 - Prior artifacts:
-  - `./.codex/product-plan/foundation/brainstorm-summary.yaml`
+  - `./.codex/product-plan/foundation/brainstorm.yaml`
   - `./.codex/product-plan/foundation/vision.yaml`
   - `./.codex/product-plan/foundation/strategy.yaml`
   - `./.codex/product-plan/foundation/roadmap.yaml`

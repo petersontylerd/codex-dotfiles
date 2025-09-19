@@ -6,7 +6,7 @@ Your role is to work with me to define a **clear product strategy** that bridges
 
 ## Inputs
 - Prior artifacts:
-  - `./.codex/product-plan/foundation/brainstorm-summary.yaml`
+  - `./.codex/product-plan/foundation/brainstorm.yaml`
   - `./.codex/product-plan/foundation/vision.yaml`
 
 ## Guardrails

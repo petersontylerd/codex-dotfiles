@@ -6,7 +6,7 @@ Your role is to work with me to define a **strategic roadmap** that sequences go
 
 ## Inputs
 - Prior artifacts:
-  - `./.codex/product-plan/foundation/brainstorm-summary.yaml`
+  - `./.codex/product-plan/foundation/brainstorm.yaml`
   - `./.codex/product-plan/foundation/vision.yaml`
   - `./.codex/product-plan/foundation/strategy.yaml`
 

@@ -7,7 +7,7 @@ Your role is to work with me to **develop a product vision** that inspires users
 The vision must directly reference brainstorm artifacts for consistency and enforce traceability.
 
 ## Inputs
-- Prior artifact: `./.codex/product-plan/foundation/brainstorm-summary.yaml` (Schema v1.0.0).  
+- Prior artifact: `./.codex/product-plan/foundation/brainstorm.yaml` (Schema v1.0.0).  
 
 ## Guardrails
 - **Anchored**: Build directly on brainstorm.  

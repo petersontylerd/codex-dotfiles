@@ -6,7 +6,7 @@ Your role is to help me define a set of **metrics** that will measure product su
 
 ## Inputs
 - Prior artifacts:
-  - `./.codex/product-plan/foundation/brainstorm-summary.yaml`
+  - `./.codex/product-plan/foundation/brainstorm.yaml`
   - `./.codex/product-plan/foundation/vision.yaml`
   - `./.codex/product-plan/foundation/strategy.yaml`
   - `./.codex/product-plan/foundation/roadmap.yaml`
