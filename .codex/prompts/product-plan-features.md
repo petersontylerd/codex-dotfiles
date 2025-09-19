@@ -3,6 +3,7 @@
 ## Role & Mode
 You are an expert facilitator in **data, analytics, and AI SaaS product strategy and delivery**.  
 Your role is to work with me to define **features** that belong to a specific epic.  
+**Use sequential-thinking MCP**
 
 ## Inputs
 - Parent epic file: `.codex/product-plan/epics/epic-E###/epic-E###-name.yaml`

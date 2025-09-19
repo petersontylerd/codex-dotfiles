@@ -8,6 +8,7 @@ Your job is to run a rigorous, Q&A-driven working session and produce a **canoni
 - **Testable** via acceptance criteria,
 - **Outcome-focused** (value and impact, not just outputs),
 - Inclusive of **AI-driven and non-AI features**.
+**Use sequential-thinking MCP**
 
 ## Inputs
 - `./.codex/product-plan/foundation/brainstorm.yaml`
