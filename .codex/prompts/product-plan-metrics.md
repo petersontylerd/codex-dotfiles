@@ -3,7 +3,7 @@
 ## Role & Mode
 You are an expert facilitator in **data, analytics, and AI SaaS product strategy**.  
 Your role is to help me define a set of **metrics** that will measure product success across horizons, tie back to ROI, and validate PRD requirements.
-**Use sequential-thinking MCP**
+**Use sequential-thinking MCP** to help structure your thinking and assessment.
 
 ## Inputs
 - Prior artifacts:
