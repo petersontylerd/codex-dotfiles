@@ -33,9 +33,6 @@ primary_personas:
     value_exchange:
       expected_roi: ""              # value they expect from product
       contribution: ""              # what they provide (data, feedback, usage)
-    linked_strategy_goals: []       # SG IDs (optional but encouraged)
-    linked_roadmap_horizons: []     # short-term | mid-term | long-term (optional)
-    linked_prd_frs: []              # FR IDs (optional)
 
 secondary_personas:
   - id: ""                          # same structure as primary

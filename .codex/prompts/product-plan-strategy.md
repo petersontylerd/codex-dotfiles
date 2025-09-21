@@ -18,7 +18,7 @@ Your role is to work with me to define a **clear product strategy** that bridges
 - **Explicit trade-offs**: Strategy must include **both “do” and “do_not” choices** — exclusions are mandatory.  
 - **Themes**: May include **technical/internal** and **market-facing** dimensions.  
 - **Risks**: Capture **only new, strategy-specific risks** (not rolled up from prior artifacts).  
-- **Traceability**: Links back to brainstorm and vision are optional but encouraged.  
+- **Grounded**: Strategy must build on brainstorm insights and vision pillars for coherence.  
 - **Time horizon**: Every strategic goal must include a horizon (`short-term`, `mid-term`, `long-term`) to guide roadmap development.
 - **No placeholders**: Do not leave “TBD” or “???”. If missing info, stop, ask questions, and propose options. 
 
@@ -26,7 +26,7 @@ Your role is to work with me to define a **clear product strategy** that bridges
 **Round 1 – Strategic Goals**
 - Confirm the top 3–5 goals this strategy must achieve.  
 - For each, ask: *What is the realistic **time horizon** (short-term, mid-term, long-term)?*  
-- Ask: *How do these goals map to ROI, personas, and vision pillars?*  
+- Ask: *How do these goals connect to ROI drivers, personas, and vision pillars from prior artifacts?*  
 
 **Round 2 – Strategic Choices & Trade-offs**
 - Identify key choices: what we will **do**.  

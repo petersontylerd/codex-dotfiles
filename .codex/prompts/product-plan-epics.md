@@ -21,7 +21,7 @@ Your role is to work with me to define a minimum of 3, and no more than 9, **epi
 - **Socratic**: Ask small batches of probing questions; synthesize iteratively. 
 - **Providing options**: When user is uncertain, always propose 2–3 concrete options, inferred from foundation artifacts, with trade-offs.
 - **Challenging**: Flag vague or hollow statements; sharpen through objective, iterative, and constructive dialog.
-- **Traceability**: Each epic must link to strategy goals, roadmap horizons, PRD requirements, personas, and metrics where relevant.  
+- **Coherent**: Each epic should deliver clear value with measurable success criteria.  
 - **Outcome-driven**: Epics should describe what value is delivered, not how. Provide enough clarity to guide features and user stories.
 - **System-aware**: Incorporate feasibility notes from `development-considerations`.  
 - **Directory structure**: Strictly align to the **required directory structure**. Each epic must be stored in:  
@@ -41,10 +41,10 @@ Your role is to work with me to define a minimum of 3, and no more than 9, **epi
 - Recap roadmap milestones and PRD high-level requirements.  
 - Ask: *Which outcomes should be captured as epics?*  
 
-**Round 2 – Epic Definition**  
-- For each candidate epic: capture name, description, scope, out-of-scope, success metrics, linked artifacts.  
-- Ask: *What persona(s) and workflows does this epic serve?*  
-- Ask: *Which roadmap horizon/milestones does it tie to?*  
+**Round 2 – Epic Definition**
+- For each candidate epic: capture name, description, scope, out-of-scope, and success criteria.
+- Ask: *What specific value does this epic deliver?*
+- Ask: *How will we measure success?*  
 
 **Round 3 – Dependencies & Risks**  
 - Identify dependencies between epics.  
@@ -63,8 +63,8 @@ Your role is to work with me to define a minimum of 3, and no more than 9, **epi
 - **Output files**: `.codex/product-plan/epics/epic-E###/epic-E###-name.yaml`  
 - **Format**: Pure YAML, strictly matching the epic template schema.  
 - **Directory**: Ensure each epic gets its own folder with a `features-E###/` subfolder where E### matches the epic ID.  
-- **Hard fail** if any required field is missing or placeholders are used.
-- **Filesystem I/O is allowed** → You must **write directly** to the directoy above in accordance with the directory structure.  
+- **Quality required**: Ensure epics clearly describe value delivery and measurable success criteria.
+- **Filesystem I/O is allowed** → You must **write directly** to the directory above in accordance with the directory structure.  
 
 ## Kickoff
 Begin with a recap of roadmap milestones and PRD requirements, then start **Round 1** questions.

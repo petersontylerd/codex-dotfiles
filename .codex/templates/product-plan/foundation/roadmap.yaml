@@ -12,59 +12,42 @@ metadata:
 
 time_horizons:
   short_term:
-    goals:                      # must reference strategy goal IDs
-      - "SG-01"
-    themes:                     # must reference strategy theme IDs
-      - "THEME-01"
+    goals: []                   # strategic goals for this horizon
+    themes: []                  # strategic themes for this horizon
     milestones:                 # at least one required
-      - id: ""                  # e.g., "M-01"
-        description: ""          # what is delivered
+      - description: ""          # what is delivered
         key_outcome: ""          # impact achieved (e.g., adoption validated)
-        linked_goals: []         # SG IDs
-        linked_themes: []        # THEME IDs
-        dependencies: []         # milestone IDs this depends on (optional)
+        dependencies: []         # descriptions of dependencies (optional)
         timing_rationale: ""     # market timing and competitive considerations
         risk_of_delay: ""        # impact if this milestone is delayed
 
   mid_term:
-    goals:
-      - "SG-02"
-    themes:
-      - "THEME-02"
+    goals: []
+    themes: []
     milestones:
-      - id: ""
-        description: ""
+      - description: ""
         key_outcome: ""
-        linked_goals: []
-        linked_themes: []
         dependencies: []
         timing_rationale: ""
         risk_of_delay: ""
 
   long_term:
-    goals:
-      - "SG-03"
-    themes:
-      - "THEME-03"
+    goals: []
+    themes: []
     milestones:
-      - id: ""
-        description: ""
+      - description: ""
         key_outcome: ""
-        linked_goals: []
-        linked_themes: []
         dependencies: []
         timing_rationale: ""
         risk_of_delay: ""
 
 risks_assumptions:
-  - id: ""                      # e.g., "RM-R-01"
-    description: ""
+  - description: ""
     type: ""                    # sequencing
     mitigation: ""
     owner: ""
 
 open_questions:
-  - id: ""                      # e.g., "Q-RM-01"
-    question: ""
+  - question: ""
     blocking: false
     owner: ""

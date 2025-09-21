@@ -131,15 +131,13 @@ metrics:
   proxy_metrics: []
 
 risks:
-  - id: ""                         # e.g., "R-01"
-    description: ""
+  - description: ""
     type: ""                       # tech|data|legal|market|ops
     mitigation: ""
     owner: ""
 
 experiments:
-  - id: ""                         # e.g., "EXP-01"
-    hypothesis: ""
+  - hypothesis: ""
     test: ""
     success_metric: ""
     expected_effect: ""
@@ -148,14 +146,12 @@ experiments:
     status: ""                     # planned|running|done
 
 decision_log:
-  - id: ""                         # e.g., "D-01"
-    decision: ""
+  - decision: ""
     rationale: ""
     date: ""
     owners: []
 
 open_questions:
-  - id: ""                         # e.g., "Q-01"
-    question: ""
+  - question: ""
     blocking: false
     owner: ""

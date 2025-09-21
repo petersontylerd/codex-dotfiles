@@ -24,29 +24,18 @@ story:
   description: ""                  # elaboration (scope, context, constraints)
 
 acceptance_criteria:               # MANDATORY Gherkin; at least one positive + (ideally) one edge/negative
-  - id: ""                         # e.g., "AC01"
-    given: ""                      # preconditions / context
+  - given: ""                      # preconditions / context
     when: ""                       # action the user/system takes
     then: ""                       # observable outcome (testable)
-  - id: ""                         # e.g., "AC02" (edge/negative case)
-    given: ""
+  - given: ""
     when: ""
     then: ""
-
-linked_artifacts:
-  personas: []                     # persona IDs
-  workflows: []                    # workflow IDs
-  linked_prd_frs: []               # FR IDs the story helps satisfy
-  linked_strategy_goals: []        # SG IDs
-  linked_roadmap_horizons: []      # short-term | mid-term | long-term
-  linked_metrics: []               # metric IDs (M-01, NS-01, etc.)
 
 dependencies:
   other_user_stories: []           # IDs of dependent stories
 
 risks_assumptions:
-  - id: ""
-    description: ""
+  - description: ""
     type: ""                       # tech | data | ops | adoption
     mitigation: ""
     owner: ""

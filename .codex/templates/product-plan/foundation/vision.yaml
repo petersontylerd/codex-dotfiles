@@ -19,22 +19,14 @@ company_alignment:
   strategic_fit_notes: []     # list of ways it supports org goals
 
 strategic_pillars:
-  - id: ""                    # e.g., "PILLAR-01"
-    name: ""                  # short label
+  - name: ""                  # short label
     description: ""           # 1–2 sentence explanation
-    linked_personas:          # must reference >=1 persona IDs from brainstorm
-      - "P-01"
-    linked_pain_points:       # must reference >=1 brainstorm pain points
-      - "pain-id-or-text"
-    linked_workflows:         # must reference >=1 workflow IDs from brainstorm
-      - "WF-01"
 
 differentiation:
   why_unique: []              # [string] high-level differentiation themes
   metaphors: []               # [string] memorable analogies
 
 open_questions:
-  - id: ""                    # e.g., "Q-01"
-    question: ""
+  - question: ""
     blocking: false
     owner: ""

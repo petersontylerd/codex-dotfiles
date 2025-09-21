@@ -23,11 +23,9 @@ users_use_cases:
   personas:
     - "P-01"
   primary_use_cases:
-    - id: ""                        
+    - id: ""
       name: ""
       description: ""
-      linked_personas: []           
-      linked_workflows: []          
       value_hypothesis: ""          
 
 functional_requirements:
@@ -39,9 +37,6 @@ functional_requirements:
       - ""                          # Gherkin preferred, freeform allowed
     priority: ""                    # Must | Should | Could | Won’t
     roadmap_time_horizon: ""        # short-term | mid-term | long-term
-    linked_personas: []             # optional but encouraged
-    linked_workflows: []            # optional but encouraged
-    linked_strategy_goals: []       # optional but encouraged
     dependencies: []                
     notes: ""                       
 

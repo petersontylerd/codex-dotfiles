@@ -19,27 +19,18 @@ overview:
   description: ""                   # 2–4 sentences of value delivered
   in_scope: []                      # [string] capabilities included
   out_of_scope: []                  # [string] capabilities explicitly excluded
-  personas_served: []               # persona IDs from personas.yaml
-  workflows_addressed: []           # workflow IDs from brainstorm
-  linked_strategy_goals: []         # SG IDs
-  linked_roadmap_horizons: []       # short-term | mid-term | long-term
-  linked_prd_frs: []                # FR IDs
-  linked_metrics: []                # metric IDs (M-01, NS-01, etc.)
-  dev_considerations_notes: ""      # feasibility/constraints at system level
 
 dependencies:
   internal_epics: []                # other epic IDs
   external_dependencies: []         # vendor/API/platform dependencies
 
 success_criteria:
-  - id: ""                          # e.g., "SC01"
-    metric: ""                      # reference metric ID
-    target: ""                      # measurable success signal
+  - description: ""                 # what success looks like
+    target: ""                     # measurable target
     notes: ""
 
 risks_assumptions:
-  - id: ""                          
-    description: ""
+  - description: ""
     type: ""                        # tech | data | ops | adoption
     mitigation: ""
     owner: ""
