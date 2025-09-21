@@ -1,12 +1,12 @@
 model = "gpt-5-codex"
 
-[projects."/home/ubuntu/workspace/repos/claude-code-dotfiles"]
+[projects."/home/ubuntu/repos/claude-code-dotfiles"]
 trust_level = "trusted"
 
-[projects."/home/ubuntu/workspace/repos/ccpm-codex"]
+[projects."/home/ubuntu/repos/ccpm-codex"]
 trust_level = "trusted"
 
-[projects."/home/ubuntu/workspace/repos"]
+[projects."/home/ubuntu/repos"]
 trust_level = "trusted"
 
 [mcp_servers.sequential-thinking]
