@@ -1,0 +1,23 @@
+model = "gpt-5-codex"
+
+[projects."/home/ubuntu/workspace/repos/claude-code-dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/ubuntu/workspace/repos/ccpm-codex"]
+trust_level = "trusted"
+
+[projects."/home/ubuntu/workspace/repos"]
+trust_level = "trusted"
+
+[mcp_servers.sequential-thinking]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+[mcp_servers.memory]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-memory"]
+env = { "MEMORY_FILE_PATH" = "/home/ubuntu/.codex/memory.json"}
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
