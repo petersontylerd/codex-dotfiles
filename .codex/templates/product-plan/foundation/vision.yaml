@@ -1,9 +1,6 @@
-# schema_version: 1.0.0
+# schema_version: 2.0.0
 metadata:
-  project_code: ""            # must match brainstorm
   product_name: ""            # must match brainstorm
-  date: ""                    # ISO 8601
-  facilitator: ""             # string
   based_on_artifact: "brainstorm.yaml"
   schema_version: "1.0.0"
 
@@ -26,7 +23,20 @@ differentiation:
   why_unique: []              # [string] high-level differentiation themes
   metaphors: []               # [string] memorable analogies
 
+confidence_assessment:
+  - section: ""           # e.g., "vision_statement", "strategic_pillars", "differentiation"
+    confidence: ""         # high | medium | low
+    rationale: ""          # why low confidence
+    follow_up_action: ""   # specific next step to increase confidence
+    
+progressive_decisions:
+  - decision: ""           # what was decided with incomplete info
+    assumption: ""         # what we assumed
+    confidence: ""         # high | medium | low
+    trigger_for_revisit: "" # what would make us reconsider
+    
 open_questions:
   - question: ""
-    blocking: false
-    owner: ""
+    blocking: false        # does this block forward progress?
+    confidence_impact: ""  # which sections this affects
+    workaround: ""         # how to proceed if unresolved

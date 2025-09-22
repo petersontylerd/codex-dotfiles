@@ -3,8 +3,6 @@ metadata:
   feature_id: ""                   # e.g., "F001" (sequential within epic)
   parent_epic: ""                  # e.g., "E001" (must match parent epic ID)
   feature_name: ""                 
-  date: ""                         
-  facilitator: ""                  
   based_on_artifacts:
     - "brainstorm.yaml"
     - "vision.yaml"
@@ -21,7 +19,7 @@ overview:
   user_value: ""                   # why users care
   in_scope: []                     # [string] functionality included
   out_of_scope: []                 # [string] functionality explicitly excluded
-  personas_served: []              # persona IDs
+  personas_served: []              # personas
   dev_considerations_notes: ""     # feasibility/system notes from dev-considerations
 
 dependencies:

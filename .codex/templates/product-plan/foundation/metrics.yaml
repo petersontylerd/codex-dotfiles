@@ -1,9 +1,6 @@
-# schema_version: 1.0.0
+# schema_version: 2.0.0
 metadata:
-  project_code: ""                  
-  product_name: ""                  
-  date: ""                          
-  facilitator: ""                   
+  product_name: ""
   based_on_artifacts:
     - "brainstorm.yaml"
     - "vision.yaml"
@@ -70,7 +67,20 @@ generative_ai_metrics:               # only if GenAI features exist
     target: ""
     time_horizon: ""
 
+confidence_assessment:
+  - section: ""           # e.g., "north_star_metric", "target_values", "ai_metrics"
+    confidence: ""         # high | medium | low
+    rationale: ""          # why low confidence
+    follow_up_action: ""   # specific next step to increase confidence
+
+progressive_decisions:
+  - decision: ""           # what was decided with incomplete info
+    assumption: ""         # what we assumed
+    confidence: ""         # high | medium | low
+    trigger_for_revisit: "" # what would make us reconsider
+
 open_questions:
   - question: ""
-    blocking: false
-    owner: ""
+    blocking: false        # does this block forward progress?
+    confidence_impact: ""  # which sections this affects
+    workaround: ""         # how to proceed if unresolved

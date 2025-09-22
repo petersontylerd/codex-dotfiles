@@ -2,8 +2,6 @@
 metadata:
   epic_id: ""                       # e.g., "E001"
   epic_name: ""                     # short descriptive title
-  date: ""                          
-  facilitator: ""                   
   based_on_artifacts:
     - "brainstorm.yaml"
     - "vision.yaml"
@@ -26,7 +24,7 @@ dependencies:
 
 success_criteria:
   - description: ""                 # what success looks like
-    target: ""                     # measurable target
+    target: ""                      # measurable target
     notes: ""
 
 risks_assumptions:

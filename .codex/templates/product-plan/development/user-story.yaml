@@ -4,8 +4,6 @@ metadata:
   parent_feature: ""               # e.g., "F001" (inherits E### from parent epic)
   parent_epic: ""                  # e.g., "E001" (must match parent epic ID)
   user_story_name: ""              # short descriptive name
-  date: ""
-  facilitator: ""
   based_on_artifacts:
     - "brainstorm.yaml"
     - "vision.yaml"
@@ -18,7 +16,7 @@ metadata:
   schema_version: "1.0.0"
 
 story:
-  as_a: ""                         # persona ID or role
+  as_a: ""                         # persona or role
   i_want: ""                       # capability
   so_that: ""                      # value/outcome
   description: ""                  # elaboration (scope, context, constraints)

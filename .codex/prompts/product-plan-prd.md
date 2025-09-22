@@ -9,12 +9,15 @@ Your job is to run a rigorous, Q&A-driven working session and produce a **canoni
 - **Outcome-focused** (value and impact, not just outputs),
 - Inclusive of **AI-driven and non-AI features**.
 **Use sequential-thinking MCP** to help structure your thinking and assessment.
+**Use memory MCP** to track findings across large artifact sets and maintain context throughout the validation process.
 
 ## Inputs
 - `./.codex/product-plan/foundation/brainstorm.yaml`
 - `./.codex/product-plan/foundation/vision.yaml`
 - `./.codex/product-plan/foundation/strategy.yaml`
 - `./.codex/product-plan/foundation/roadmap.yaml`
+- `./.codex/product-plan/foundation/personas.yaml`
+- `./.codex/product-plan/foundation/metrics.yaml`
 
 ## Guardrails
 - **Socratic**: Ask small batches of probing questions; synthesize iteratively. 
@@ -24,10 +27,17 @@ Your job is to run a rigorous, Q&A-driven working session and produce a **canoni
 - **Objectivity**: Challenge gaps, wishful thinking, and ambiguity. Push for specifics, measurable targets, and testability.  
 - **Acceptance criteria**: Capture criteria for every FR. Prefer **Given/When/Then (Gherkin)** when it fits, but allow freeform descriptions where not appropriate.  
 - **MoSCoW prioritization**: Every FR must include a priority tag: `Must | Should | Could | Won’t`.  
-- **AI rigor (optional)**: When a feature involves AI/ML, capture data, evals, and guardrails. But **do not over-index** — many FRs may be descriptive analytics or traditional functionality.  
+- **Descriptive Analytics rigor**: Address data quality, statistical validity, aggregation bias, business rule accuracy, dashboard reliability.
+- **Machine Learning rigor**: Address model bias, interpretability requirements, drift detection, performance monitoring, feature engineering ethics, training data quality.
+- **Generative AI rigor**: Address prompt injection protection, hallucination mitigation, content safety, cost management, PII handling, human-in-the-loop workflows.  
 - **Security/privacy**: Always capture a **PII handling stance** in safety guardrails.  
 - **Rollout**: Support **custom rollout phase taxonomies** (Alpha/Beta/GA, or Pilot/Limited/Full GA).  
-- **No placeholders**: Do not leave “TBD” or “???”. If missing info, stop, ask questions, and propose options.  
+- **Managed unknowns**: Prefer concrete answers through questioning. When information is genuinely unavailable, use "TBD-[specific reason]" and MUST:
+  - Assess confidence level for affected sections
+  - Assign follow-up owner and target date
+  - Capture in confidence_assessment and open_questions
+  - Identify workarounds to maintain forward momentum
+- **No lazy placeholders**: Still forbidden to use TBD for information obtainable through better questioning  
 
 ## Session Flow
 **Round 1 – Alignment & Scope**  
@@ -76,12 +86,19 @@ Your job is to run a rigorous, Q&A-driven working session and produce a **canoni
 - Strategy-specific risks.
 - Rollout phases (customizable).  
 
-**Round 11 – Synthesis & Validation**
+**Round 11 – Foundation Alignment Check**
+- Validate PRD against brainstorm ROI formulas and business case
+- Validate PRD against vision pillars and strategic goals
+- Ask: "Does this PRD still align with our original business case and vision?"
+- Assess confidence level in this alignment
+- If misaligned, identify what needs adjustment before proceeding
+
+**Round 12 – Synthesis & Validation**
 - Generate the **structured YAML report** conforming exactly to `./.codex/templates/product-plan/foundation/prd.yaml`.
 - Write to: `./.codex/product-plan/foundation/prd.yaml`.  
 
 ## Output Contract
-- **Output file**: `./.codex/product-plan/foundation/prd.yaml`  
-- **Content**: pure YAML, strictly following the template schema.  
-- **Hard fail** if required fields are missing, placeholders are used, or MoSCoW priority absent in FRs.
+- **Output file**: `./.codex/product-plan/foundation/prd.yaml`
+- **Format**: Complete YAML conforming exactly to the template schema.
+- **Required fields** must be present or properly documented as managed unknowns. MoSCoW priority is mandatory for all FRs.
 - **Filesystem I/O is allowed** → You must **write directly** to the path above.  

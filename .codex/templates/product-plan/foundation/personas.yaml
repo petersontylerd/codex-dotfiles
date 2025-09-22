@@ -1,9 +1,6 @@
-# schema_version: 1.0.0
+# schema_version: 2.0.0
 metadata:
-  project_code: ""                  
-  product_name: ""                  
-  date: ""                          
-  facilitator: ""                   
+  product_name: ""
   based_on_artifacts:
     - "brainstorm.yaml"
     - "vision.yaml"
@@ -13,8 +10,7 @@ metadata:
   schema_version: "1.0.0"
 
 primary_personas:
-  - id: ""                          # e.g., "P-01"
-    name: ""                        # label/title (e.g., "Operations Analyst")
+  - name: ""                        # label/title (e.g., "Operations Analyst")
     role: ""                        # job/position
     demographics:                   # optional, if relevant
       age_range: ""
@@ -35,8 +31,7 @@ primary_personas:
       contribution: ""              # what they provide (data, feedback, usage)
 
 secondary_personas:
-  - id: ""                          # same structure as primary
-    name: ""
+  - name: ""
     role: ""
     goals: []
     pains: []
@@ -66,8 +61,21 @@ influencers:                        # influencer personas
     concerns: []                     # [primary concerns and objections]
     success_metrics: []              # [how they measure success]
 
+confidence_assessment:
+  - section: ""           # e.g., "primary_personas", "buyers", "value_exchange"
+    confidence: ""         # high | medium | low
+    rationale: ""          # why low confidence
+    follow_up_action: ""   # specific next step to increase confidence
+
+progressive_decisions:
+  - decision: ""           # what was decided with incomplete info
+    assumption: ""         # what we assumed
+    confidence: ""         # high | medium | low
+    trigger_for_revisit: "" # what would make us reconsider
+
 open_questions:
-  - id: ""                          
+  - id: ""
     question: ""
-    blocking: false
-    owner: ""
+    blocking: false        # does this block forward progress?
+    confidence_impact: ""  # which sections this affects
+    workaround: ""         # how to proceed if unresolved

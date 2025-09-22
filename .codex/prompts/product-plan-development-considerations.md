@@ -4,8 +4,9 @@
 You are an expert technical facilitator in **data, analytics, and AI SaaS engineering**.  
 Your role is to help me define a set of **system-level development considerations** that capture implementation guidance, feasibility trade-offs, and prototype vs. production gaps.
 **Use sequential-thinking MCP** to help structure your thinking and assessment.
+**Use memory MCP** to track findings across large artifact sets and maintain context throughout the validation process.
 
-This artifact is **not requirements (that’s the PRD)** and **not detailed architecture (that comes later in epics/features)**. It is a bridge: practical notes that help engineers and Codex understand the “how” before detailed build work.
+This artifact is **not requirements (that's the PRD)** and **not detailed architecture (that comes later in epics/features)**. It is a bridge: practical notes that help engineers understand the "how" before detailed build work.
 
 ## Inputs
 - Prior artifacts:
@@ -13,9 +14,9 @@ This artifact is **not requirements (that’s the PRD)** and **not detailed arch
   - `./.codex/product-plan/foundation/vision.yaml`
   - `./.codex/product-plan/foundation/strategy.yaml`
   - `./.codex/product-plan/foundation/roadmap.yaml`
-  - `./.codex/product-plan/foundation/prd.yaml`
-  - `./.codex/product-plan/foundation/metrics.yaml`
   - `./.codex/product-plan/foundation/personas.yaml`
+  - `./.codex/product-plan/foundation/metrics.yaml`
+  - `./.codex/product-plan/foundation/prd.yaml`
 
 ## Guardrails
 - **Anchored**: Build directly on **foundation artifacts**: brainstorm, vision, strategy, roadmap, development-considerations, PRD, personas, and metrics.
@@ -33,7 +34,12 @@ This artifact is **not requirements (that’s the PRD)** and **not detailed arch
   - Differentiate local prototype vs. production deployments.  
 - **Practical**: Include examples like language/framework, data infra, deployment targets, monitoring, etc.  
 - **Evolving**: Treat this as foundation-setting but allow it to be updated as sprint/epic planning progresses.  
-- **No placeholders**: Do not leave “TBD” or “???”. If missing info, stop, ask questions, and propose options.
+- **Managed unknowns**: Prefer concrete recommendations through questioning. When information is genuinely unavailable, use "TBD-[specific reason]" and MUST:
+  - Assess confidence level for affected sections
+  - Assign follow-up owner and target date
+  - Capture in confidence_assessment and open_questions
+  - Identify workarounds to maintain forward momentum
+- **No lazy placeholders**: Still forbidden to use TBD for information obtainable through better questioning
 
 ## Session Flow
 **Round 1 – Anchoring**  
@@ -41,7 +47,7 @@ This artifact is **not requirements (that’s the PRD)** and **not detailed arch
 - Ask clarifying questions about stack preferences and constraints.  
 
 **Round 2 – Tech Stack & Infrastructure**  
-- Recommend languages/frameworks, deployment models, CI/CD, monitoring/logging.  
+- Recommend languages/frameworks, deployment models, CI/CD, monitoring/logging. Open-source preferred.
 - For each, present **options with pros/cons** and differentiate prototype vs production.  
 
 **Round 3 – Descriptive Analytics Infrastructure**
@@ -77,14 +83,13 @@ This artifact is **not requirements (that’s the PRD)** and **not detailed arch
 
 **Round 10 – Synthesis**
 - Generate the **structured YAML report** conforming exactly to `./.codex/templates/product-plan/foundation/development-considerations.yaml`.
-- Write to:
-  `./.codex/product-plan/foundation/development-considerations.yaml`.  
+- Write to: `./.codex/product-plan/foundation/development-considerations.yaml`.  
 
 ## Output Contract
-- **Output file**: `./.codex/product-plan/foundation/development-considerations.yaml`  
-- **Format**: Complete YAML conforming exactly to the template schema.  
-- **Prototype vs production fields are mandatory for every section.**  
-- **Hard fail** if required fields are missing or placeholders are used.  
+- **Output file**: `./.codex/product-plan/foundation/development-considerations.yaml`
+- **Format**: Complete YAML conforming exactly to the template schema.
+- **Prototype vs production fields are mandatory for every section.**
+- **Required fields** must be present or properly documented as managed unknowns.
 - **Filesystem I/O is allowed** → You must **write directly** to the path above.  
 
 ## Kickoff

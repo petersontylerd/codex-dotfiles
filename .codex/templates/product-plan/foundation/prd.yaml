@@ -1,9 +1,6 @@
-# schema_version: 1.0.0
+# schema_version: 2.0.0
 metadata:
-  project_code: ""                  
-  product_name: ""                  
-  date: ""                          
-  facilitator: ""                   
+  product_name: ""
   based_on_artifacts:
     - "brainstorm.yaml"
     - "vision.yaml"
@@ -20,11 +17,9 @@ overview:
   out_of_scope: []                  
 
 users_use_cases:
-  personas:
-    - "P-01"
   primary_use_cases:
-    - id: ""
-      name: ""
+    - name: ""
+      personas: []
       description: ""
       value_hypothesis: ""          
 
@@ -101,15 +96,13 @@ ai_integration_design:
 
 interfaces_experience:
   ux_flows:
-    - id: ""                        
-      name: ""
+    - name: ""
       description: ""               
       references: []                
   ui_content_rules: []              
   empty_error_states: []            
   api_endpoints:
-    - id: ""                        
-      direction: ""                 
+    - direction: ""                 
       method: ""                    
       path: ""                      
       auth: ""                      
@@ -140,16 +133,14 @@ dependencies:
   tech_constraints: []              
 
 risks:
-  - id: ""                          
-    description: ""
+  - description: ""
     type: ""                        
     mitigation: ""
     owner: ""
 
 rollout_plan:
   phases:
-    - id: ""                        
-      name: ""                      # Alpha | Beta | GA or Pilot | Limited | Full GA
+    - name: ""                      # Alpha | Beta | GA or Pilot | Limited | Full GA
       entry_criteria: []            
       exit_criteria: []             
       notes: ""
@@ -166,9 +157,22 @@ acceptance_validation:
           owner: ""
   signoff_owners: []                
 
-glossary: []                        
+glossary: []
+
+confidence_assessment:
+  - section: ""           # e.g., "functional_requirements", "ai_design", "interfaces"
+    confidence: ""         # high | medium | low
+    rationale: ""          # why low confidence
+    follow_up_action: ""   # specific next step to increase confidence
+
+progressive_decisions:
+  - decision: ""           # what was decided with incomplete info
+    assumption: ""         # what we assumed
+    confidence: ""         # high | medium | low
+    trigger_for_revisit: "" # what would make us reconsider
+
 open_questions:
-  - id: ""                          
-    question: ""
-    blocking: false
-    owner: ""
+  - question: ""
+    blocking: false        # does this block forward progress?
+    confidence_impact: ""  # which sections this affects
+    workaround: ""         # how to proceed if unresolved

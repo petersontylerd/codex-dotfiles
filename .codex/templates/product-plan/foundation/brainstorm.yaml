@@ -1,10 +1,6 @@
-# schema_version: 1.0.0
+# schema_version: 2.0.0
 metadata:
-  project_code: ""            # string, e.g., "APOLLO"
   product_name: ""            # string
-  date: ""                    # ISO 8601
-  facilitator: ""             # string
-  stakeholders: []            # [name or role]
   schema_version: "1.0.0"     # fixed
 
 context:
@@ -16,15 +12,11 @@ context:
 
 personas:
   primary:
-    - id: ""                       # e.g., "P-01"
-      name: ""
+    - name: ""
       role: ""
       jtbd: []                     # [situation → motivation → outcome]
       pains: []
       success_criteria: []
-      environment:
-        devices: []
-        systems: []
       data_literacy: ""            # low|medium|high
       ai_comfort: ""               # low|medium|high
   secondary: []                    # same shape as primary (optional)
@@ -32,15 +24,13 @@ personas:
   influencers: []                  # simple strings for now
 
 workflows:
-  - id: ""                         # e.g., "WF-01"
-    name: ""
+  - name: ""
     trigger: ""
-    actors: []                     # [persona.id or role]
+    actors: []                     # [persona or role]
     preconditions: []
     steps: []
     success_criteria: []
     failure_modes: []
-    systems: []
     inputs: []
     outputs: []
     slas:
@@ -60,7 +50,6 @@ market:
 
 data:
   sources: []
-  ownership: ""
   volume_scale: ""
   freshness: ""
   quality_issues: []
@@ -107,7 +96,6 @@ value_roi:
       value: 0
       unit: ""
       source: ""
-  payback_period_months: 0
 
 commercialization:
   willingness_to_pay_evidence: []   # [market validation signals, evidence of payment behavior]
@@ -151,7 +139,20 @@ decision_log:
     date: ""
     owners: []
 
+confidence_assessment:
+  - section: ""           # e.g., "roi_formula", "personas", "market_validation"
+    confidence: ""         # high | medium | low
+    rationale: ""          # why low confidence
+    follow_up_action: ""   # specific next step to increase confidence
+    
+progressive_decisions:
+  - decision: ""           # what was decided with incomplete info
+    assumption: ""         # what we assumed
+    confidence: ""         # high | medium | low
+    trigger_for_revisit: "" # what would make us reconsider
+    
 open_questions:
   - question: ""
-    blocking: false
-    owner: ""
+    blocking: false        # does this block forward progress?
+    confidence_impact: ""  # which sections this affects
+    workaround: ""         # how to proceed if unresolved
