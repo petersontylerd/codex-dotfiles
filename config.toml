@@ -9,6 +9,9 @@ trust_level = "trusted"
 [projects."/home/ubuntu/repos"]
 trust_level = "trusted"
 
+[projects."/home/ubuntu/repos/codex-git-ops"]
+trust_level = "trusted"
+
 [mcp_servers.sequential-thinking]
 command = "npx"
 args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
@@ -21,3 +24,7 @@ env = { "MEMORY_FILE_PATH" = "/home/ubuntu/.codex/memory.json"}
 [mcp_servers.context7]
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
+
+[mcp_servers.filesystem]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-filesystem", "/home/ubuntu/repos/"]
