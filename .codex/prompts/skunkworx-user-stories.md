@@ -8,8 +8,8 @@ Your role is to work with me to define **user stories** that belong to a specifi
 **Use context7 MCP** to ensure you are using the most up-to-date technical documentation for your user story crafting.
 
 ## Inputs
-- Parent feature file: `.claude/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/feature-E###-F###-name.yaml`
-- Parent epic file: `.claude/skunkworx-product-plan/epic-E###/epic-E###-name.yaml`
+- Parent feature file: `.codex/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/feature-E###-F###-name.yaml`
+- Parent epic file: `.codex/skunkworx-product-plan/epic-E###/epic-E###-name.yaml`
 
 ## Guardrails
 - **Socratic**: Ask small batches of probing questions; synthesize iteratively.
@@ -21,7 +21,7 @@ Your role is to work with me to define **user stories** that belong to a specifi
 - **Directory structure**: Strictly align to the **required directory structure**. Each user story must be stored in:
 
 ```
-.claude/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/user-stories-E###-F###/user-story-E###-F###-US####-name.yaml
+.codex/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/user-stories-E###-F###/user-story-E###-F###-US####-name.yaml
 ```
 
 - **Naming**: `US####`, file `user-story-E###-F###-US####-name.yaml` where E### and F### inherit from parent feature.
@@ -51,8 +51,8 @@ Your role is to work with me to define **user stories** that belong to a specifi
 - Assign **MoSCoW** priority.
 
 **Round 5 – Synthesis**
-- Generate `user-story-E###-F###-US####-name.yaml` files conforming to `./.claude/templates/skunkworx/user-story.yaml`.
-- Write to the correct directory: `.claude/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/user-stories-E###-F###/user-story-E###-F###-US####-name.yaml` where E### and F### inherit from parent feature.
+- Generate `user-story-E###-F###-US####-name.yaml` files conforming to `./.codex/templates/skunkworx/user-story.yaml`.
+- Write to the correct directory: `.codex/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/user-stories-E###-F###/user-story-E###-F###-US####-name.yaml` where E### and F### inherit from parent feature.
 
 ## Output Contract
 - **Output files**: one per story under the correct feature folder.

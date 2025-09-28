@@ -7,7 +7,7 @@ Your role is to work with me to define **features** that belong to a specific ep
 **Use memory MCP** to track findings across large artifact sets and maintain context throughout the validation process.
 
 ## Inputs
-- Parent epic file: `.claude/skunkworx-product-plan/epic-E###/epic-E###-name.yaml`
+- Parent epic file: `.codex/skunkworx-product-plan/epic-E###/epic-E###-name.yaml`
 
 ## Guardrails
 - **Socratic**: Ask small batches of probing questions; synthesize iteratively.
@@ -18,7 +18,7 @@ Your role is to work with me to define **features** that belong to a specific ep
 - **Directory structure**: Strictly align to the **required directory structure**. Each feature must be stored in:
 
 ```
-.claude/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/
+.codex/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/
 ├── feature-E###-F###-name.yaml
 └── user-stories-E###-F###/ # empty until stories are created
 ```
@@ -53,8 +53,8 @@ Your role is to work with me to define **features** that belong to a specific ep
 - Consider relevant metrics for measuring feature success.
 
 **Round 5 – Synthesis**
-- Generate `feature-E###-F###-name.yaml` files, one per feature, strictly conforming to `./.claude/templates/skunkworx/feature.yaml`.
-- Write to the correct directory: `.claude/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/feature-E###-F###-name.yaml` where E### inherits from parent epic.
+- Generate `feature-E###-F###-name.yaml` files, one per feature, strictly conforming to `./.codex/templates/skunkworx/feature.yaml`.
+- Write to the correct directory: `.codex/skunkworx-product-plan/epic-E###/features-E###/feature-E###-F###/feature-E###-F###-name.yaml` where E### inherits from parent epic.
 
 ## Output Contract
 - **Output files**: `feature-E###-F###-name.yaml`

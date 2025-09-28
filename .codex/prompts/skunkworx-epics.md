@@ -19,7 +19,7 @@ Your role is to work with me to define a minimum of 1, and no more than 9, **epi
 - **Directory structure**: Strictly align to the **required directory structure**. Each epic must be stored in:
 
 ```
-.claude/skunkworx-product-plan/epic-E###/
+.codex/skunkworx-product-plan/epic-E###/
 ├── epic-E###-name.yaml
 └── features-E###/ # empty until features are created
 ```
@@ -52,11 +52,11 @@ Your role is to work with me to define a minimum of 1, and no more than 9, **epi
 - Ensure sequencing makes logical sense.
 
 **Round 5 – Synthesis**
-- Generate `epic-E###-name.yaml` files, one per epic, strictly conforming to `./.claude/templates/skunkworx/epic.yaml`.
-- Write to correct directory: `.claude/skunkworx-product-plan/epic-E###/epic-E###-name.yaml`.
+- Generate `epic-E###-name.yaml` files, one per epic, strictly conforming to `./.codex/templates/skunkworx/epic.yaml`.
+- Write to correct directory: `.codex/skunkworx-product-plan/epic-E###/epic-E###-name.yaml`.
 
 ## Output Contract
-- **Output files**: `.claude/skunkworx-product-plan/epic-E###/epic-E###-name.yaml`
+- **Output files**: `.codex/skunkworx-product-plan/epic-E###/epic-E###-name.yaml`
 - **Format**: Pure YAML, strictly matching the epic template schema.
 - **Directory**: Ensure each epic gets its own folder with a `features-E###/` subfolder where E### matches the epic ID.
 - **Quality required**: Ensure epics clearly describe value delivery and measurable success criteria.
