@@ -6,7 +6,6 @@ Ensures the prd artifact follows the expected structure and contains required fi
 """
 
 import sys
-import os
 import yaml
 from pathlib import Path
 from typing import Dict, List, Any, Tuple
@@ -18,11 +17,12 @@ YELLOW = "\033[93m"
 BLUE = "\033[94m"
 RESET = "\033[0m"
 
+
 def load_yaml_file(file_path: Path) -> Tuple[Dict[str, Any], List[str]]:
     """Load and parse a YAML file, returning content and any errors."""
-    errors = []
+    errors: List[str] = []
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             content = yaml.safe_load(f)
             return content or {}, errors
     except FileNotFoundError:
@@ -35,26 +35,31 @@ def load_yaml_file(file_path: Path) -> Tuple[Dict[str, Any], List[str]]:
         errors.append(f"Unexpected error reading file: {e}")
         return {}, errors
 
-def validate_structure(artifact: Dict[str, Any], template: Dict[str, Any], path: str = "") -> List[str]:
+
+def validate_structure(
+    artifact: Dict[str, Any], template: Dict[str, Any], path: str = ""
+) -> List[str]:
     """Recursively validate artifact structure against template."""
-    errors = []
-    
+    errors: List[str] = []
+
     for key, template_value in template.items():
         current_path = f"{path}.{key}" if path else key
-        
+
         if key not in artifact:
             errors.append(f"Missing required field: {current_path}")
             continue
-            
+
         artifact_value = artifact[key]
-        
+
         # Check if template value is a dict and needs recursive validation
         if isinstance(template_value, dict):
             if not isinstance(artifact_value, dict):
                 errors.append(f"Field {current_path} should be a dictionary")
             else:
-                errors.extend(validate_structure(artifact_value, template_value, current_path))
-        
+                errors.extend(
+                    validate_structure(artifact_value, template_value, current_path)
+                )
+
         # Check if template value is a list
         elif isinstance(template_value, list):
             if not isinstance(artifact_value, list):
@@ -63,19 +68,26 @@ def validate_structure(artifact: Dict[str, Any], template: Dict[str, Any], path:
                 # Validate list items against first template item if it's a dict
                 for i, item in enumerate(artifact_value):
                     if isinstance(item, dict):
-                        errors.extend(validate_structure(item, template_value[0], f"{current_path}[{i}]"))
-    
+                        errors.extend(
+                            validate_structure(
+                                item, template_value[0], f"{current_path}[{i}]"
+                            )
+                        )
+
     return errors
+
 
 def validate_prd() -> bool:
     """Main validation function for prd.yaml."""
     # Define paths
     script_dir = Path(__file__).parent.parent.parent.parent
     artifact_path = script_dir / "product-plan" / "foundation" / "prd.yaml"
-    template_path = script_dir / "templates" / "product-plan" / "foundation" / "prd.yaml"
-    
+    template_path = (
+        script_dir / "templates" / "product-plan" / "foundation" / "prd.yaml"
+    )
+
     print(f"{BLUE}Validating prd.yaml...{RESET}")
-    
+
     # Load template
     template, template_errors = load_yaml_file(template_path)
     if template_errors:
@@ -83,7 +95,7 @@ def validate_prd() -> bool:
         for error in template_errors:
             print(f"  - {error}")
         return False
-    
+
     # Load artifact
     artifact, artifact_errors = load_yaml_file(artifact_path)
     if artifact_errors:
@@ -91,10 +103,10 @@ def validate_prd() -> bool:
         for error in artifact_errors:
             print(f"  - {error}")
         return False
-    
+
     # Validate structure
     structure_errors = validate_structure(artifact, template)
-    
+
     # Report results
     if structure_errors:
         print(f"{RED}Validation failed with {len(structure_errors)} error(s):{RESET}")
@@ -104,6 +116,7 @@ def validate_prd() -> bool:
     else:
         print(f"{GREEN}✓ prd.yaml validation passed{RESET}")
         return True
+
 
 if __name__ == "__main__":
     success = validate_prd()
