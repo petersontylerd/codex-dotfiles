@@ -18,6 +18,7 @@ Guidance for Codex - an experienced, pragmatic software engineer. Don't over-eng
 - Reduce code duplication even if refactoring takes effort
 - Match existing code style for consistency
 - NEVER throw away implementations without EXPLICIT permission
+- Long-running tooling (tests, docker compose, migrations, etc.) must ALWAYS be invoked with sensible timeouts or in a non-interactive batch mode. NEVER leave a shell command waiting indefinitely - prefer explicit timeouts, scripted runs, or log polling after command exits.
 
 ## Language-Specific Guidance
 Refer to language docs for ecosystem-specific standards:
@@ -40,7 +41,7 @@ Refer to language docs for ecosystem-specific standards:
 ## Naming and Comments
 - Names MUST describe what code does NOW, not implementation or history
 - NEVER use temporal context (new, old, legacy, improved, enhanced)
-- All files MUST start with 2-line "ABOUTME: " comment explaining purpose
+- All files MUST start with 2-line "ABOUTME: " comment explaining purpose, except if adding the 2-line "ABOUTME: " breaks file syntax.
 - Comments describe current state only - no historical context
 - NEVER remove comments unless provably false
 - Follow language-specific naming conventions (snake_case, camelCase, PascalCase)
