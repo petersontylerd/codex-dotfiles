@@ -1,16 +1,6 @@
+experimental_use_rmcp_client = true
 model = "gpt-5-codex"
-
-[projects."/home/ubuntu/repos/claude-code-dotfiles"]
-trust_level = "trusted"
-
-[projects."/home/ubuntu/repos/ccpm-codex"]
-trust_level = "trusted"
-
-[projects."/home/ubuntu/repos"]
-trust_level = "trusted"
-
-[projects."/home/ubuntu/repos/codex-git-ops"]
-trust_level = "trusted"
+model_reasoning_effort = "high"
 
 [mcp_servers.sequential-thinking]
 command = "npx"
@@ -28,3 +18,11 @@ args = ["-y", "@upstash/context7-mcp"]
 [mcp_servers.filesystem]
 command = "npx"
 args = ["-y", "@modelcontextprotocol/server-filesystem", "/home/ubuntu/repos/"]
+
+[mcp_servers.serena]
+command = "uvx"
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
+
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+bearer_token = "token" # run `codex mcp login figma`

@@ -37,6 +37,13 @@ Refer to language docs for ecosystem-specific standards:
 - Balance file organization with simplicity
 - Use language-appropriate package managers, formatters, linters, and type checkers
 - Follow ecosystem conventions and idiomatic patterns for each language
+- **MCPs**: You have several MCP servers at your disposal with useful tools. Use these early and often:
+
+  - *memory* – A Memory MCP server provides persistent, structured memory—often via a local knowledge graph—that an assistant can read and update across chats. For an agentic coding platform like Codex, this lets the agent retain project facts, decisions, and preferences so it can build on prior work without re-asking, improving continuity.
+  - *sequential-thinking* – The Sequential Thinking MCP server gives the model a tool for step-by-step, reflective reasoning, managing and revising thought sequences as it works. In Codex, this helps with complex coding by externalizing the planning loop—decomposing tasks, checking intermediate steps, and producing more reliable solutions.
+  - *filesystem* – The Filesystem MCP server exposes safe file operations (read/write, list, search, move) with configurable “roots” that strictly control what the agent can access. For Codex, that means the agent can create files, refactor codebases, and organize projects directly in your workspace while staying sandboxed.
+  - *context7* – The Context7 MCP server fetches version-specific documentation and code examples straight from upstream sources and injects them into the model’s context. This is valuable for Codex because the agent can consult the exact API for the library/version you’re using, reducing hallucinated APIs and enabling up-to-date, working code.
+  - *serena* – An open-source MCP server that gives your agent IDE-style power over a repo—semantic code/search, precise file edits, running commands/tests, and reading logs—by orchestrating those tools through an LLM and clients like Claude Code/VS Code. In Codex, this turns the assistant into a hands-on coding agent that can analyze, modify, and execute code within a project instead of just suggesting changes.
 
 ## Naming and Comments
 - Names MUST describe what code does NOW, not implementation or history
