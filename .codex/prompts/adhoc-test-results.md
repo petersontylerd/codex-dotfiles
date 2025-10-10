@@ -1,0 +1,1 @@
+Seems like you got stuck on a permissions issue while attempting to run a test suite. Going forward you have permission to run tests out of .uv-cache/ and .uv_cache/. To help get you past this immediate barrier, I ran the tests for you in a separate terminal. Here is the terminal output based on that test run: 
