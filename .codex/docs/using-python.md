@@ -1,14 +1,14 @@
 # Python Development Standards
 
 ## Environment Setup
-- **Python Version**: >=3.11 (use latest stable)
+- **Python Version**: >=3.12 (use latest stable)
 - **Package Manager**: uv required. NEVER use pip, pip with venv, or poetry
 - **Dependency Management**: Use pyproject.toml, lock dependencies with uv.lock
 
 ## Code Quality Tools
 - **Linter & Formatter**: Ruff (replaces Black, isort, and more)
 - **Type Checker**: MyPy with strict settings (--strict flag)
-- **Testing**: pytest with coverage (min 80%)
+- **Testing**: pytest with coverage (min 90%)
 
 ## Essential Commands
 ```bash

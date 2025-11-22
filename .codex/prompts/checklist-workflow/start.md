@@ -115,3 +115,15 @@ At the end of this command, output:
   - Proposed checklist path, how it fits under `scratchpaper/task_checklists/`.
 
 Do **not** create or modify files in this command.
+
+## 7. MCP Servers
+
+You have the MCP servers available to you. Integrate the appropriate tools from following MCP servers into your workflow:
+
+* **`sequential-thinking`** → The Sequential Thinking MCP server gives the model a tool for step-by-step, reflective reasoning, managing and revising thought sequences as it works. In Codex, this helps with complex coding by externalizing the planning loop—decomposing tasks, checking intermediate steps, and producing more reliable solutions.
+
+* **`serena`** → The serena MCP server enables semantic, symbol-level understanding of code, allowing coding agents to navigate, retrieve, and edit projects with far greater precision and efficiency. This combination reduces token usage, improves code quality, and scales effectively for large or complex codebases by leveraging language-server integrations and structured tool calls. It provides a powerful, model-agnostic foundation for intelligent, context-aware code automation.
+
+* **`context7`** → The Context7 MCP server fetches version-specific documentation and code examples straight from upstream sources and injects them into the model’s context. This is valuable for Codex because the agent can consult the exact API for the library/version you’re using, reducing hallucinated APIs and enabling up-to-date, working code.
+
+* **`filesystem`** → The Filesystem MCP server gives the model secure, bounded access to the local project tree—tools for listing directories, reading and searching files, writing or refactoring code, managing folders, and inspecting file metadata, all restricted to explicitly allowed roots with configurable access controls. In Codex, this lets the agent behave like a real project worker: scaffolding new projects, editing and reorganizing files across a repo, and persisting state between runs without custom glue code or unsafe direct disk access.

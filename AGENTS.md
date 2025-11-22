@@ -5,7 +5,7 @@ Guidance for Codex - an experienced, pragmatic software engineer. Don't over-eng
 
 ## Working Together
 - NEVER be a sycophant with phrases like "You're absolutely right!"
-- NEVER lie or be agreeable just to be nice - I need honest technical judgment
+- NEVER lie or be agreeable just to be nice - I need honest and objective judgment
 - Speak up immediately when uncertain or when you disagree (cite technical reasons)
 - ALWAYS ask for clarification rather than making assumptions
 - If having trouble, STOP and ask for help
@@ -20,16 +20,6 @@ Guidance for Codex - an experienced, pragmatic software engineer. Don't over-eng
 - NEVER throw away implementations without EXPLICIT permission
 - Long-running tooling (tests, docker compose, migrations, etc.) must ALWAYS be invoked with sensible timeouts or in a non-interactive batch mode. NEVER leave a shell command waiting indefinitely - prefer explicit timeouts, scripted runs, or log polling after command exits.
 
-## Language-Specific Guidance
-Refer to language docs for ecosystem-specific standards:
-- @ ./.codex/docs/using-python.md
-- @ ./.codex/docs/using-typescript.md
-- @ ./.codex/docs/using-node.md
-- @ ./.codex/docs/using-react.md
-- @ ./.codex/docs/using-rust.md
-- @ ./.codex/docs/using-tdd.md
-- @ ./.codex/docs/using-source-control.md
-
 ## Coding Best Practices
 - Use early returns, descriptive names, constants over functions, DRY principles
 - Prefer functional, immutable approaches when not verbose
@@ -39,13 +29,13 @@ Refer to language docs for ecosystem-specific standards:
 - Follow ecosystem conventions and idiomatic patterns for each language
 - **MCPs**: You have several MCP servers at your disposal with useful tools. Use these early and often:
 
-  - *memory* – A Memory MCP server provides persistent, structured memory—often via a local knowledge graph—that an assistant can read and update across chats. For an agentic coding platform like Codex, this lets the agent retain project facts, decisions, and preferences so it can build on prior work without re-asking, improving continuity.
-  - *sequential-thinking* – The Sequential Thinking MCP server gives the model a tool for step-by-step, reflective reasoning, managing and revising thought sequences as it works. In Codex, this helps with complex coding by externalizing the planning loop—decomposing tasks, checking intermediate steps, and producing more reliable solutions.
-  - *filesystem* – The Filesystem MCP server exposes safe file operations (read/write, list, search, move) with configurable “roots” that strictly control what the agent can access. For Codex, that means the agent can create files, refactor codebases, and organize projects directly in your workspace while staying sandboxed.
-  - *context7* – The Context7 MCP server fetches version-specific documentation and code examples straight from upstream sources and injects them into the model’s context. This is valuable for Codex because the agent can consult the exact API for the library/version you’re using, reducing hallucinated APIs and enabling up-to-date, working code.
-  - *figma* – The Figma MCP server exposes structured design context—components, variables, and layout—to the model (and, with Make, the underlying app code), so Codex can generate code that matches your real design system and reuse mapped components instead of guessing from pixels. This improves design-to-code fidelity and reduces rework.
-  - *playwright* – The Playwright MCP server gives the model tool-level browser automation—navigate, click, fill forms, assert—by driving Playwright and returning structured accessibility snapshots instead of screenshots. In Codex, this enables generating/running end-to-end tests, reproducing bugs, and verifying fixes directly from prompts, improving reliability and coverage.
-  - *serena* – The Serena MCP server provides access to a comprehensive knowledge base of legal and regulatory information, enabling the model to query statutes, case law, regulations, and legal precedents. For Codex, this allows the agent to ensure compliance when generating code for regulated domains—checking licensing requirements, data protection rules, or industry-specific standards—so the solutions it builds are not just functional but legally sound from the start.
+  * **`sequential-thinking`** → The Sequential Thinking MCP server gives the model a tool for step-by-step, reflective reasoning, managing and revising thought sequences as it works. In Codex, this helps with complex coding by externalizing the planning loop—decomposing tasks, checking intermediate steps, and producing more reliable solutions.
+
+  * **`serena`** → The serena MCP server enables semantic, symbol-level understanding of code, allowing coding agents to navigate, retrieve, and edit projects with far greater precision and efficiency. This combination reduces token usage, improves code quality, and scales effectively for large or complex codebases by leveraging language-server integrations and structured tool calls. It provides a powerful, model-agnostic foundation for intelligent, context-aware code automation.
+
+  * **`context7`** → The Context7 MCP server fetches version-specific documentation and code examples straight from upstream sources and injects them into the model’s context. This is valuable for Codex because the agent can consult the exact API for the library/version you’re using, reducing hallucinated APIs and enabling up-to-date, working code.
+
+  * **`filesystem`** → The Filesystem MCP server gives the model secure, bounded access to the local project tree—tools for listing directories, reading and searching files, writing or refactoring code, managing folders, and inspecting file metadata, all restricted to explicitly allowed roots with configurable access controls. In Codex, this lets the agent behave like a real project worker: scaffolding new projects, editing and reorganizing files across a repo, and persisting state between runs without custom glue code or unsafe direct disk access.
 
 ## Naming and Comments
 - Names MUST describe what code does NOW, not implementation or history
@@ -99,8 +89,6 @@ ALWAYS find root cause - NEVER fix symptoms or add workarounds
 
 ## Version Control
 - Use feature branches (fix/, feat/, chore/)
-- Create PRs for all changes
-- Link issues with "Fixes #123"
 - Make atomic commits: type(scope): description
 - Run language-appropriate quality checks before committing
 
@@ -129,7 +117,8 @@ When using /compact, focus on recent conversation and significant tasks. Aggress
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-Codex planning artifacts live under `.codex/scripts`, separated into `development/epic-*` directories with nested feature and user-story YAML files. Shared reference docs, including language playbooks, are in `.codex/docs`. Use `templates/product-plan` when creating new artifacts; copy the relevant YAML skeleton before editing. Top-level configuration files such as `pyproject.toml`, `uv.lock`, and `config.toml` define the Python toolchain—update these instead of hand-editing generated lock data. Keep any experimental materials in clearly labeled subfolders; the root should remain limited to project-wide configuration.
+- Shared reference docs are in `~/.codex/docs`.
+- Top-level configuration files such as `pyproject.toml`, `uv.lock`, and `config.toml` define the Python toolchain—update these instead of hand-editing generated lock data. Keep any experimental materials in clearly labeled subfolders; the root should remain limited to project-wide configuration.
 
 ## Build, Test, and Development Commands
 - `uv sync` — install or update the Python environment defined in `pyproject.toml` and `uv.lock`.
@@ -137,10 +126,339 @@ Codex planning artifacts live under `.codex/scripts`, separated into `developmen
 - `uv run pre-commit run --all-files` — format, lint, and type-check before pushing; mirrors the hook configuration.
 
 ## Coding Style & Naming Conventions
-Target Python 3.12 with four-space indentation, meaningful snake_case identifiers, and descriptive YAML keys. Let `ruff format` manage layout and `ruff check` enforce lint rules; do not hand-tune style conflicts. Type hints should cover public helpers, with `mypy` kept clean. Mirror existing naming in `.codex/scripts` (`epic-E###`, `feature-####`, `user-story-####`) when adding files.
+Target Python 3.X with four-space indentation, meaningful snake_case identifiers, and descriptive YAML keys. Let `ruff format` manage layout and `ruff check` enforce lint rules; do not hand-tune style conflicts. Type hints should cover public helpers, with `mypy` kept clean. 
 
 ## Testing Guidelines
 Adopt `pytest` for any executable Python modules you add. Place tests under `tests/` with names that mirror the module under test, e.g., `tests/test_product_plan.py`. Execute `uv run pytest` locally and require meaningful fixtures or sample YAML to exercise parsing logic. Aim for high-value assertions over blanket coverage, but flag regressions with focused regression cases.
 
 ## Commit & Pull Request Guidelines
-Write imperative, present-tense commit subjects (~60 characters) and bundle related edits only. Reference issues with `Fixes #ID` when applicable and mention impacted scripts or templates in the body. Pull requests should summarize intent, list test commands run, and attach before/after snippets for modified YAML or generated artifacts. Request review once CI-style checks (`pre-commit`, `pytest`, security scans) pass locally.
+Write imperative, present-tense commit subjects (~60 characters) and bundle related edits only. Pull requests should summarize intent, list test commands run, and attach before/after snippets for modified YAML or generated artifacts. Request review once CI-style checks (`pre-commit`, `pytest`, security scans) pass locally.
+
+# Python Development Standards
+
+## Environment Setup
+- **Python Version**: >=3.12 (use latest stable)
+- **Package Manager**: uv required. NEVER use pip, pip with venv, or poetry
+- **Dependency Management**: Use pyproject.toml, lock dependencies with uv.lock
+
+## Code Quality Tools
+- **Linter & Formatter**: Ruff (replaces Black, isort, and more)
+- **Type Checker**: MyPy with strict settings (--strict flag)
+- **Testing**: pytest with coverage (min 90%)
+
+## Essential Commands
+```bash
+uv sync --dev              # Install dependencies
+uv run python -m app.main  # Run application
+uv run pytest             # Test
+uv run ruff format .      # Format code
+uv run ruff check .       # Lint
+uv run ruff check --fix . # Lint and auto-fix
+uv run mypy src/          # Type check
+```
+
+## Python-Specific Standards
+- Use type hints for all functions (including return types)
+- Prefer dataclasses or Pydantic models for data structures
+- Use pathlib for file operations, never os.path
+- Context managers for resource handling (with statements)
+- Async/await for I/O operations when beneficial
+- Follow PEP 8 naming: snake_case for functions/variables, PascalCase for classes
+
+## Common Patterns
+- Use `if __name__ == "__main__":` for script entry points
+- Prefer f-strings for formatting
+- Use enumerate() instead of range(len())
+- List comprehensions for simple transformations
+- Generator expressions for memory efficiency
+
+## Error Handling
+- Specific exception types, never bare except
+- Use logging module, not print() for debugging
+- Raise exceptions early with clear messages
+
+# React Development Standards
+
+## Environment Setup
+- **React Version**: >=18 (use latest stable)
+- **Build Tool**: Vite (preferred) > Next.js > CRA
+- **State Management**: Zustand > Redux Toolkit > Context
+- **Routing**: TanStack Router > React Router
+- **UI Libraries**: Shadcn/ui > MUI > Ant Design
+
+## Code Quality Tools
+- **Testing**: Vitest + React Testing Library
+- **Component Testing**: Storybook for isolation
+- **E2E Testing**: Playwright > Cypress
+
+## Essential Commands
+```bash
+pnpm create vite@latest  # New project
+pnpm dev                 # Development server
+pnpm test               # Unit tests
+pnpm storybook          # Component development
+pnpm build              # Production build
+```
+
+## React-Specific Standards
+- Functional components only (no class components)
+- Custom hooks for logic reuse (use prefix)
+- Strict mode enabled
+- Error boundaries for fault tolerance
+- Suspense for async operations
+- Server Components where applicable (Next.js/Remix)
+
+## Modern Patterns
+- useState for local state
+- useReducer for complex state logic
+- useMemo/useCallback for optimization (measure first!)
+- Custom hooks for shared logic
+- Compound components for flexibility
+- Render props only when necessary
+
+## Performance Guidelines
+- Lazy load routes and heavy components
+- Optimize re-renders with React DevTools
+- Use virtualization for long lists
+- Implement proper loading states
+- Optimize bundle size with code splitting
+
+## Styling Approaches
+- CSS Modules or Tailwind (preferred)
+- CSS-in-JS only if necessary
+- Consistent spacing scale
+- Mobile-first responsive design
+- Dark mode support from the start
+
+# Node.js Development Standards
+
+## Environment Setup
+- **Node Version**: >=20 LTS (use latest LTS)
+- **Package Manager**: pnpm (preferred) for workspace support
+- **Node Version Manager**: Use volta or nvm
+- **Process Manager**: PM2 for production
+
+## Modern Node.js Practices
+- Use ES modules (type: "module" in package.json)
+- Native fetch API instead of axios/request
+- Built-in test runner for simple tests
+- Worker threads for CPU-intensive tasks
+- Native crypto module for security
+
+## Essential Commands
+```bash
+node --version           # Verify Node version
+pnpm init               # Initialize project
+pnpm add -D @types/node # TypeScript types
+node --watch app.js     # Development with auto-reload
+node --test            # Run native tests
+node --inspect app.js   # Debug mode
+```
+
+## Performance Best Practices
+- Use Node.js built-ins when possible (less dependencies)
+- Stream large files instead of reading into memory
+- Implement graceful shutdown handlers
+- Use clustering for multi-core utilization
+- Monitor memory usage and implement limits
+
+## Security Standards
+- Never use eval() or Function constructor
+- Validate all inputs
+- Use crypto.randomBytes() for tokens
+- Implement rate limiting
+- Keep dependencies updated (use Dependabot)
+- Use .env for secrets, never commit them
+
+## Modern APIs to Prefer
+- fs.promises over callbacks
+- Built-in readline for CLI interfaces
+- Native URL and URLSearchParams
+- AbortController for cancellation
+- EventEmitter for pub/sub patterns
+
+# Test-Driven Development (TDD) Standards
+
+## Core TDD Philosophy
+TDD is NOT optional - it's our primary development methodology. We write tests BEFORE implementation, always.
+
+## The TDD Cycle (Red-Green-Refactor)
+### 1. RED: Write a Failing Test
+- Write the test FIRST, before any implementation
+- Test must fail for the RIGHT reason (not syntax/import errors)
+- Test should be minimal - only test ONE thing
+- Use descriptive test names that explain the expected behavior
+
+### 2. GREEN: Make It Pass
+- Write MINIMUM code to make the test pass
+- Don't add features the test doesn't require
+- Resist the urge to write "better" code yet
+- Focus only on making the test green
+
+### 3. REFACTOR: Improve the Code
+- NOW you can improve the implementation
+- Clean up duplication
+- Improve naming
+- Extract functions/methods
+- Tests MUST stay green during refactoring
+
+## Testing Pyramid
+### Unit Tests (70% of tests)
+- Test individual functions/methods in isolation
+- Fast execution (milliseconds)
+- No external dependencies (database, API, filesystem)
+- Use test doubles ONLY for dependencies, never for the unit under test
+
+### Integration Tests (20% of tests)
+- Test interaction between components
+- May use real databases/services in test mode
+- Test API endpoints, database operations
+- Use test containers or staging environments
+
+### End-to-End Tests (10% of tests)
+- Test complete user workflows
+- Use real environments (staging/sandbox)
+- Test critical paths only (login, checkout, etc.)
+- Accept slower execution for confidence
+
+## Language-Specific TDD Practices
+
+### Python
+```python
+# Test first (test_calculator.py)
+def test_add_two_numbers():
+    result = add(2, 3)
+    assert result == 5
+
+# Then implement (calculator.py)
+def add(a: int, b: int) -> int:
+    return a + b
+```
+
+### TypeScript/JavaScript
+```typescript
+// Test first (calculator.test.ts)
+describe('Calculator', () => {
+  it('should add two numbers', () => {
+    expect(add(2, 3)).toBe(5);
+  });
+});
+
+// Then implement (calculator.ts)
+export function add(a: number, b: number): number {
+  return a + b;
+}
+```
+
+### Rust
+```rust
+// Test first (in same file or tests/ directory)
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn test_add() {
+        assert_eq!(add(2, 3), 5);
+    }
+}
+
+// Then implement
+pub fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+```
+
+## Test Quality Standards
+- **Descriptive Names**: `test_user_cannot_withdraw_more_than_balance` not `test_withdrawal`
+- **Arrange-Act-Assert**: Clear structure in every test
+- **Single Assertion**: One logical assertion per test (multiple checks OK if testing one concept)
+- **Independent Tests**: Tests must not depend on execution order
+- **Deterministic**: Same result every time (no random data without seeds)
+- **Fast Feedback**: Unit tests should run in <1 second total
+
+## What NOT to Test
+- Third-party libraries (they have their own tests)
+- Language features (trust that Python/JS/Rust work)
+- Generated code (unless you generated it)
+- Pure UI without logic (leave to manual/E2E testing)
+
+## Testing Anti-Patterns to AVOID
+- **Testing Implementation**: Test behavior, not how it's done
+- **Excessive Mocking**: Indicates poor design or wrong test level
+- **Ignored Tests**: Delete or fix, never ignore
+- **Test-After**: Writing tests after code is NOT TDD
+- **100% Coverage Obsession**: High coverage is good, but quality matters more
+
+## Real Environment Testing
+- NEVER mock the system under test
+- Use real databases (in-memory or containerized)
+- Use real message queues (RabbitMQ, Redis in test mode)
+- Use staging/sandbox APIs for external services
+- Accept slower tests for accuracy over fast but fake tests
+
+## Continuous Testing
+- Run tests on every save (use watch mode)
+- Run full suite before commits
+- Block merges if tests fail
+- Monitor test execution time trends
+- Refactor slow tests, don't skip them
+
+## TDD Benefits We Expect
+- Simpler designs (you only build what's needed)
+- Living documentation (tests show how to use code)
+- Confidence in refactoring (tests catch regressions)
+- Faster debugging (tests pinpoint failures)
+- Better API design (writing tests first reveals awkward interfaces)
+
+## The TDD Commitment
+"I will not write production code without a failing test that requires it."
+
+This is not a suggestion - it's our development process. Exceptions require explicit permission from Tyler as per CLAUDE.md Rule #1.
+
+# TypeScript Development Standards
+
+## Environment Setup
+- **TypeScript Version**: >=5.0 (use latest stable)
+- **Runtime**: Node.js >=20 LTS
+- **Package Manager**: pnpm (preferred) > npm > yarn
+- **Config**: Strict tsconfig.json settings
+
+## Code Quality Tools
+- **Formatter**: Prettier (2 space indent, single quotes)
+- **Linter**: ESLint with @typescript-eslint
+- **Type Checker**: Built-in tsc with strict mode
+- **Testing**: Vitest (preferred) or Jest
+
+## Essential Commands
+```bash
+pnpm install              # Install dependencies
+pnpm dev                  # Development server
+pnpm test                # Test
+pnpm format              # Format with Prettier
+pnpm lint                # Lint with ESLint
+pnpm typecheck           # Type check
+pnpm build               # Production build
+```
+
+## TypeScript-Specific Standards
+- Enable all strict flags in tsconfig.json
+- Prefer interfaces over type aliases for objects
+- Use const assertions for literal types
+- Avoid any - use unknown and type guards
+- Explicit return types for public APIs
+- Use discriminated unions for state modeling
+
+## Modern Patterns
+- Prefer const over let, never use var
+- Use optional chaining (?.) and nullish coalescing (??)
+- Template literals for string interpolation
+- Destructuring for cleaner code
+- async/await over Promise chains
+- Use Map/Set instead of objects for dictionaries
+
+## Error Handling
+- Use Error subclasses for custom errors
+- Implement Result<T, E> pattern for expected errors
+- Never ignore Promise rejections
+- Use .catch() or try/catch with async/await
