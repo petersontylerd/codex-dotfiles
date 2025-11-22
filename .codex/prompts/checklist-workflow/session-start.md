@@ -9,7 +9,7 @@ Your goals:
 
 - Rehydrate your context.
 - Summarize current initiative and checklist state.
-- Propose the top next tasks for this session.
+- Discern and propose the single best next task (and optionally a small set of backup candidates).
 
 ---
 
@@ -44,27 +44,36 @@ Keep this summary focused but precise.
 
 ---
 
-## 3. Propose Top Tasks for This Session
+## 3. Discern the Single Best Next Task
 
 1. Identify 3–5 candidate tasks from the checklist:
    - At least one `[IMPLEMENT]` or `[VALIDATE]` item that will change code/tests.
    - Include any `[PLAN]/[RESEARCH]` items needed to unblock execution.
 2. For each candidate, include:
    - Task ID and description.
-   - Why it is a good fit for this session (leverage, dependencies).
+   - Why it is a good fit (leverage, dependencies, alignment with goals).
+3. Using the candidates and existing planning signals, choose the single best next task:
+   - Prefer, in order:
+     - Any explicit user instructions.
+     - The most recent `NEXT_SESSION_FOCUS` recorded in the checklist.
+     - The latest `RECOMMENDED_NEXT_TASK` from prior commands (if present).
+     - Otherwise, the highest-priority unblocked task that best advances the North Star / Goals.
+4. Clearly label this choice in your response as:
 
-Ask the user to confirm which tasks to prioritize if there is any doubt.
+`RECOMMENDED_NEXT_TASK: <task ID or description> — <two-sentence rationale>`
+
+Ask the user to confirm or adjust this recommendation if there is any doubt.
 
 ---
 
-## 4. Daily Kickoff Update
+## 4. Update Next-Task Note in Checklist
 
 If you have permission to write the checklist file:
 
-1. Update or create a `### Daily Kickoff` section:
-   - List the agreed top tasks for this session in order.
-   - Include a brief sentence on why each is ordered as it is.
+1. Update the neutral next-task note in the checklist (for example, a small “Next Task / Next Session Focus” note near the top):
+   - Set it to the chosen single best next task and a brief rationale.
+   - If you are overriding a previous `NEXT_SESSION_FOCUS`, note that and why.
 2. Under Notes & Learnings:
-   - Add a dated entry summarizing the session’s kickoff plan.
+   - Add a dated entry summarizing how you selected this next task and any tradeoffs or risks you considered.
 
-End with a short, explicit list of the next 1–3 tasks you are ready to execute, suitable for feeding into `execute-next-task`.
+End with a short, explicit statement of the single next task you are ready to execute, suitable for feeding into `execute-next-task`.

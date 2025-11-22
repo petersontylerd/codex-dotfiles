@@ -29,7 +29,12 @@ If any of these inputs are missing or unclear, ask for them first.
 
 ## 2. Reconcile Checklist with Repository (using `serena` where helpful)
 
-1. Scan the checklist for tasks marked `[x]`, `todo`, `blocked`, etc.
+1. Scan the checklist for tasks using the canonical status schema:
+   - `[ ]` — open/todo (not blocked).
+   - `[x]` — completed.
+   - `[~]` — explicitly in-progress (if used).
+   - Inline annotations such as `(status: blocked — reason)` or `(blocked: …)` to indicate blocked items.
+   - Treat references to `todo` in this workflow as conceptual; you do not need the literal word `todo` if the checkbox and annotations already convey status.
 2. For a representative subset of tasks (especially critical ones):
    - Use `serena` and `filesystem` to confirm whether the described work actually exists in the repo.
    - If scope is unclear, check `list_allowed_directories`; use `list_directory`/`directory_tree`/`search_files` for targeted spot-checks.
@@ -78,7 +83,7 @@ Write changes back to the checklist file while preserving IDs, prefixes, and ove
 1. From your review, derive **top 1–3 executable next steps**:
    - At least one should be an `[IMPLEMENT]` or `[VALIDATE]` item that will change code/tests.
 2. Ensure these are clearly represented:
-   - In the checklist under `### Daily Kickoff` or similar.
+   - In the checklist by updating or annotating the neutral “Next Task / Next Session Focus” note and/or by clearly flagging them under their respective Major Tasks.
    - In your response as a short prioritized list.
 
 End with:

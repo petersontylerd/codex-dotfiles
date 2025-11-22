@@ -27,6 +27,12 @@ Inputs: This command consumes `$INITIATIVE_CONTEXT` (the user’s narrative cove
    - Success/failure criteria are not explicit.
    - Directory/test/tool constraints are unclear.
 
+As you do this, begin to extract three structured lists that will be used later:
+
+- **Key Principles** (operational philosophy and ground rules you must follow for this initiative).
+- **Constraints** (paths, tools, performance/privacy requirements, data constraints).
+- **Open Questions and Risks** (unknowns, assumptions, and risks that need to be resolved or mitigated).
+
 Do not proceed until you have a crisp understanding of scope and constraints.
 
 ---
@@ -59,6 +65,10 @@ Use the **Sequential Thinking MCP** to perform a first-pass analysis (summarize 
    - Dependencies on other initiatives or external systems.
    - Any obvious testing or validation requirements (unit, integration, E2E).
 
+Update your structured lists as you go:
+
+- Add or refine items in **Key Principles**, **Constraints**, and **Open Questions and Risks** based on this analysis and on `$INITIATIVE_CONTEXT`.
+
 If the initiative involves specific external libraries or versions, use `context7` to pull API docs before drafting tasks and note relevant findings. If you need to inspect current repo layout, use `serena`/`filesystem` to skim directories without making changes.
 
 Summarize this analysis in a structured list; this will later map to **Major Tasks**.
@@ -72,6 +82,7 @@ Based on your analysis:
 1. Propose an initial set of **3–6 Major Tasks** with clearly defined scopes.
 2. Under each Major Task, sketch **at least 5–10 candidate Subtasks**:
    - Tag each as `[PLAN]`, `[RESEARCH]`, `[IMPLEMENT]`, `[VALIDATE]`, or `[DOC]`.
+   - Assign each subtask a stable ID like `N.A`, `N.B`, and, when split, `N.A.1`, `N.A.2`, etc., where `N` is the Major Task number.
    - Include a short clause about expected files/areas (even if approximate).
 3. Ensure **research→action pairing**:
    - For each `[PLAN]`/`[RESEARCH]` item you propose, include a paired `[IMPLEMENT]`/`[VALIDATE]` item that will apply its findings.
@@ -97,12 +108,18 @@ You are **not** writing the final checklist file yet; you are drafting the struc
 At the end of this command, output:
 
 - A short **“Initiative Summary”** section:
-  - Goal, scope, constraints, success criteria.
+  - Goal, scope, and success criteria.
+- A **“Key Principles”** section:
+  - Bullet list of the key principles and ground rules you must follow (derived from `$INITIATIVE_CONTEXT`, AGENTS/MASTER_AGENTS, and your analysis).
+- A **“Constraints”** section:
+  - Bullet list of important constraints (directories you may edit, tech stack requirements, performance/privacy constraints, data constraints, tooling constraints).
+- An **“Open Questions and Risks”** section:
+  - Bullet list of unresolved questions, assumptions, and risks that should later appear in the checklist (for example under Notes & Learnings or a dedicated risks subsection).
 - A **“Branch Plan”** section:
   - Current branch, intended feature branch name, and suggested `git` commands.
 - A **“Proposed Major Tasks & Subtasks”** section:
-  - Draft hierarchy with prefixes/tags, ready to be turned into a checklist.
+  - Draft hierarchy with IDs and prefixes/tags (for example, Major Task 1 with subtasks `1.A`, `1.B`, etc.), ready to be turned into a checklist that uses the canonical schema.
 - A **“Checklist File Plan”** section:
-  - Proposed checklist path and any links to `.codex/scripts` initiative YAML.
+  - Proposed checklist path, how it fits under `scratchpaper/task_checklists/`, and any links to `.codex/scripts` initiative YAML.
 
 Do **not** create or modify files in this command; that is the responsibility of `plan-to-checklist`.

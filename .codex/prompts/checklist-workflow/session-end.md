@@ -60,7 +60,7 @@ If there were failures (tests, commands, etc.), explicitly note them with short 
 
 1. Identify the **single highest-leverage next task** to tackle in the next session.
 2. Record this in:
-   - The checklist (e.g., in `### Daily Kickoff` or a “Next Session Focus” note).
+   - The checklist, by updating the neutral next-task note (for example, a small “Next Task / Next Session Focus” note near the top of the file).
    - Your response as a succinct statement:
 
 `NEXT_SESSION_FOCUS: <task ID or description> — <one sentence why>`

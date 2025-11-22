@@ -10,7 +10,7 @@ You are given:
   - An existing checklist file under `scratchpaper/task_checklists/`, or
   - Enough information to create a new one.
 
-Your job is to **create or update the canonical checklist** that will serve as working memory for this initiative.
+Your job is to **create or update the canonical checklist** that will serve as working memory for this initiative: a living artifact that links planning, execution, validations, and reasoning. Skipping checklist updates or letting it drift from reality is a process violation.
 
 ---
 
@@ -38,6 +38,9 @@ Using the latest initiative plan (from `start` or user context):
    - Each with a brief “Context” line explaining downstream impact.
 2. Under each Major Task, define **Subtasks**:
    - Use prefixes `[PLAN]`, `[RESEARCH]`, `[IMPLEMENT]`, `[VALIDATE]`, `[DOC]`.
+   - Give each subtask a stable ID like `N.A`, `N.B`, and, when split, `N.A.1`, `N.A.2`, etc., where `N` is the Major Task number.
+   - Represent subtasks as markdown checklist items (`[ ]` when open, `[x]` when complete; optionally `[~]` when explicitly in progress).
+   - When a subtask is temporarily blocked, annotate the line with a short reason (for example, `(status: blocked — waiting on external command output)`); treat these as blocked in review and execution prompts.
    - Include, where possible:
      - Files or directories you expect to touch.
      - Tests to add/update (or note “TBD” if truly unknown).
@@ -57,7 +60,6 @@ When writing to the checklist file:
 1. Ensure the top of the file includes:
    - Two ABOUTME lines describing the file’s purpose.
    - A title: `<Project Name> — Comprehensive Task Checklist`.
-   - A `### Daily Kickoff` placeholder.
    - Sections for:
      - North Star / Goals
      - Key Principles
@@ -69,6 +71,18 @@ When writing to the checklist file:
      - Execution & Continuous Refinement
      - Meta-Reflection and Iteration
      - Research→Action pairing
+      - A neutral note or mini-section to record the current “next task” / `NEXT_SESSION_FOCUS` (for example, a small “Next Task / Next Session Focus” note near the top; avoid daily- or time-based section names).
+   - When filling these sections, use the initiative plan and `$INITIATIVE_CONTEXT` (often via `start`) as follows:
+     - **North Star / Goals** — summarize the initiative’s goal and success criteria from the “Initiative Summary” section of `start` (plus any explicit success metrics from `$INITIATIVE_CONTEXT`).
+     - **Key Principles** — copy or adapt the “Key Principles” section from `start`, reflecting non-negotiable ground rules and operational philosophy.
+     - **Sequential Task Breakdown** — use the “Proposed Major Tasks & Subtasks” section from `start`, converting its hierarchy and IDs into checklist Major Tasks and Subtasks with the canonical prefixes and status schema.
+     - **Notes & Learnings** — seed with any important findings or constraints from `start` (for example, key risks or decisions), and add a dated entry describing the creation or update of this checklist.
+     - **Validation Gate** — list the concrete commands and checks (tests, lint, type checks, pre-commit) that must pass before the initiative is considered done, based on the testing/validation requirements identified in `start` and `$INITIATIVE_CONTEXT`.
+     - **Definition of Done** — describe, in a few bullets, what it means for this initiative to be complete (behavioral outcomes, documentation, and Validation Gate conditions).
+     - **Kickoff Protocol** — briefly describe how a future agent should restart work on this initiative, typically by running `session-start` on this checklist, reviewing `NEXT_SESSION_FOCUS`, and then using `execute-next-task` to act on the single best next task.
+     - **Execution & Continuous Refinement** — explain how `execute-next-task` and `review-checklist` will be used in a loop to make real changes, run validations, and refine the checklist as reality evolves.
+     - **Meta-Reflection and Iteration** — note how and when to perform deeper reviews of the checklist and initiative (for example, after major milestones or when risks change meaningfully).
+     - **Research→Action pairing** — either provide a short summary or a pointer describing how every `[PLAN]/[RESEARCH]` item has linked `[IMPLEMENT]/[VALIDATE]` items within the Sequential Task Breakdown.
 2. Insert or update the **Sequential Task Breakdown** section with your Major Tasks and Subtasks.
 3. If the checklist already exists:
    - Merge rather than overwrite:

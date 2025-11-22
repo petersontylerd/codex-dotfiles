@@ -20,7 +20,11 @@ You must **favor concrete action** over mere description whenever environment co
 1. Use the checklist file path established in session context; read it without re-prompting unless the path is missing.
 2. Choose the next task according to:
    - User instructions (if they pointed to a specific item), **or**
-   - Priority and dependency ordering in the checklist (e.g., highest-priority `todo` that is unblocked).
+   - The most relevant planning signals in the checklist and recent responses:
+     - The most recent `NEXT_SESSION_FOCUS` entry recorded in the checklist’s neutral next-task note (if it still makes sense).
+     - The latest `RECOMMENDED_NEXT_TASK` produced by `review-checklist` or a prior `execute-next-task` run (if still applicable).
+   - If neither signal is present or applicable, fall back to priority and dependency ordering in the checklist:
+     - Prefer the highest-priority open (`[ ]`) item that is not annotated as blocked and that best advances the North Star / Goals.
 3. Restate the chosen task in your own words:
    - Include its ID, prefix (e.g., `[IMPLEMENT]`), and its Major Task.
 4. Confirm definition of done:
@@ -84,6 +88,7 @@ Use `context7` before implementing against external APIs to confirm signatures/b
 3. In your response:
    - Summarize what changed (files, key logic).
    - Summarize validation results and confidence level.
+4. If you ran validations that are part of the initiative’s Validation Gate, update the `Validation Gate` section in the checklist (or plan to do so in the next checklist update) so that it reflects which checks have passed, failed, or are pending.
 
 If you could not run validations, explicitly say so and why.
 

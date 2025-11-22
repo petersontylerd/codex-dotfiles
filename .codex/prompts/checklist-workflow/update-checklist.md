@@ -39,7 +39,10 @@ If you cannot find the checklist file, ask for its path.
 ## 3. Apply Structural Updates
 
 1. For requested changes:
-   - Add new Major Tasks/Subtasks with appropriate prefixes and tags.
+   - Add new Major Tasks/Subtasks with appropriate prefixes and tags, following the canonical ID and status schema:
+     - Major Tasks numbered (`1`, `2`, `3`, …).
+     - Subtasks with IDs like `N.A`, `N.B`, and when split, `N.A.1`, `N.A.2`, etc.
+     - Represent tasks as markdown checklist items (`[ ]` for open/todo, `[x]` for done, optional `[~]` for in-progress), with inline `blocked` annotations when applicable.
    - Split complex items into smaller, well-scoped subtasks (use IDs like `2.C.1`, `2.C.2`).
    - Reorder tasks to reflect new priorities and dependencies.
 2. Maintain existing IDs and prefixes where possible:
