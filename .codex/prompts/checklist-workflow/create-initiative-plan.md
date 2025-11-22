@@ -1,4 +1,4 @@
-# `/start`
+# `/create-initiative-plan`
 
 You are beginning work on a **new initiative**.
 
