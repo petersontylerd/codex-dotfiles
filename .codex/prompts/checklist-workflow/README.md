@@ -33,9 +33,9 @@ All other commands consume the established session context and should not prompt
 ### Command cheatsheet
 - `start`: Start or reorient an initiative. Outputs goals, constraints, branch suggestion, and initial plan (driven by `$INITIATIVE_CONTEXT`).
 - `plan-to-checklist`: Convert the plan into the markdown checklist (major tasks and subtasks). Needs the latest plan from `start` or user context.
-- `update-checklist`: Adjust checklist structure (add, split, retag tasks) without rewriting the file.
-- `execute-next-task`: Choose the next subtask, perform edits, run targeted validation, and update checklist notes/statuses.
-- `review-checklist`: Periodically sync checklist and code/tests; mark blocked/unblocked; capture decisions.
+- `update-checklist`: Adjust checklist structure (add, split, retag tasks) without rewriting the file; use this when understanding or scope changes but no new execution is being reconciled.
+- `execute-next-task`: Choose the next subtask, perform edits, run targeted validation, and update checklist notes/statuses; one invocation should execute exactly one checklist subtask.
+- `review-checklist`: Periodically sync checklist and code/tests; mark blocked/unblocked; capture decisions; use this after meaningful code or test changes to reconcile the checklist with reality.
 - `session-start`: Begin a session; recap branch/status; propose top tasks and immediate commands (uses `$CHECKLIST_PATH` and `$FEATURE_BRANCH`).
 - `session-end`: Close a session; record progress, blockers, next steps, and suggested commits/commands (do not auto-run git; uses session context).
 - `scratchpad-review-and-cleanup`: Catalog scratch files and propose promote/keep/delete actions with safe commands.
