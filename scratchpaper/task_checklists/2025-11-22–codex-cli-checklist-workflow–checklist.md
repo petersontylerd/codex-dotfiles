@@ -159,7 +159,7 @@ Context: This task gathers best practices from Codex CLI, Claude Code, Gemini CL
   Commands: `git add . && git commit -m "docs(checklist-workflow): document epic lifecycle"`
 
 - [x] **Subtask 3.C [PLAN]** — Enumerate the custom command files and their roles. (P1, M, [PLAN], (sequential-thinking))  
-  - Candidate commands: `epic-start`, `epic-plan-to-checklist`, `epic-execute-next-task`, `epic-review-checklist`, `epic-update-checklist`, `session-start`, `session-end`, `scratchpad-review-and-cleanup`.  
+  - Candidate commands: `start`, `plan-to-checklist`, `execute-next-task`, `review-checklist`, `update-checklist`, `session-start`, `session-end`, `scratchpad-review-and-cleanup`.  
   - Define inputs/outputs and constraints for each.
 
 - [x] **Subtask 3.D [IMPLEMENT → 3.C]** — Draft a “Command Reference Overview” in README. (P2, S, [IMPLEMENT], (sequential-thinking))  
@@ -182,7 +182,7 @@ Context: This task gathers best practices from Codex CLI, Claude Code, Gemini CL
   Commands: `git add . && git commit -m "docs(checklist-workflow): specify MCP usage per command"`
 
 - [x] **Subtask 3.G [PLAN]** — Define how the workflow will enforce “execute, not just describe” behavior. (P1, M, [PLAN], (sequential-thinking))  
-  - E.g., explicit instructions in `epic-execute-next-task` to prefer editing/running tools over explanation-only responses.
+  - E.g., explicit instructions in `execute-next-task` to prefer editing/running tools over explanation-only responses.
 
 - [x] **Subtask 3.H [IMPLEMENT → 3.G]** — Create a “Behavioral Guardrails” section in README. (P2, S, [IMPLEMENT], (sequential-thinking))  
   Files: `.codex/prompts/checklist-workflow/README.md`  
@@ -210,7 +210,7 @@ Context: This task defines where and how epic checklists live, how they’re upd
   Commands: `git add . && git commit -m "docs(checklist-workflow): define checklist schema"`
 
 - [x] **Subtask 4.C [PLAN]** — Specify how custom commands read/write checklist artifacts. (P2, M, [PLAN], (sequential-thinking))  
-  - How `epic-plan-to-checklist` creates/updates; how `epic-execute-next-task` updates statuses/notes.
+  - How `plan-to-checklist` creates/updates; how `execute-next-task` updates statuses/notes.
 
 - [x] **Subtask 4.D [IMPLEMENT → 4.C]** — Capture checklist read/write behavior in README and inline prompt instructions. (P2, M, [IMPLEMENT], (sequential-thinking))  
   Files: `.codex/prompts/checklist-workflow/README.md`, each command `.md` file’s instruction section  
@@ -238,7 +238,7 @@ Context: This task defines where and how epic checklists live, how they’re upd
 Context: This task turns the design into actual `.md` command files and README content in the repo.
 
 - [x] **Subtask 5.A [PLAN]** — Finalize list of command files to implement and their filenames. (P1, S, [PLAN], (sequential-thinking))  
-  - E.g., `epic-start.md`, `epic-plan-to-checklist.md`, `epic-execute-next-task.md`, `epic-review-checklist.md`, `epic-update-checklist.md`, `session-start.md`, `session-end.md`, `scratchpad-review-and-cleanup.md`.
+  - E.g., `start.md`, `plan-to-checklist.md`, `execute-next-task.md`, `review-checklist.md`, `update-checklist.md`, `session-start.md`, `session-end.md`, `scratchpad-review-and-cleanup.md`.
 
 - [x] **Subtask 5.B [IMPLEMENT → 5.A]** — Create stub `.md` files with ABOUTME headers and high-level structure. (P1, M, [IMPLEMENT], (serena))  
   Files: `.codex/prompts/checklist-workflow/*.md`  
@@ -248,31 +248,31 @@ Context: This task turns the design into actual `.md` command files and README c
   Branch/PR: `feat/codex-cli-checklist-workflow`  
   Commands: `git add . && git commit -m "feat(checklist-workflow): scaffold command prompt files"`
 
-- [x] **Subtask 5.C [IMPLEMENT]** — Implement `epic-start.md` with strong instructions for initial epic setup and branch hygiene. (P1, M, [IMPLEMENT], (sequential-thinking, serena))  
-  Files: `.codex/prompts/checklist-workflow/epic-start.md`  
+- [x] **Subtask 5.C [IMPLEMENT]** — Implement `start.md` with strong instructions for initial epic setup and branch hygiene. (P1, M, [IMPLEMENT], (sequential-thinking, serena))  
+  Files: `.codex/prompts/checklist-workflow/start.md`  
   Symbols/Endpoints: N/A  
   Tests: Manual validation via trial run (see Major Task 6).  
   Acceptance: Prompt guides agent to capture background, goals, constraints, repo scope, and branch; it instructs to use `sequential-thinking` and to persist decisions into checklist and README.  
   Branch/PR: `feat/codex-cli-checklist-workflow`  
-  Commands: `git add . && git commit -m "feat(checklist-workflow): implement epic-start command"`
+  Commands: `git add . && git commit -m "feat(checklist-workflow): implement start command"`
 
-- [x] **Subtask 5.D [IMPLEMENT]** — Implement `epic-plan-to-checklist.md` to create/update the canonical checklist artifact. (P1, M, [IMPLEMENT], (sequential-thinking, serena))  
-  Files: `.codex/prompts/checklist-workflow/epic-plan-to-checklist.md`  
+- [x] **Subtask 5.D [IMPLEMENT]** — Implement `plan-to-checklist.md` to create/update the canonical checklist artifact. (P1, M, [IMPLEMENT], (sequential-thinking, serena))  
+  Files: `.codex/prompts/checklist-workflow/plan-to-checklist.md`  
   Symbols/Endpoints: N/A  
   Tests: Manual validation via trial run; confirm file structure matches schema from Major Task 4.  
   Acceptance: Prompt converts high-level plan into structured checklist with Major Tasks/Subtasks, tags, and Branch/PR references.  
   Branch/PR: `feat/codex-cli-checklist-workflow`  
-  Commands: `git add . && git commit -m "feat(checklist-workflow): implement epic-plan-to-checklist command"`
+  Commands: `git add . && git commit -m "feat(checklist-workflow): implement plan-to-checklist command"`
 
-- [x] **Subtask 5.E [IMPLEMENT]** — Implement `epic-execute-next-task.md` emphasizing execution over narration. (P1, L, [IMPLEMENT], (sequential-thinking, serena, context7))  
-  Files: `.codex/prompts/checklist-workflow/epic-execute-next-task.md`  
+- [x] **Subtask 5.E [IMPLEMENT]** — Implement `execute-next-task.md` emphasizing execution over narration. (P1, L, [IMPLEMENT], (sequential-thinking, serena, context7))  
+  Files: `.codex/prompts/checklist-workflow/execute-next-task.md`  
   Symbols/Endpoints: N/A  
   Tests: Manual trial; ensure agent uses tools to edit files/run tests, falls back to narrating only when blocked.  
   Acceptance: Prompt explicitly instructs to select the next checklist item, plan it internally, perform file changes/tests, and update checklist and notes.  
   Branch/PR: `feat/codex-cli-checklist-workflow`  
-  Commands: `git add . && git commit -m "feat(checklist-workflow): implement epic-execute-next-task command"`
+  Commands: `git add . && git commit -m "feat(checklist-workflow): implement execute-next-task command"`
 
-- [x] **Subtask 5.F [IMPLEMENT]** — Implement review and session management commands (`epic-review-checklist`, `epic-update-checklist`, `session-start`, `session-end`). (P2, L, [IMPLEMENT], (sequential-thinking, serena))  
+- [x] **Subtask 5.F [IMPLEMENT]** — Implement review and session management commands (`review-checklist`, `update-checklist`, `session-start`, `session-end`). (P2, L, [IMPLEMENT], (sequential-thinking, serena))  
   Files: corresponding `.codex/prompts/checklist-workflow/*.md`  
   Symbols/Endpoints: N/A  
   Tests: Manual trial; confirm they summarize state, reconcile checklist vs code, and capture resume notes.  

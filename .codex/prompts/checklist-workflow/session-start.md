@@ -1,28 +1,32 @@
-ABOUTME: Start a coding session for an epic.
+ABOUTME: Start a coding session for an initiative.
 ABOUTME: Summarize status and propose top tasks.
 
 # `checklist-workflow/session-start`
 
-You are starting a **new coding session** on an existing epic/feature.
+You are starting a **new coding session** on an existing initiative/feature.
 
 Your goals:
 
 - Rehydrate your context.
-- Summarize current epic and checklist state.
+- Summarize current initiative and checklist state.
 - Propose the top next tasks for this session.
 
 ---
 
 ## 1. Rehydrate Context
 
-1. Ask for:
-   - The epic’s checklist file path.
-   - The current feature branch name.
-2. Read the checklist and:
+Inputs for this command:
+- `$CHECKLIST_PATH` — authoritative checklist file for this initiative.
+- `$FEATURE_BRANCH` — current working branch.
+
+1. Read the checklist at `$CHECKLIST_PATH` and:
    - Summarize Major Tasks and their statuses.
    - Note any `blocked` items and their reasons.
+2. Validate that `$FEATURE_BRANCH` matches any referenced branch context; if conflicting signals appear, ask before proceeding.
 
-If anything about branch or checklist state is unclear, ask before proposing work.
+If anything about branch or checklist state is unclear (or inputs conflict), ask before proposing work.
+Use `filesystem` to read/update the checklist. If upcoming tasks depend on external APIs, plan a `context7` lookup and capture findings in Notes & Learnings.
+Ensure checklist paths are within `list_allowed_directories`; use `edit_file` (with `dryRun` if uncertain) for updates.
 
 ---
 
@@ -30,7 +34,7 @@ If anything about branch or checklist state is unclear, ask before proposing wor
 
 Produce a concise summary that includes:
 
-- Epic goal and key success criteria (from the checklist).
+- Initiative goal and key success criteria (from the checklist).
 - Current branch and any notable commits or PRs (if known).
 - A snapshot of:
   - Completed Major Tasks.
@@ -63,5 +67,4 @@ If you have permission to write the checklist file:
 2. Under Notes & Learnings:
    - Add a dated entry summarizing the session’s kickoff plan.
 
-End with a short, explicit list of the next 1–3 tasks you are ready to execute, suitable for feeding into `epic-execute-next-task`.
-
+End with a short, explicit list of the next 1–3 tasks you are ready to execute, suitable for feeding into `execute-next-task`.

@@ -1,9 +1,9 @@
 ABOUTME: Reconcile checklist state with actual work.
 ABOUTME: Review, adjust, and log decisions without editing code.
 
-# `checklist-workflow/epic-review-checklist`
+# `checklist-workflow/review-checklist`
 
-You are performing a **review and refinement** pass over an epic’s checklist.
+You are performing a **review and refinement** pass over an initiative’s checklist.
 
 Your goals:
 
@@ -19,9 +19,9 @@ This command **does not** execute new code changes; it focuses on the checklist 
 
 Treat these inputs as authoritative:
 
-- The current checklist file.
+- The current checklist file (use the path from session context; ask only if missing or conflicting).
 - Recent repository changes (branches/commits/PRs, files added/modified).
-- Any explicit review notes or mid-epic feedback from the user.
+- Any explicit review notes or mid-initiative feedback from the user.
 
 If any of these inputs are missing or unclear, ask for them first.
 
@@ -32,6 +32,7 @@ If any of these inputs are missing or unclear, ask for them first.
 1. Scan the checklist for tasks marked `[x]`, `todo`, `blocked`, etc.
 2. For a representative subset of tasks (especially critical ones):
    - Use `serena` and `filesystem` to confirm whether the described work actually exists in the repo.
+   - If scope is unclear, check `list_allowed_directories`; use `list_directory`/`directory_tree`/`search_files` for targeted spot-checks.
    - Note any discrepancies:
      - Completed in code but not marked in checklist.
      - Marked complete in checklist but missing or incomplete in code/tests.
@@ -40,6 +41,7 @@ If any of these inputs are missing or unclear, ask for them first.
    - Misalignments (checklist vs code/test state).
 
 Do not change code in this command.
+If discrepancies involve external APIs or expected behaviors, optionally use `context7` to verify intended API surface and capture the takeaway in Notes & Learnings.
 
 ---
 
@@ -67,7 +69,7 @@ Write changes back to the checklist file while preserving IDs, prefixes, and ove
    - Any significant scope changes or risk discoveries.
    - Decisions about deferring or cancelling tasks.
 2. If you identify new risks or assumptions:
-   - Call them out explicitly and suggest where they should live (e.g., product-plan epic YAML, separate risk log).
+   - Call them out explicitly and suggest where they should live (e.g., product-plan initiative YAML, separate risk log).
 
 ---
 
@@ -82,4 +84,3 @@ Write changes back to the checklist file while preserving IDs, prefixes, and ove
 End with:
 
 `RECOMMENDED_NEXT_TASK: <task ID or description> — <two-sentence rationale>`
-

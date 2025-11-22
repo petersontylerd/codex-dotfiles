@@ -1,9 +1,9 @@
 ABOUTME: Edit the checklist structure and metadata.
 ABOUTME: Synchronize the plan without executing code.
 
-# `checklist-workflow/epic-update-checklist`
+# `checklist-workflow/update-checklist`
 
-You are updating the **structure and metadata** of an existing epic checklist in light of:
+You are updating the **structure and metadata** of an existing initiative checklist in light of:
 
 - New understanding,
 - Scope changes,
@@ -26,7 +26,7 @@ Do not proceed until update intent is clear.
 
 ## 2. Read the Current Checklist
 
-1. Locate and read the checklist file under `scratchpaper/task_checklists/`.
+1. Use the checklist path from session context under `scratchpaper/task_checklists/`; only ask for the path if it is missing or conflicting.
 2. Summarize:
    - Existing Major Tasks.
    - Notable Subtasks and their prefixes/tags.
@@ -48,6 +48,9 @@ If you cannot find the checklist file, ask for its path.
    - For any new `[PLAN]/[RESEARCH]` items you add, also add paired `[IMPLEMENT]/[VALIDATE]` items.
 
 Write back minimal edits using the filesystem tools, preserving the ABOUTME header and section headings.
+Use `serena` to gather precise file/symbol references when enriching metadata. If new items depend on external APIs, consider a quick `context7` lookup and note key findings.
+If writing via filesystem MCP, ensure the path is within `list_allowed_directories`; prefer `edit_file` (with `dryRun` if uncertain) over `write_file` except for new files/intentional overwrites.
+For discovery before edits, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
 
 ---
 
@@ -57,7 +60,7 @@ Write back minimal edits using the filesystem tools, preserving the ABOUTME head
    - File paths.
    - Symbols or endpoints.
    - Branch/PR references.
-2. Ensure the **Validation Gate** and **Definition of Done** sections still accurately describe how the epic will be validated.
+2. Ensure the **Validation Gate** and **Definition of Done** sections still accurately describe how the initiative will be validated.
 
 ---
 
@@ -70,4 +73,3 @@ Under Notes & Learnings:
   - Why those changes were needed (e.g., scope expansion, risk mitigation).
 
 End with a short summary of the updated checklist shape and any recommended next execution tasks.
-

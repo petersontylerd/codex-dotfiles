@@ -1,9 +1,9 @@
 ABOUTME: Execute the next checklist task concretely.
 ABOUTME: Prefer real edits and commands over narration.
 
-# `checklist-workflow/epic-execute-next-task`
+# `checklist-workflow/execute-next-task`
 
-You are in the **Execution Loop** phase of an epic. Your job is to:
+You are in the **Execution Loop** phase of an initiative. Your job is to:
 
 - Select the next most appropriate checklist item.
 - Plan it briefly.
@@ -17,7 +17,7 @@ You must **favor concrete action** over mere description whenever environment co
 
 ## 1. Select and Understand the Next Task
 
-1. Identify the current checklist file path and read it.
+1. Use the checklist file path established in session context; read it without re-prompting unless the path is missing.
 2. Choose the next task according to:
    - User instructions (if they pointed to a specific item), **or**
    - Priority and dependency ordering in the checklist (e.g., highest-priority `todo` that is unblocked).
@@ -45,6 +45,7 @@ Ask for clarification if anything is ambiguous.
    - Does it keep scope tight for this one task?
 
 Do not skip this step for non-trivial tasks.
+If external APIs or libraries are involved, plan a `context7` lookup and record key findings in Notes & Learnings.
 
 ---
 
@@ -56,16 +57,19 @@ Follow your micro-plan step-by-step:
 2. When changing code or prompts:
    - Make small, focused edits.
    - Respect ABOUTME comments and repo style.
+   - Stay within `list_allowed_directories`; for filesystem edits, prefer `edit_file` with `dryRun` before applying; use `write_file` only for new/overwrite cases.
+   - For discovery, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
 3. When you need to run commands (tests, linters, scripts):
    - Attempt them if allowed by the environment.
    - If blocked by network/permissions/timeout:
      - Stop and produce a **“Commands for User to Run”** section with:
        - Exact commands.
        - Expected behavior.
-       - What logs/output you need back.
+     - What logs/output you need back.
      - Mark the task as `blocked` in your narrative and in the checklist update plan.
 
 Avoid repeatedly explaining “what you would do” when you can actually do it via tools.
+Use `context7` before implementing against external APIs to confirm signatures/behaviors; capture the takeaway in your notes.
 
 ---
 
@@ -113,6 +117,5 @@ End with a one-line recommendation:
 Choose a next task that:
 
 - Respects dependencies.
-- Keeps momentum toward the epic’s goals.
+- Keeps momentum toward the initiative’s goals.
 - Maintains a balance between planning/research and implementation/validation.
-

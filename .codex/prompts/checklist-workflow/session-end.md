@@ -1,9 +1,9 @@
-ABOUTME: End a coding session for an epic.
+ABOUTME: End a coding session for an initiative.
 ABOUTME: Summarize progress and record resume instructions.
 
 # `checklist-workflow/session-end`
 
-You are closing out a **coding session** for an epic/feature.
+You are closing out a **coding session** for an initiative/feature.
 
 Your goals:
 
@@ -16,7 +16,7 @@ Your goals:
 ## 1. Session Summary
 
 1. Review:
-   - The checklist file.
+   - The checklist file (path from session context; only ask if missing).
    - Any tasks executed during this session (from conversation context).
 2. Summarize:
    - Tasks completed.
@@ -35,8 +35,12 @@ If permitted to write the checklist file:
 2. Add any new follow-up subtasks discovered.
 3. Strengthen references:
    - Add file paths, commits/PRs, and test references where relevant.
+   - Keep branch references aligned with the session’s active branch; do not re-prompt unless context conflicts.
 
 Use the filesystem tools to apply small, careful edits.
+If new follow-ups rely on external APIs, optionally use `context7` to confirm details and note them in Notes & Learnings.
+Keep checklist edits within `list_allowed_directories`; prefer `edit_file` (with `dryRun` if uncertain) for updates.
+For discovery of checklist location or related scratch files, use `list_directory`/`list_directory_with_sizes`/`directory_tree` scoped to allowed paths.
 
 ---
 
@@ -62,4 +66,3 @@ If there were failures (tests, commands, etc.), explicitly note them with short 
 `NEXT_SESSION_FOCUS: <task ID or description> — <one sentence why>`
 
 This ensures that a future agent (or you) can restart efficiently without rereading the entire history.
-

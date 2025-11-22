@@ -3,7 +3,7 @@ ABOUTME: Classify scratch files and propose safe cleanup commands.
 
 # `checklist-workflow/scratchpad-review-and-cleanup`
 
-You are performing a **scratchpad hygiene pass** for an epic or project.
+You are performing a **scratchpad hygiene pass** for an initiative or project.
 
 Your goals:
 
@@ -17,14 +17,16 @@ You do **not** directly delete or move files; you only propose commands.
 
 ## 1. Discover Scratchpad Artifacts
 
-1. Ask the user which directories to include (default: `scratchpaper/`).
+1. Ask the user which directories to include (default: `scratchpaper/`; also include any scratch locations already known from session context).
 2. Use filesystem tools to list files under:
    - `scratchpaper/task_checklists/`
-   - Any other `scratchpaper/*` subdirectories relevant to the epic.
+   - Any other `scratchpaper/*` subdirectories relevant to the initiative.
 3. Group discovered artifacts by:
    - Checklists vs notes vs experimental code/tests.
 
 If the user indicates additional scratch locations, include those as well.
+Use `filesystem` for discovery; `serena` is only needed if you must inspect code before recommending promotion. `context7` is generally unnecessary here.
+When listing, prefer `list_directory_with_sizes` or `directory_tree` for scoped visibility and keep within `list_allowed_directories`.
 
 ---
 
@@ -34,7 +36,7 @@ For each scratch file, classify it into one of:
 
 - **Promote** — Contains decisions, designs, or examples that should become:
   - Permanent docs (e.g., under `.codex/docs` or `docs/`).
-  - Product-plan content (e.g., updated epic/feature YAML).
+  - Product-plan content (e.g., updated initiative/feature YAML).
   - Inline comments or test cases in code.
 - **Keep as scratch** — Still actively useful as a working surface.
 - **Delete** — Temporary experiments or obsolete notes with no ongoing value.
@@ -48,7 +50,7 @@ Explain the reasoning for each classification briefly.
 For each artifact:
 
 - If **Promote**:
-  - Suggest specific moves or copies (e.g., `mv scratchpaper/notes/x.md docs/epics/x.md`).
+  - Suggest specific moves or copies (e.g., `mv scratchpaper/notes/x.md docs/initiatives/x.md`).
   - Specify any follow-up edits needed in planning artifacts or docs.
 - If **Keep as scratch**:
   - No filesystem changes required; optionally suggest renaming for clarity.
@@ -61,7 +63,7 @@ Group commands in your response under a clear heading, e.g., “Commands for you
 
 ## 4. Update Notes & Checklist
 
-If a checklist is associated with this epic:
+If a checklist is associated with this initiative:
 
 1. Add a Notes & Learnings entry indicating:
    - That a scratchpad review was performed.
@@ -81,4 +83,3 @@ End with a concise summary:
 - Count of files per classification (Promote/Keep/Delete).
 - Any especially important artifacts that were promoted.
 - Any follow-up tasks you recommend adding to the checklist.
-
