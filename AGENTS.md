@@ -87,30 +87,6 @@ ALWAYS find root cause - NEVER fix symptoms or add workarounds
 - ALWAYS test after each change
 - If first fix fails, STOP and re-analyze
 
-## Version Control
-- Use feature branches (fix/, feat/, chore/)
-- Make atomic commits: type(scope): description
-- Run language-appropriate quality checks before committing
-
-### CRITICAL Git Rules
-- If no git repo, STOP and ask permission to initialize
-- STOP and ask how to handle uncommitted changes when starting
-- Create WIP branch if no clear task branch exists
-- Commit frequently throughout development
-- NEVER use git add -A without git status first
-
-### Pre-commit Hooks
-**FORBIDDEN FLAGS**: --no-verify, --no-hooks, --no-pre-commit-hook
-
-When hooks fail:
-1. Read complete error output
-2. Identify which tool failed and why
-3. Explain fix addressing root cause
-4. Apply fix and re-run
-5. Only commit after all pass
-
-NEVER bypass quality checks under pressure. Quality > Speed.
-
 ## Summarization
 When using /compact, focus on recent conversation and significant tasks. Aggressively summarize older tasks, preserve context for recent ones.
 

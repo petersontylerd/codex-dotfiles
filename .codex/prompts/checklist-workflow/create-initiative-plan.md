@@ -1,3 +1,5 @@
+# ABOUTME: Command prompt for creating an initiative plan before checklist generation.
+# ABOUTME: Clarifies goals, constraints, branch context, and draft task structure.
 # `/create-initiative-plan`
 
 You are beginning work on a **new initiative**.
@@ -40,8 +42,16 @@ Do not proceed until you have a crisp understanding of scope and constraints.
    - The **repository root**.
    - The **current branch** and whether a new feature branch is already in use.
    Only ask the user for these details if they are missing or conflicting.
+   - Confirm there is an initialized git repo; if not, stop and ask whether to initialize.
+   - Check for uncommitted changes and ask how to handle them before planning edits.
+   - If no clear task branch exists, propose a temporary WIP branch and a feature-branch slug; do not run git commands yourself.
 2. If no feature branch exists yet:
-   - Propose a branch name like `feat/<initiative-slug>` or `fix/<initiative-slug>`.
+   - Propose a branch name like:
+      - `feat/<initiative-slug>`
+      - `fix/<initiative-slug>`
+      - `refactor/<initiative-slug>`
+      - `chore/<initiative-slug>`
+      - `hotfix/<initiative-slug>`
 3. Record the intended branch name in your plan so it can be reflected in the checklist.
 
 ---
