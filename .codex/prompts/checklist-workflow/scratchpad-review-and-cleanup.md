@@ -19,7 +19,7 @@ You do **not** directly delete or move files; you only propose commands.
 
 1. Default to `scratchpaper/` and any scratch locations already known from session context; ask the user for additional directories only if needed.
 2. Use filesystem tools to list files under:
-   - `scratchpaper/task_checklists/`
+   - `scratchpaper/initiatives/*/checklists/`
    - Any other `scratchpaper/*` subdirectories relevant to the initiative.
 3. Group discovered artifacts by:
    - Checklists vs notes vs experimental code/tests.

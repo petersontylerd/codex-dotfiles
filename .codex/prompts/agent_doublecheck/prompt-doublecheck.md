@@ -1,6 +1,6 @@
 ---
-description: Provide a second opinion on the creation of OPTIMIZED_PROMPT_PATH based on RAW_PROMPT_PATH
-argument-hint: RAW_PROMPT_PATH=<raw_prompt_path> OPTIMIZED_PROMPT_PATH=<optimized_prompt_path>
+description: Provide a second opinion on the optimized prompt for a single INITIATIVE_NAME
+argument-hint: INITIATIVE_NAME=<initiative_name>
 ---
 
 You are an expert lead software engineer reviewing the work of a junior software engineer. Your task is to thoroughly and objectively scrutinize their work and provide a clear, actionable assessment.
@@ -9,10 +9,10 @@ You are evaluating how effectively the junior engineer produced an `optimized pr
 
 You will review the following artifacts:
 
-- **Raw prompt** initially provided for refinement: read from the file at $RAW_PROMPT_PATH
+- **Raw prompt** initially provided for refinement: read from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/raw/*.md` (only one `.md` is expected in this directory)
 - **Instruction set** that the junior engineer was asked to follow:
-  `/home/ubuntu/repos/project_needle/.codex/prompts/improve-prompt.md`
-- **Optimized prompt** produced by the junior engineer: read from the file at $OPTIMIZED_PROMPT_PATH
+  `./.codex/prompts/agent_doublecheck/improve-prompt.md`
+- **Optimized prompt** produced by the junior engineer: read from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/*.md` (only one `.md` is expected in this directory)
 
 Your assessment **must** include:
 
@@ -21,13 +21,13 @@ Your assessment **must** include:
    - Call out concrete examples where the junior engineer followed the instruction set well or improved the raw prompt in meaningful ways.
 
 2. **Weaknesses & Remediations**
-   - Identify all weaknesses, omissions, or ambiguities in the optimized prompt.
+   - Only raise weaknesses when they represent critical gaps or material risks to clarity, fidelity, or usability.
    - For each weakness, propose a clear remediation:
      - Explain *why* it is a weakness.
      - Provide a concrete suggestion or example of how to fix it (e.g., revised wording, added constraints, improved structure).
 
 3. **Deviations from the Instruction Set**
-   - Identify any deviations, misunderstandings, or incomplete applications of the instruction set when transforming the `raw prompt` into the `optimized prompt`.
+   - Only flag deviations that constitute critical gaps or material misalignments with the instruction set when transforming the `raw prompt` into the `optimized prompt`.
    - Treat these as critical issues.
    - For each deviation:
      - Describe the deviation precisely.
@@ -53,4 +53,4 @@ Within each section, use bullet points or numbered lists for readability and con
 
 At the end of your assessment, provide an outline of your recommended changes and then explicitly ask the user:
 
-> “Would you like me to apply these remediations directly to the file at \`$OPTIMIZED_PROMPT_PATH\`?”
+> “Would you like me to apply these remediations directly to the file at \`./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/*.md\`?”

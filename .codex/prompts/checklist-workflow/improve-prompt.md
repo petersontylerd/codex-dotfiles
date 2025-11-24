@@ -1,6 +1,6 @@
 ---
-description: Improve the prompt, loaded from RAW_PROMPT_PATH and save the optimized prompt to OPTIMIZED_PROMPT_DESTINATION
-argument-hint: RAW_PROMPT_PATH=<raw_prompt_path> OPTIMIZED_PROMPT_DESTINATION=<optimized_prompt_destination>
+description: Improve the prompt for a single INITIATIVE_NAME by loading the raw prompt and saving the optimized prompt to that initiative’s optimized directory
+argument-hint: INITIATIVE_NAME=<initiative_name>
 ---
 
 You are an AI assistant whose job is to rewrite a draft prompt so it works optimally in a two-stage workflow:
@@ -12,22 +12,15 @@ You are an AI assistant whose job is to rewrite a draft prompt so it works optim
 
 1. **Review AGENTS.md** - Located at `./AGENTS.md`
 2. **Review downstream prompts**: Review both `create-initiative-plan.md` and `plan-to-checklist.md` so you know what kind of input each prompt expects and the purpose of each prompt. Use that understanding to shape the improved version of the draft prompt, but do **not** reference those downstream prompts directly in the improved prompt text.
-3. **Rewrite the draft prompt** (loaded from $RAW_PROMPT_PATH) following the objectives below (preserve scope, add structure, avoid downstream references).
-4. **Save the improved prompt** as a `.md` file to $OPTIMIZED_PROMPT_DESTINATION. For filename pattern, use `<YYYY-MM-DD>-<initiative-or-feature-name>-checklist.md`.
-5. **Verify and report**: Confirm the new .md file exists in $OPTIMIZED_PROMPT_DESTINATION and reply only with `✅ Saved optimized prompt to $OPTIMIZED_PROMPT_DESTINATION`—do **not** print the prompt contents.
+3. **Read and rewrite the draft prompt** (loaded from `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/raw/*.md`, exactly one `.md` is expected in that directory) following the objectives below (preserve scope, add structure, avoid downstream references).
+4. **Save the improved prompt** as a `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/`. For filename pattern, use `<YYYY-MM-DD>-<initiative-or-feature-name>-checklist.md`.
+5. **Verify and report**: Confirm the new .md file exists in `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/` and reply only with `✅ Saved optimized prompt to ./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/`—do **not** print the prompt contents.
 
 ⚠️ Skipping any checklist step or printing the improved prompt text is a task failure.
 
-### Workflow Order (DO NOT DEVIATE)
-
-1. Review `create-initiative-plan.md` and `plan-to-checklist.md`.
-2. Load the draft prompt from $RAW_PROMPT_PATH and rewrite it according to the objectives below.
-3. **REQUIRED DELIVERABLE** = A `.md` file saved to $OPTIMIZED_PROMPT_DESTINATION (filename pattern `<YYYY-MM-DD>-<initiative-or-feature-name>-checklist.md`).
-4. Verify the file exists.
-
 ### Your objectives
 
-Given the draft prompt located at $RAW_PROMPT_PATH:
+Given the draft prompt located at `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/raw/*.md`:
 
 1. **Preserve intent**
 
@@ -55,3 +48,10 @@ Given the draft prompt located at $RAW_PROMPT_PATH:
 * Return **only** the final, improved prompt text that should replace the draft prompt.
 * Do not include commentary, explanations, or meta-notes about what you changed.
 * The improved prompt may use markdown formatting (headings, lists) if it helps structure the response.
+
+### Workflow Order (DO NOT DEVIATE)
+
+1. Review `create-initiative-plan.md` and `plan-to-checklist.md`.
+2. Load the draft prompt from `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/raw/*.md` and rewrite it according to the objectives below.
+3. **REQUIRED DELIVERABLE** = A `.md` file saved to `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/` (filename pattern `<YYYY-MM-DD>-<initiative-or-feature-name>-checklist.md`).
+4. Verify the file exists.

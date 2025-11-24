@@ -1,6 +1,6 @@
 ---
-description: Create initiative plan based on user prompt provided via OPTIMIZED_PROMPT_PATH, persist at RAW_PLAN_DESTINATION
-argument-hint: OPTIMIZED_PROMPT_PATH=<optimized_prompt_path> RAW_PLAN_DESTINATION=<raw_plan_destination>
+description: Create initiative plan for a single INITIATIVE_NAME by loading the optimized prompt from that initiative’s directory and persisting the raw plan under the same initiative
+argument-hint: INITIATIVE_NAME=<initiative_name>
 ---
 # `/create-initiative-plan`
 
@@ -12,11 +12,11 @@ Your objectives in this command:
 - Align on **scope, constraints, success criteria, and boundaries**.
 - Produce an **structured plan** that will later be transformed into a checklist file.
 
-Inputs: This command consumes $OPTIMIZED_PROMPT_PATH, a filesystem path to the user’s prompt describing goals, principles, constraints, and advisements. Load the full contents from that file; this is essential, critical context for your task, and it must be understood deeply. Read it carefully, then read it again. You must understand the user's stated goals, and also supplement the user's stated goals with your own knowledge of the space where you believe your supplemental knowledge is additive. The user relies on your subject matter expertise, technical expertise, and objectivity.
+Inputs: This command consumes $INITIATIVE_NAME. Load the optimized prompt from `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/*.md` (exactly one `.md` is expected in that directory); this file contains the user’s goals, principles, constraints, and advisements. Load the full contents from that file; this is essential, critical context for your task, and it must be understood deeply. Read it carefully, then read it again. You must understand the user's stated goals, and also supplement the user's stated goals with your own knowledge of the space where you believe your supplemental knowledge is additive. The user relies on your subject matter expertise, technical expertise, and objectivity.
 
 Additionally, use this context to infer the **new initiative** name and propose a feature-branch slug; do not request additional variables for naming.
 
-Persist the complete initiative plan as a markdown file under $RAW_PLAN_DESTINATION in the repository. Create the directory if missing and choose a descriptive filename such as `<YYYY-MM-DD>-<initiative-slug>-initiative-plan.md` unless the user provides a different name.
+Persist the complete initiative plan as a markdown file under `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/raw/` in the repository. Create the directory if missing and choose a descriptive filename such as `<YYYY-MM-DD>-<initiative-slug>-initiative-plan.md` unless the user provides a different name.
 
 ---
 
@@ -77,7 +77,7 @@ Use the **Sequential Thinking MCP** to perform a first-pass analysis (summarize 
 
 Update your structured outlines as you go:
 
-- Add or refine items in **Key Principles**, **Constraints**, and **Open Questions and Risks** based on this analysis and on the prompt loaded from $OPTIMIZED_PROMPT_PATH.
+- Add or refine items in **Key Principles**, **Constraints**, and **Open Questions and Risks** based on this analysis and on the prompt loaded from `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/*.md`.
 
 If the **new initiative** involves specific external libraries or versions, use `context7` to pull API docs before drafting tasks and note relevant findings. If you need to inspect current repo layout, use `serena`/`filesystem` to skim directories without making changes.
 
@@ -124,7 +124,7 @@ At the end of this command, output:
 - A short **“Initiative Summary”** section:
   - Goal, scope, and success criteria.
 - A **“Key Principles”** section:
-  - Bullet list of the key principles and ground rules you must follow (derived from the contents loaded from $OPTIMIZED_PROMPT_PATH, `AGENTS.md`, and your analysis).
+  - Bullet list of the key principles and ground rules you must follow (derived from the contents loaded from `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/*.md`, `AGENTS.md`, and your analysis).
 - A **“Constraints”** section:
   - Bullet list of important constraints (directories you may edit, tech stack requirements, performance/privacy constraints, data constraints, tooling constraints).
 - An **“Open Questions and Risks”** section:
@@ -134,9 +134,9 @@ At the end of this command, output:
 - An **“Execution Readiness / Implementation Coverage”** section:
   - Provide both: (a) the aggregate counts of `[PLAN]`/`[RESEARCH]` vs `[IMPLEMENT]`/`[VALIDATE]` subtasks per Major Task, and (b) the explicit mapping showing which `[IMPLEMENT]` items fulfill each `[PLAN]`/`[RESEARCH]` item and which `[VALIDATE]` items prove each `[IMPLEMENT]` (calling out shared validations explicitly). Treat any gap as a blocker until resolved.
 - A **“Plan File Path”** note:
-  - Exact path where you saved the initiative plan markdown under $RAW_PLAN_DESTINATION, including the filename used.
+  - Exact path where you saved the initiative plan markdown under `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/raw/`, including the filename used.
 
-Write the full initiative plan to a markdown file in $RAW_PLAN_DESTINATION (creating directories as needed) and report the exact path you saved. Do not modify any other files with this command.
+Write the full initiative plan to a markdown file in `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/raw/` (creating directories as needed) and report the exact path you saved. Do not modify any other files with this command.
 
 ## 7. MCP Servers
 

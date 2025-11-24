@@ -25,7 +25,7 @@ Do not proceed until update intent is clear.
 
 ## 2. Read the Current Checklist
 
-1. Use the checklist path from session context under `scratchpaper/task_checklists/`; only ask for the path if it is missing or conflicting.
+1. Use the checklist path from session context (default: `scratchpaper/initiatives/$INITIATIVE_NAME/checklists/<raw|optimized>/*.md`; only one `.md` is expected per directory); only ask for the path if it is missing or conflicting.
 2. Summarize:
    - Existing Major Tasks.
    - Notable Subtasks and their prefixes/tags.

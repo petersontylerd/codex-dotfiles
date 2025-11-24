@@ -1,6 +1,6 @@
 ---
-description: Provide a second opinion of RAW_CHECKLIST_PATH which was created based on OPTIMIZED_PLAN_PATH, saving refined copy to OPTIMIZED_CHECKLIST_DESTINATION
-argument-hint: OPTIMIZED_PLAN_PATH=<optimized_plan_path> RAW_CHECKLIST_PATH=<raw_checklist_path> OPTIMIZED_CHECKLIST_DESTINATION=<optimized_checklist_destination>
+description: Provide a second opinion of the raw checklist for a single INITIATIVE_NAME, created from that initiative’s optimized plan, and offer to save a refined copy to the initiative’s optimized checklist directory
+argument-hint: INITIATIVE_NAME=<initiative_name>
 ---
 
 You are an expert lead software engineer reviewing the work of a junior software engineer. Your task is to thoroughly and objectively scrutinize their work and provide a clear, actionable assessment.
@@ -9,25 +9,25 @@ You are evaluating how effectively the junior engineer produced an `raw checklis
 
 You will review the following artifacts:
 
-- **Raw checklist** `raw checklist` developed by junior software engineer based on `optimized plan`, following the `instruction set`. Read the **Raw checklist** from the file at $RAW_CHECKLIST_PATH
+- **Raw checklist** `raw checklist` developed by junior software engineer based on `optimized plan`, following the `instruction set`. Read the **Raw checklist** from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/raw/*.md` (only one `.md` is expected in this directory)
 - **Instruction set** that the junior engineer was asked to follow:
-  `/home/ubuntu/repos/codex-dotfiles/.codex/prompts/checklist-workflow/plan-to-checklist.md`. Read this file to understand the instructions.
-- **Optimized plan** Read from the file at $OPTIMIZED_PLAN_PATH. No changes or feedback needed for **Optimized plan** - it is already optimized. Simply providing as a reference artifact.
+  `./.codex/prompts/plan-to-checklist.md`. Read this file to understand the instructions.
+- **Optimized plan** Read from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/*.md` (only one `.md` is expected in this directory). No changes or feedback needed for **Optimized plan** - it is already optimized. Simply providing as a reference artifact.
 
-Your assessment **must** include and confine feedback to these dimensions of quality and alignment (from `/home/ubuntu/repos/codex-dotfiles/.codex/prompts/checklist-workflow/plan-to-checklist.md`): structural compliance, completeness of required sections/fields, clarity and actionability of steps (owners, deadlines, dependencies), internal consistency (no contradictions or duplicated items), feasibility and ordering, explicit risks/assumptions/validation, and adherence to all constraints in the instruction set.
+Your assessment **must** include and confine feedback to these dimensions of quality and alignment (from `./.codex/prompts/plan-to-checklist.md`): structural compliance, completeness of required sections/fields, clarity and actionability of steps (owners, deadlines, dependencies), internal consistency (no contradictions or duplicated items), feasibility and ordering, explicit risks/assumptions/validation, and adherence to all constraints in the instruction set.
 
 1. **Strengths**
    - Identify specific strengths in the `raw checklist`.
    - Call out concrete examples where the junior engineer followed the `instruction set` well.
 
 2. **Weaknesses & Remediations**
-   - Identify all weaknesses, omissions, or ambiguities in the `raw checklist`.
+   - Only raise weaknesses when they represent critical gaps or material risks to structure, clarity, feasibility, or alignment.
    - For each weakness, propose a clear remediation:
      - Explain *why* it is a weakness.
      - Provide a concrete suggestion or example of how to fix it (e.g., revised wording, added constraints, improved structure).
 
 3. **Deviations from the Instruction Set**
-   - Identify any deviations, misunderstandings, or incomplete applications of the instruction set when using the `optimized plan` and `instruction set` to create the `raw checklist`.
+   - Only flag deviations that constitute critical gaps or material misalignments with the instruction set when using the `optimized plan` and `instruction set` to create the `raw checklist`.
    - Treat these as critical issues.
    - For each deviation:
      - Describe the deviation precisely.
@@ -53,4 +53,4 @@ Within each section, use bullet points or numbered lists for readability and con
 
 At the end of your assessment, provide an outline of your recommended changes and then ask the user:
 
-> Would you like me to save the updated checklist (same filename) as a new `.md` file to $OPTIMIZED_CHECKLIST_DESTINATION, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `/home/ubuntu/repos/codex-dotfiles/.codex/prompts/checklist-workflow/plan-to-checklist.md`?
+> Would you like me to save the updated checklist (same filename) as a new `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/`, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `./.codex/prompts/plan-to-checklist.md`?
