@@ -9,7 +9,7 @@ You are evaluating how effectively the junior engineer produced an `raw checklis
 
 You will review the following artifacts:
 
-- **Raw checklist** `raw checklist` developed by junior software engineer based on `optimized plan`, following the `instruction set`. Read the **Raw plan** from the file at $RAW_CHECKLIST_PATH
+- **Raw checklist** `raw checklist` developed by junior software engineer based on `optimized plan`, following the `instruction set`. Read the **Raw checklist** from the file at $RAW_CHECKLIST_PATH
 - **Instruction set** that the junior engineer was asked to follow:
   `/home/ubuntu/repos/codex-dotfiles/.codex/prompts/checklist-workflow/plan-to-checklist.md`. Read this file to understand the instructions.
 - **Optimized plan** Read from the file at $OPTIMIZED_PLAN_PATH. No changes or feedback needed for **Optimized plan** - it is already optimized. Simply providing as a reference artifact.

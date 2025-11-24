@@ -5,7 +5,7 @@ argument-hint: OPTIMIZED_PLAN_PATH=<optimized_plan_path> RAW_CHECKLIST_DESTINATI
 ---
 # `/plan-to-checklist`
 
-You are given a `new initiative plan` stored on disk. Load it directly from $OPTIMIZED_PLAN_PATH using the provided file path; do not rely on plan details being present in the conversation context. The plan contains essential information and context necessary to create a comprehensive, richly-detailed checklist that will help ensure you successfully research, plan, implement, validate and document this new iniatitive.
+You are given a `new initiative plan` stored on disk. Load it directly from $OPTIMIZED_PLAN_PATH using the provided file path; do not rely on plan details being present in the conversation context. The plan contains essential information and context necessary to create a comprehensive, richly-detailed checklist that will help ensure you successfully research, plan, implement, validate and document this new initiative.
 
 Your job is to **create the canonical checklist** (as a new markdown file) that will serve as working memory for this initiative: a living artifact that links planning, execution, validations, and reasoning. In this command you always create a fresh checklist file; you never update or merge into an existing one.
 
@@ -15,7 +15,7 @@ Your job is to **create the canonical checklist** (as a new markdown file) that 
 
 1. Use the initiative context to write the checklist under $RAW_CHECKLIST_DESTINATION in the repository. If the directory is missing, create it.
 2. Always assume you are creating a new file for this initiative:
-   - Propose the filename `<YYYY-MM-DD>–<initiative-or-feature-name>–checklist.md`.
+   - Propose the filename `<YYYY-MM-DD>-<initiative-or-feature-name>-checklist.md`.
    - Confirm the final path under $RAW_CHECKLIST_DESTINATION.
 
 Use `filesystem` for all writes and `create_directory` for missing directories as needed. You do **not** merge into an existing checklist in this command; you create a new file.

@@ -65,7 +65,7 @@ Do not proceed until you have a crisp understanding of scope and constraints.
 
 Use the **Sequential Thinking MCP** to perform a first-pass analysis (summarize outputs for later Notes & Learnings):
 
-1. Conduct a thorough review of the rest of the project repository files to indentify relevant and useful previously engineered functionality, and to discern overall project structure. Gather relevant context to enrich your planning of this **new initiative**.
+1. Conduct a thorough review of the rest of the project repository files to identify relevant and useful previously engineered functionality, and to discern overall project structure. Gather relevant context to enrich your planning of this **new initiative**.
 2. Decompose the **new initiative** into **Major Themes or Workstreams**.
 3. For each, identify:
    - Desired outcomes (behavior, user impact, API changes, etc.).
@@ -103,7 +103,7 @@ You are **not** writing the final checklist file yet; you are drafting the struc
 
 ---
 
-## 4.1 Implementation Coverage Check
+## 5. Implementation Coverage Check
 
 Before moving forward:
 
