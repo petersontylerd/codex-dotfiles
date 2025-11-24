@@ -19,8 +19,9 @@ Inputs for this command:
 1. Read the checklist at $CHECKLIST_PATH and:
    - Summarize Major Tasks and their statuses.
    - Note any `blocked` items and their reasons.
+   - Review the **Execution Readiness / Implementation Coverage** note to ensure PLAN→IMPLEMENT→VALIDATE mappings are intact; call out any gaps (missing `[IMPLEMENT]` for a `[PLAN]`, missing `[VALIDATE]` for an `[IMPLEMENT]`) before proceeding.
 2. Validate that $FEATURE_BRANCH matches any referenced branch context; if conflicting signals appear, ask before proceeding.
-
+   
 If anything about branch or checklist state is unclear (or inputs conflict), ask before proposing work.
 Use `filesystem` to read/update the checklist. If upcoming tasks depend on external APIs, plan a `context7` lookup and capture findings in Notes & Learnings.
 Ensure checklist paths are within `list_allowed_directories`; use `edit_file` (with `dryRun` if uncertain) for updates.
@@ -49,18 +50,13 @@ Keep this summary focused but precise.
 2. For each candidate, include:
    - Task ID and description.
    - Why it is a good fit (leverage, dependencies, alignment with goals).
-3. Using the candidates and existing planning signals, choose the single best next task:
+3. Using the candidates and existing planning context, choose the single best next task:
    - Prefer, in order:
      - Any explicit user instructions.
-     - The latest `RECOMMENDED_NEXT_TASK` from prior commands (if present).
-     - Otherwise, the highest-priority unblocked task that best advances the North Star / Goals.
-4. Clearly label this choice in your response as:
+     - Otherwise, the highest-priority unblocked task in the checklist that best advances the North Star / Goals; explain if you intentionally skip a higher-priority item.
+4. Describe your choice in plain language, and ask the user to confirm or adjust it if there is any doubt.
 
-`RECOMMENDED_NEXT_TASK: <task ID or description> — <two-sentence rationale>`
-
-Ask the user to confirm or adjust this recommendation if there is any doubt.
-
-End with a short, explicit statement of the single next task you are ready to execute, suitable for feeding into `execute-next-task`.
+End with a short, explicit sentence naming the single next checklist subtask you are ready to execute.
 
 ## 4. MCP Servers
 

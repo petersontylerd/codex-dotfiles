@@ -33,6 +33,8 @@ Keep this summary focused on concrete work and outcomes.
 3. Strengthen references:
    - Add file paths, commits, and test references where relevant.
    - Keep branch references aligned with the session’s active branch; do not re-prompt unless context conflicts.
+4. Refresh the **Execution Readiness / Implementation Coverage** section so that every `[PLAN]/[RESEARCH]` still cites downstream `[IMPLEMENT]` IDs, every `[IMPLEMENT]` cites its `[VALIDATE]` IDs, and shared validations are called out explicitly.
+5. Update the **Validation Gate** entries to reflect validations run (pass/fail/pending) during this session, keeping them aligned with the `[VALIDATE]` subtasks they correspond to.
 
 Use the filesystem tools to apply small, careful edits.
 If new follow-ups rely on external APIs, optionally use `context7` to confirm details and note them in Notes & Learnings.
@@ -55,7 +57,7 @@ If there were failures (tests, commands, etc.), explicitly note them with short 
 
 ## 4. Resume Instructions
 
-1. Identify the **single highest-leverage next task** to tackle in the next session.
-2. Record this in the checklist by adding a clear, neutral next-task note under the unchecked subtask item you believe should be the restart point.
+1. Identify the **single highest-leverage next task** to tackle in the next session (prefer explicit user instructions; otherwise use the highest-priority unblocked checklist item).
+2. Mention this next task explicitly in your response with a brief rationale so the next `session-start` can pick it up immediately. Do not add special “NEXT_SESSION_FOCUS” fields to the checklist; rely on the checklist ordering, statuses, and notes you already maintain.
 
-This ensures that a future agent (or you) can restart efficiently without rereading the entire history.
+This ensures that a future agent (or you) can restart efficiently without rereading the entire history while keeping the checklist free of extra markers.

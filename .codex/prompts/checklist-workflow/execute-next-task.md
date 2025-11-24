@@ -8,7 +8,7 @@ You are in the **Execution Loop** phase of an initiative. Your job is to:
 - Validate results.
 - Update the checklist and notes.
 
-You must **favor concrete action** over mere description whenever environment constraints allow, and you must execute **exactly one checklist subtask per invocation** (do not begin multiple open items in a single run).
+You must **favor concrete action** over mere description whenever environment constraints allow, and you must execute **exactly one checklist subtask per invocation** (do not begin multiple open items simultaneously).
 
 ---
 
@@ -82,7 +82,7 @@ Use `context7` before implementing against external APIs to confirm signatures/b
    - If validations fail, stop and focus on fixing the failure before moving on.
 3. In your response:
    - Summarize what changed (files, key logic).
-   - Summarize validation results and confidence level.
+   - Summarize validation results and confidence level, explicitly calling out which checklist `[VALIDATE]` subtask(s) you satisfied (or why they remain pending).
 4. If you ran validations that are part of the initiative’s Validation Gate, update the `Validation Gate` section in the checklist (or plan to do so in the next checklist update) so that it reflects which checks have passed, failed, or are pending.
 
 If you could not run validations, explicitly say so and why.
@@ -96,6 +96,7 @@ Assuming you have enough information to update the checklist:
 1. Modify the checklist file:
    - Mark the executed subtask as `[x]` when appropriate.
    - Add or adjust file paths, tests, and Branch references if they became concrete.
+   - Update the **Execution Readiness / Implementation Coverage** paragraph if you added or re-linked any `[PLAN]`, `[IMPLEMENT]`, or `[VALIDATE]` tasks so the PLAN→IMPLEMENT→VALIDATE mapping stays accurate.
 2. Under **Notes & Learnings**, add a dated entry describing:
    - What you implemented.
    - Any unexpected findings or decisions.
@@ -109,9 +110,7 @@ Use `filesystem` to write only the minimal necessary changes to the checklist fi
 
 ## 6. Propose the Next Task
 
-End with a one-line recommendation:
-
-`RECOMMENDED_NEXT_TASK: <task ID or description> — <two-sentence rationale>`
+End with a concise sentence naming the checklist subtask that should follow, along with a short rationale. Derive this strictly from explicit user instructions or, if none exist, the highest-priority unblocked item in the checklist—no special markers or stored notes are required.
 
 Choose a next task that:
 

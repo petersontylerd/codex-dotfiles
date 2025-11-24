@@ -27,6 +27,7 @@ Do not proceed until update intent is clear.
    - Existing Major Tasks.
    - Notable Subtasks and their prefixes/tags.
    - Any obvious imbalances (too much `[PLAN]/[RESEARCH]` vs `[IMPLEMENT]/[VALIDATE]`).
+   - Whether **Major Task 0** still appears first with the canonical fenced `.sh` block and the user-vs-agent command guidance intact.
 
 If you cannot find the checklist file, ask for its path.
 
@@ -34,17 +35,22 @@ If you cannot find the checklist file, ask for its path.
 
 ## 3. Apply Structural Updates
 
-1. For requested changes:
+1. For requested changes (or obvious structural fixes that keep scope consistent with the clarified intent):
    - Add new Major Tasks/Subtasks with appropriate prefixes and tags, following the canonical ID and status schema:
      - Major Tasks numbered (`1`, `2`, `3`, …).
      - Subtasks with IDs like `N.A`, `N.B`, and when split, `N.A.1`, `N.A.2`, etc.
      - Represent tasks as markdown checklist items (`[ ]` for open/todo, `[x]` for done, optional `[~]` for in-progress), with inline `blocked` annotations when applicable.
    - Split complex items into smaller, well-scoped subtasks (use IDs like `2.C.1`, `2.C.2`).
    - Reorder tasks to reflect new priorities and dependencies.
+   - If you believe new scope needs to be introduced beyond what the user just clarified, pause and confirm that addition before editing the checklist.
 2. Maintain existing IDs and prefixes where possible:
    - Update descriptions and tags rather than renaming IDs.
 3. Enforce pairing:
    - For any new `[PLAN]/[RESEARCH]` items you add, also add paired `[IMPLEMENT]/[VALIDATE]` items.
+   - Ensure existing `[PLAN]/[RESEARCH]` entries continue to reference downstream `[IMPLEMENT]` items and that every `[IMPLEMENT]` references at least one `[VALIDATE]`. Update references if you split/merge tasks.
+4. Preserve Major Task 0:
+   - Keep it as the first Major Task with its blocking status.
+   - Retain the canonical fenced `.sh` block exactly as defined in `.codex/prompts/checklist-workflow/README.md` (“Major Task 0 canonical block”), substituting only `<feature-branch-slug>` as needed, and reiterate which commands the agent may vs must not run.
 
 Write back minimal edits using the filesystem tools, preserving the ABOUTME header and section headings.
 Use `serena` to gather precise file/symbol references when enriching metadata. If new items depend on external APIs, consider a quick `context7` lookup and note key findings.
@@ -59,7 +65,8 @@ For discovery before edits, prefer `list_directory`, `list_directory_with_sizes`
    - File paths.
    - Symbols or endpoints.
    - Branch references.
-2. Ensure the **Validation Gate** and **Definition of Done** sections still accurately describe how the initiative will be validated.
+2. Refresh the **Execution Readiness / Implementation Coverage** note so it reflects the current PLAN→IMPLEMENT→VALIDATE mappings (including any shared validations) after your edits.
+3. Ensure the **Validation Gate** and **Definition of Done** sections still accurately describe how the initiative will be validated, and update individual `[VALIDATE]` subtasks (and their references) accordingly if the validation strategy changed.
 
 ---
 
