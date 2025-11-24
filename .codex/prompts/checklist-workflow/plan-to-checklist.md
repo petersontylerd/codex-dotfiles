@@ -1,8 +1,11 @@
+---
+description: Convert new initiative plan to checklist
+argument-hint: OPTIMIZED_PLAN_PATH=<optimized_plan_path> RAW_CHECKLIST_DESTINATION=<raw_checklist_destination>
+
+---
 # `/plan-to-checklist`
 
-You are given:
-
-- An `new initiative plan`, which contains essential information and context necessary to create a comprehensive, richly-detailed checklist that will help ensure you successfully research, plan, implement, validate and document this new iniatitive.
+You are given a `new initiative plan` stored on disk. Load it directly from $OPTIMIZED_PLAN_PATH using the provided file path; do not rely on plan details being present in the conversation context. The plan contains essential information and context necessary to create a comprehensive, richly-detailed checklist that will help ensure you successfully research, plan, implement, validate and document this new iniatitive.
 
 Your job is to **create the canonical checklist** (as a new markdown file) that will serve as working memory for this initiative: a living artifact that links planning, execution, validations, and reasoning. In this command you always create a fresh checklist file; you never update or merge into an existing one.
 
@@ -10,10 +13,10 @@ Your job is to **create the canonical checklist** (as a new markdown file) that 
 
 ## 1. Choose the Checklist File Path
 
-1. Use session context to determine the intended checklist path under `scratchpaper/task_checklists/`. If missing or ambiguous, confirm with the user before proceeding.
+1. Use the initiative context to write the checklist under $RAW_CHECKLIST_DESTINATION in the repository. If the directory is missing, create it.
 2. Always assume you are creating a new file for this initiative:
    - Propose the filename `<YYYY-MM-DD>–<initiative-or-feature-name>–checklist.md`.
-   - Confirm the final path under `scratchpaper/task_checklists/`.
+   - Confirm the final path under $RAW_CHECKLIST_DESTINATION.
 
 Use `filesystem` for all writes and `create_directory` for missing directories as needed. You do **not** merge into an existing checklist in this command; you create a new file.
 
@@ -21,7 +24,7 @@ Use `filesystem` for all writes and `create_directory` for missing directories a
 
 ## 2. Map Plan to Major Tasks and Subtasks
 
-Using the `new initiative plan` you are provided:
+Using the `new initiative plan` loaded from $OPTIMIZED_PLAN_PATH:
 
 1. Define **Major Tasks**:
    - Each with a short verb phrase and tags (priority, complexity, main phase).
@@ -92,10 +95,10 @@ When writing the new checklist file:
      - Feature Development Finalization
    - When filling these sections, use the initiative plan as follows, ensuring descriptions are rich in detail:
      - **Feature Development Setup** — The first task on the checklist must always be to create a new feature branch in the repository. Ensure that existing repository modifications are handled delicately, and that we are always assured of beginning our `new initiative plan` on a clean slate. Aside from the explicitly permitted detection checks noted in Major Task 0 (e.g., `git status -sb`, `git branch --show-current`), the agent must not run git commands; instead, provide detailed instructions for the user to review and copy/paste into a separate terminal.
-     - **North Star / Goals** — summarize the initiative’s goal and success criteria from the “Initiative Summary” section of the `new initiative plan` and any explicit success metrics.
-     - **Key Principles** — adapt the “Key Principles” section from `new initiative plan`, reflecting the non-negotiable ground rules and operational philosophy.
-     - **Sequential Task Breakdown** — convert the “Proposed Major Tasks & Subtasks” section from `new initiative plan` into checklist Major Tasks and Subtasks using the canonical IDs, prefixes, and status schema. You must maintain all detail. Summariziation risks creating ambiguity, and will adversely effect downstream activities.
-     - **Notes & Learnings** — seed with any important findings or constraints from `new initiative plan` (for example, key risks or decisions), and add a dated entry describing the creation or update of this checklist.
+     - **North Star / Goals** — summarize the initiative’s goal and success criteria from the “Initiative Summary” section of the plan you loaded from $OPTIMIZED_PLAN_PATH and any explicit success metrics.
+     - **Key Principles** — adapt the “Key Principles” section from the loaded plan, reflecting the non-negotiable ground rules and operational philosophy.
+     - **Sequential Task Breakdown** — convert the “Proposed Major Tasks & Subtasks” section from the loaded plan into checklist Major Tasks and Subtasks using the canonical IDs, prefixes, and status schema. You must maintain all detail. Summariziation risks creating ambiguity, and will adversely effect downstream activities.
+     - **Notes & Learnings** — seed with any important findings or constraints from the loaded plan (for example, key risks or decisions), and add a dated entry describing the creation or update of this checklist.
      - **Validation Gate** — list the concrete commands and checks (tests, lint, type checks, pre-commit) that must pass before the initiative is considered done.
      - **Definition of Done** — describe what it means for this initiative to be complete (behavioral outcomes, documentation, and Validation Gate conditions).
      - **Kickoff Protocol** — briefly describe how a future agent should restart work on this initiative using `session-start` and `execute-next-task`.
@@ -105,7 +108,7 @@ When writing the new checklist file:
      - **Feature Development Finalization** — The final task on the checklist must always define the need to carefully commit our finalized feature additions and merge to main. The agent must not run these git commands themselves. Instead, the agent must provide detailed instructions for the user to review, and commands for the user to copy/paste into a separate terminal.
 2. Insert the **Sequential Task Breakdown** section with your Major Tasks and Subtasks.
 3. Immediately after the Sequential Task Breakdown, add a short **Execution Readiness / Implementation Coverage** paragraph that summarizes the mapping for each Major Task (e.g., “`1.B` → `1.D` `[IMPLEMENT]` → `1.E` `[VALIDATE]`”, noting any shared validations) and reiterates that code/test changes are required before any documentation-only pass.
-Use `filesystem` MCP to write the new .md checklist file. When adding or adjusting file/symbol references, use `serena` to gather accurate paths/names. For discovery, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
+Use `filesystem` MCP to write the new .md checklist file to $RAW_CHECKLIST_DESTINATION. When adding or adjusting file/symbol references, use `serena` to gather accurate paths/names. For discovery, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
 
 ---
 
@@ -133,4 +136,4 @@ Before finishing:
 2. Under Notes & Learnings, append a dated entry:
    - E.g., `YYYY-MM-DD — Initial checklist created/updated for <initiative-name>; see Major Task N for scope.`
 
-Finally, summarize the checklist structure you created and point the user to the file path.
+Finally, summarize the checklist structure you created and point the user to the file path under $RAW_CHECKLIST_DESTINATION.

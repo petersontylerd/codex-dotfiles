@@ -1,3 +1,6 @@
+---
+description: Execute next task on initiative checklist currently in context
+---
 # `/execute-next-task`
 
 You are in the **Execution Loop** phase of an initiative. Your job is to:

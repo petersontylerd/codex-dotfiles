@@ -6,7 +6,7 @@ ABOUTME: Documents problem, scope, and usage patterns.
 ## Quickstart (read this first)
 - Purpose: durable initiative checklists and commands that bias toward action (edits plus validation).
 - Invocation: run prompt files under `.codex/prompts/checklist-workflow/*.md` with your Codex CLI (for example, `codex prompt .codex/prompts/checklist-workflow/create-initiative-plan.md`); adjust to your runner.
-- Scratchpads: use `scratchpaper/` (especially `scratchpaper/task_checklists/<YYYY-MM-DD>-<name>-checklist.md`); promote or clean up as you go.
+- Scratchpads: use `scratchpaper/` (plans under `scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/`; checklists under `scratchpaper/initiatives/$INITIATIVE_PLAN/checklists/raw/<YYYY-MM-DD>-<name>-checklist.md`); promote or clean up as you go.
 - Follow `AGENTS.md` and `MASTER_AGENTS.md`: feature branches, TDD, `uv`, `ruff`, no bypassed hooks.
 
 ### MCP quick use
@@ -18,7 +18,7 @@ ABOUTME: Documents problem, scope, and usage patterns.
 
 ### Minimal flow
 1. `create-initiative-plan` - confirm goals and constraints; propose branch.
-2. `plan-to-checklist` - turn the plan into the checklist file.
+2. `plan-to-checklist` - load the plan from `scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/` and turn it into a checklist under `scratchpaper/initiatives/$INITIATIVE_PLAN/checklists/raw/`.
 3. `session-start` - summarize state and pick top tasks for the session.
 4. `execute-next-task` - pick a checklist item, do the edits, run validations; loop.
 5. `review-checklist` - reconcile statuses and notes after meaningful progress.
@@ -26,13 +26,14 @@ ABOUTME: Documents problem, scope, and usage patterns.
 7. `scratchpad-review-and-cleanup` - near the end, promote or delete scratch artifacts safely.
 
 ### Command variables
-- `create-initiative-plan`: `$INITIATIVE_CONTEXT` (goals, principles, constraints) used to infer initiative name and propose branch slug.
+- `create-initiative-plan`: `$USER_PROMPT_PATH` (filesystem path to the narrative file containing goals, principles, constraints; load and use the file contents) used to infer initiative name and propose branch slug.
+- `plan-to-checklist`: `$INITIATIVE_NAME` (plan source slug to read from `scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/`) and `$INITIATIVE_PLAN` (slug for writing the checklist to `scratchpaper/initiatives/$INITIATIVE_PLAN/checklists/raw/`), plus the specific plan filename to load.
 - `session-start`: `$CHECKLIST_PATH` (authoritative checklist) and `$FEATURE_BRANCH` (current branch) to rehydrate session context.
 All other commands consume the established session context and should not prompt for additional variables unless inputs conflict or are missing.
 
 ### Command cheatsheet
-- `create-initiative-plan`: Start or reorient an initiative. Outputs goals, constraints, branch suggestion, and initial plan (driven by `$INITIATIVE_CONTEXT`).
-- `plan-to-checklist`: Convert the plan into the markdown checklist (major tasks and subtasks). Needs the latest plan from `create-initiative-plan` or user context.
+- `create-initiative-plan`: Start or reorient an initiative. Outputs goals, constraints, branch suggestion, and initial plan (driven by the contents of the file at `$USER_PROMPT_PATH`).
+- `plan-to-checklist`: Convert the plan from `scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/<plan-file>.md` into the markdown checklist (major tasks and subtasks) under `scratchpaper/initiatives/$INITIATIVE_PLAN/checklists/raw/<YYYY-MM-DD>-<name>-checklist.md`.
 - `update-checklist`: Adjust checklist structure (add, split, retag tasks) without rewriting the file; use this when understanding or scope changes but no new execution is being reconciled.
 - `execute-next-task`: Choose the next subtask, perform edits, run targeted validation, and update checklist notes/statuses; one invocation should execute exactly one checklist subtask.
 - `review-checklist`: Periodically sync checklist and code/tests; mark blocked/unblocked; capture decisions; use this after meaningful code or test changes to reconcile the checklist with reality.
@@ -60,7 +61,7 @@ All other commands consume the established session context and should not prompt
 - Follow `.codex/docs/using-python.md`, `.codex/docs/using-tdd.md`, and AGENTS/MASTER_AGENTS for style and collaboration.
 
 ### Checklist artifacts
-- Location: `scratchpaper/task_checklists/<YYYY-MM-DD>-<project-or-feature-name>-checklist.md`.
+- Location: `scratchpaper/initiatives/$INITIATIVE_PLAN/checklists/raw/<YYYY-MM-DD>-<project-or-feature-name>-checklist.md`.
 - Structure:
   - Title, goals (North Star), principles, sequential task breakdown (major tasks with `[PLAN]/[RESEARCH]/[IMPLEMENT]/[VALIDATE]/[DOC]` subtasks and tags), Notes & Learnings, Validation Gate, Definition of Done, Kickoff Protocol (how to resume work and choose the next task), Execution & Continuous Refinement, Meta-Reflection and Iteration, Research→Action pairing, Feature Development Finalization, and Execution Readiness / Implementation Coverage. Next-task selection relies purely on the ordering, priority, and blocked/unblocked annotations inside the Sequential Task Breakdown—no dedicated field is required.
   - **Major Task 0** (Feature Branch Establishment) must appear first, is blocking, and contains the canonical fenced `.sh` block. Only detection commands (`git status -sb`, `git branch --show-current`) may be run by the agent; all resolution/branch commands are provided for the user to copy/paste in a separate terminal.
@@ -137,8 +138,8 @@ Context: Stand up a dedicated feature branch off `main` before any other work; t
 
 ### Command lifecycle and state handoff
 - Typical lifecycle for an initiative:
-1. **`create-initiative-plan`** — ingest `$INITIATIVE_CONTEXT`, clarify goals/constraints, decompose work using `sequential-thinking`, and emit a structured plan with sections such as Initiative Summary, Key Principles, Constraints, Open Questions and Risks, Proposed Major Tasks & Subtasks (with explicit PLAN→IMPLEMENT→VALIDATE pairings), Branch Plan, Execution Readiness / Implementation Coverage, and Checklist File Plan.
-2. **`plan-to-checklist`** — transform the `create-initiative-plan` output into a canonical checklist under `scratchpaper/task_checklists/`, populating sections like North Star / Goals, Key Principles, Sequential Task Breakdown (starting with Major Task 0’s canonical fence), Notes & Learnings, Validation Gate, Definition of Done, Kickoff Protocol, Execution & Continuous Refinement, Meta-Reflection and Iteration, Research→Action pairing, Execution Readiness / Implementation Coverage, Feature Development Finalization, and a neutral note on how to choose the next task directly from the checklist.
+1. **`create-initiative-plan`** — ingest the contents of `$USER_PROMPT_PATH`, clarify goals/constraints, decompose work using `sequential-thinking`, and emit a structured plan with sections such as Initiative Summary, Key Principles, Constraints, Open Questions and Risks, Proposed Major Tasks & Subtasks (with explicit PLAN→IMPLEMENT→VALIDATE pairings), Branch Plan, Execution Readiness / Implementation Coverage, and Checklist File Plan.
+2. **`plan-to-checklist`** — transform the `create-initiative-plan` output stored in `scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/<plan-file>.md` into a canonical checklist under `scratchpaper/initiatives/$INITIATIVE_PLAN/checklists/raw/`, populating sections like North Star / Goals, Key Principles, Sequential Task Breakdown (starting with Major Task 0’s canonical fence), Notes & Learnings, Validation Gate, Definition of Done, Kickoff Protocol, Execution & Continuous Refinement, Meta-Reflection and Iteration, Research→Action pairing, Execution Readiness / Implementation Coverage, Feature Development Finalization, and a neutral note on how to choose the next task directly from the checklist.
   3. **`session-start`** — when resuming work, read the checklist, summarize the current state, and propose the single best next task strictly from (a) explicit user instructions or (b) the highest-priority unblocked checklist item; no separate stored pointer is required.
 4. **`execute-next-task`** — consume checklist status plus explicit user instructions to select and execute the single best next task, make real edits via `serena`/`filesystem`, run validations, and update the checklist (including statuses, Validation Gate, and Execution Readiness / Implementation Coverage). When working within Major Task 0, follow the agent-only detection rule for git commands. In the response, briefly state which checklist subtask should follow next, but do not write any special markers into the checklist.
 5. **`review-checklist`** — periodically reconcile checklist vs repository state, adjust task structure/status and references, log decisions and risks, and ensure upcoming work is obvious from the prioritized checklist ordering. Refresh the Execution Readiness / Implementation Coverage note and ensure Validation Gate entries reflect actual validation status.

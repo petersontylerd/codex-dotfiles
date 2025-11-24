@@ -1,3 +1,7 @@
+---
+description: Conduct mid-development assessment of initiative checklist to ensure goal adherence and proper checklist formatting.
+---
+
 # `/review-checklist`
 
 You are performing a **review and refinement** pass over an initiative’s checklist.

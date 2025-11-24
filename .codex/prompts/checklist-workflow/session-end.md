@@ -1,3 +1,6 @@
+---
+description: Close development session by updating checklist with current session state
+---
 # `/session-end`
 
 You are closing out a **coding session** for an initiative/feature.

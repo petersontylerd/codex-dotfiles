@@ -1,3 +1,6 @@
+---
+description: Clean up scratchpaper references created during development.
+---
 # `/scratchpad-review-and-cleanup`
 
 You are performing a **scratchpad hygiene pass** for an initiative or project.

@@ -1,3 +1,6 @@
+---
+description: Begin executing initiative checklist currently in context
+---
 # `/session-start`
 
 You are starting a **new coding session** on an existing initiative.

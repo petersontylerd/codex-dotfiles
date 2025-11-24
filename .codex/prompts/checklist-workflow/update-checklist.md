@@ -1,3 +1,6 @@
+---
+description: Modify initiative checklist currently in context with new requirements
+---
 # `update-checklist`
 
 You are updating the **structure and metadata** of an existing initiative checklist in light of:
