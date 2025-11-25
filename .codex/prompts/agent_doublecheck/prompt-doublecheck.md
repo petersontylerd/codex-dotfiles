@@ -11,7 +11,7 @@ You will review the following artifacts:
 
 - **Raw prompt** initially provided for refinement: read from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/raw/*.md` (only one `.md` is expected in this directory)
 - **Instruction set** that the junior engineer was asked to follow:
-  `$CODEX_HOME/prompts/agent_doublecheck/improve-prompt.md`
+  `./.codex/prompts/agent_doublecheck/improve-prompt.md`
 - **Optimized prompt** produced by the junior engineer: read from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/*.md` (only one `.md` is expected in this directory)
 
 Your assessment **must** include:

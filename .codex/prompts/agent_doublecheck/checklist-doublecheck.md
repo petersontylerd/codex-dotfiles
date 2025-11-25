@@ -11,10 +11,10 @@ You will review the following artifacts:
 
 - **Raw checklist** `raw checklist` developed by junior software engineer based on `optimized plan`, following the `instruction set`. Read the **Raw checklist** from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/raw/*.md` (only one `.md` is expected in this directory)
 - **Instruction set** that the junior engineer was asked to follow:
-  `$CODEX_HOME/prompts/plan-to-checklist.md`. Read this file to understand the instructions.
+  `./.codex/prompts/plan-to-checklist.md`. Read this file to understand the instructions.
 - **Optimized plan** Read from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/*.md` (only one `.md` is expected in this directory). No changes or feedback needed for **Optimized plan** - it is already optimized. Simply providing as a reference artifact.
 
-Your assessment **must** include and confine feedback to these dimensions of quality and alignment (from `$CODEX_HOME/prompts/plan-to-checklist.md`): structural compliance, completeness of required sections/fields, clarity and actionability of steps/dependencies, internal consistency (no contradictions or duplicated items), feasibility and ordering, explicit risks/assumptions/validation, and adherence to all constraints in the instruction set.
+Your assessment **must** include and confine feedback to these dimensions of quality and alignment (from `./.codex/prompts/plan-to-checklist.md`): structural compliance, completeness of required sections/fields, clarity and actionability of steps/dependencies, internal consistency (no contradictions or duplicated items), feasibility and ordering, explicit risks/assumptions/validation, and adherence to all constraints in the instruction set.
 
 1. **Strengths**
    - Identify specific strengths in the `raw checklist`.
@@ -53,4 +53,4 @@ Within each section, use bullet points or numbered lists for readability and con
 
 At the end of your assessment, provide an outline of your recommended changes and then ask the user:
 
-> Would you like me to save the updated checklist (same filename) as a new `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/`, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `$CODEX_HOME/prompts/plan-to-checklist.md`?
+> Would you like me to save the updated checklist (same filename) as a new `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/`, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `./.codex/prompts/plan-to-checklist.md`?
