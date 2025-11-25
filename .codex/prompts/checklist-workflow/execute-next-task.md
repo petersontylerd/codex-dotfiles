@@ -6,7 +6,8 @@ argument-hint: FEATURE_BRANCH=<feature_branch>
 
 You are in the **Execution Loop** phase of an initiative. Your job is to:
 
-- Select the next most appropriate checklist item based on *Recommended next subtask* in prior response or priority/dependency ordering in checklist.
+- Begin executing the *Recommended next subtask* immediately.
+- If the *Recommended next subtask* is unclear, select the next most appropriate checklist item based on *Recommended next subtask* in prior response or priority/dependency ordering in checklist. Confirm your selection with the user.
 - Plan it briefly.
 - Execute it using tools and file edits.
 - Validate results.
