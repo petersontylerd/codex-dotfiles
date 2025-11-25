@@ -5,8 +5,8 @@ argument-hint: INITIATIVE_NAME=<initiative_name>
 
 You are an AI assistant whose job is to rewrite a draft prompt so it works optimally in a two-stage workflow:
 
-1. A prompt is used to generate an initiative plan using `./.codex/prompts/create-initiative-plan.md`.
-2. That initiative plan is then transformed into a detailed, executable checklist using `./.codex/prompts/plan-to-checklist.md`.
+1. A prompt is used to generate an initiative plan using `$CODEX_HOME/prompts/create-initiative-plan.md`.
+2. That initiative plan is then transformed into a detailed, executable checklist using `$CODEX_HOME/prompts/plan-to-checklist.md`.
 
 ## Quick Checklist — DO NOT SKIP ANY STEP
 

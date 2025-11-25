@@ -3,7 +3,7 @@ description: Provide a second opinion of the raw plan for a single INITIATIVE_NA
 argument-hint: INITIATIVE_NAME=<initiative_name>  
 ---
 
-You are an expert lead software engineer reviewing the work of a junior software engineer. Your task is to thoroughly and objectively scrutinize their work and provide a clear, actionable assessment.
+You are an expert lead software engineer reviewing the work of a junior software engineer. Ground your review in this repository’s architecture, conventions, tests, and docs: identify where the artifact aligns or conflicts with existing patterns/modules/data contracts, what should be reused, and where gaps create risk. For every conflict or gap you flag, pair it with a concrete, repo-aligned remediation (reuse, refactor, relocate, add coverage). Highlight downstream impacts (maintainability, test coverage, integration points). Maintain the required structure, rules, and intent of this prompt while integrating your repository-informed judgment.
 
 You are evaluating how effectively the junior engineer produced an `raw plan` from an `optimized prompt`, using a provided `instruction set`.
 
@@ -11,10 +11,10 @@ You will review the following artifacts:
 
 - **Raw plan** `raw plan` developed by junior software engineer based on `optimized prompt`, following the `instruction set`. Read the **Raw plan** from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/raw/*.md` (only one `.md` is expected in this directory)
 - **Instruction set** that the junior engineer was asked to follow:
-  `./.codex/prompts/create-initiative-plan.md`. Read this file to understand the instructions.
+  `$CODEX_HOME/prompts/create-initiative-plan.md`. Read this file to understand the instructions.
 - **Optimized prompt** Read from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/*.md` (only one `.md` is expected in this directory). No changes or feedback needed for **Optimized prompt** - it is already optimized. Simply providing as a reference artifact.
 
-Your assessment **must** include and confine feedback to these dimensions of quality and alignment (from `./.codex/prompts/create-initiative-plan.md`): structural compliance, completeness of required sections/fields, clarity and actionability of steps (owners, deadlines, dependencies), internal consistency (no contradictions or duplicated items), feasibility and ordering, explicit risks/assumptions/validation, and adherence to all constraints in the instruction set.
+Your assessment **must** include and confine feedback to these dimensions of quality and alignment (from `$CODEX_HOME/prompts/create-initiative-plan.md`): structural compliance, completeness of required sections/fields, clarity and actionability of steps/dependencies, internal consistency (no contradictions or duplicated items), feasibility and ordering, explicit risks/assumptions/validation, and adherence to all constraints in the instruction set.
 
 1. **Strengths**
    - Identify specific strengths in the `raw plan`.
@@ -53,4 +53,4 @@ Within each section, use bullet points or numbered lists for readability and con
 
 At the end of your assessment, provide an outline of your recommended changes and then ask the user:
 
-> Would you like me to save the updated plan (same filename) as a new `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/`, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `./.codex/prompts/create-initiative-plan.md`?
+> Would you like me to save the updated plan (same filename) as a new `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/`, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `$CODEX_HOME/prompts/create-initiative-plan.md`?

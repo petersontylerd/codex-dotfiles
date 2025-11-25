@@ -1,5 +1,6 @@
 ---
 description: Begin executing initiative checklist currently in context
+argument-hint: INITIATIVE_NAME=<initiative_name> FEATURE_BRANCH=<feature_branch>
 ---
 # `/session-start`
 
@@ -16,10 +17,10 @@ Your goals:
 ## 1. Rehydrate Context
 
 Inputs for this command:
-- $CHECKLIST_PATH — authoritative checklist file for this initiative.
+- $INITIATIVE_NAME — used to locate the authoritative checklist for this initiative at `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/*.md` (exactly one `.md` is expected in that directory).
 - $FEATURE_BRANCH — current working branch.
 
-1. Read the checklist at $CHECKLIST_PATH and:
+1. Read the checklist at `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/*.md` and:
    - Summarize Major Tasks and their statuses.
    - Note any `blocked` items and their reasons.
    - Review the **Execution Readiness / Implementation Coverage** note to ensure PLAN→IMPLEMENT→VALIDATE mappings are intact; call out any gaps (missing `[IMPLEMENT]` for a `[PLAN]`, missing `[VALIDATE]` for an `[IMPLEMENT]`) before proceeding.

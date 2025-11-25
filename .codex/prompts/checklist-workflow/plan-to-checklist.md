@@ -57,7 +57,47 @@ Major Task 0 must include, at minimum, three subtasks with the following scopes:
 2. **Create and switch to the new branch from `main`** — instruct the user to checkout `main`, pull with `--ff-only`, create the new feature branch with the agreed slug, and switch to it. Again, list the commands verbatim for the user and reiterate that the agent cannot run them.
 3. **Verify the new branch is active and clean** — the agent may run `git status -sb` and `git branch --show-current` to confirm the feature branch is active and clean; record those results in the checklist, mark Subtask `0.C` appropriately, and inform the user. If the checks fail (branch mismatch or dirty tree), provide copy/paste commands so the user can correct them before continuing.
 
-To guarantee consistency, embed the canonical Major Task 0 fenced shell block from `.codex/prompts/checklist-workflow/README.md` (see “Major Task 0 canonical block”). Copy it byte-for-byte, replacing only `<feature-branch-slug>` with the actual branch name you specified elsewhere in the checklist. This ensures every command distinction (agent vs user) stays synchronized across prompts without duplicating definitions here.
+#### Major Task 0 canonical block
+To guarantee consistency, embed the contents of this canonical Major Task 0 fenced markdown block verbatim (only substitute `<feature-branch-slug>`). Omit the markdown fences themselves.
+
+```sh
+### Major Task 0: Feature Branch Establishment [Priority: Critical][Phase: Setup][Complexity: Low]
+Context: Stand up a dedicated feature branch off `main` before any other work; the user must run every command below in a separate terminal while the agent observes and records outcomes. This task is blocking for the entire checklist.
+- [ ] `0.A` [PLAN] Handle existing uncommitted changes. The agent may run the first `git status -sb` locally to check cleanliness:
+      git status -sb
+      # If the working tree is clean, record that finding in Notes & Learnings and inform the user.
+      # If changes exist, instruct the user to choose ONE of the following resolution paths and run all commands in that path (the agent must not run these):
+      # Option A — Commit the relevant changes (user runs):
+      git add <paths-to-commit>
+      git commit -m "WIP: describe changes before branching"
+      git status -sb
+      # Option B — Stash the changes (user runs):
+      git stash push --include-untracked --message "<feature-branch-slug>-pre-branch"
+      git status -sb
+      # Option C — Clean up/discard the changes (user runs cautiously):
+      git restore --staged <paths-to-drop>
+      git restore <paths-to-drop>
+      git clean -fd -- <directories-to-drop>
+      git status -sb
+      Require confirmation that the final `git status -sb` output shows a clean tree before proceeding.
+- [ ] `0.B` [IMPLEMENT] Create and switch to `Branch/PR: <feature-branch-slug>` from `main`. The user must run:
+      git checkout main
+      git pull --ff-only
+      git checkout -b <feature-branch-slug>
+      git status -sb
+      Emphasize that the agent is forbidden from running these commands and must rely on the user’s pasted outputs.
+- [ ] `0.C` [VALIDATE] Confirm `<feature-branch-slug>` is the active clean branch before other tasks. The user must run:
+      git branch --show-current
+      git status -sb
+      # The agent may also run these commands locally to double-check, then record the results in the checklist and inform the user.
+      # If the branch or cleanliness check fails:
+      # (User runs)
+      git checkout <feature-branch-slug>
+      git status -sb
+      # (Optionally resolve/stash/clean as in 0.A if the tree is dirty.)
+      Block downstream work until both the user and agent confirm the branch is active and the tree remains clean.
+```
+
 
 ---
 
@@ -120,7 +160,29 @@ Do not invent names or IDs.
 
 ---
 
-## 5. Validation of Checklist Quality
+## 5. Checklist Formatting & Requirements
+
+- Tasks are represented as markdown checklist items:
+  - `[ ]` — open/todo.
+  - `[x]` — completed.
+  - `[~]` — optional explicit in-progress marker when useful.
+- In this workflow, “todo” refers conceptually to any open (`[ ]`) item that is not blocked; you do **not** need to include the literal word `todo` in the text.
+- Blocked tasks are encoded via inline annotations on the same line, for example:
+  - `(status: blocked — waiting on external command output)` or `(blocked: missing API access)`.
+- Major Tasks:
+  - Numbered (`1`, `2`, `3`, …) and titled like `**Major Task N — <short verb phrase>** (tags)`.
+  - May carry tags such as priority `(P1|P2)` and complexity `(S|M|L)`.
+- Subtasks:
+  - Identified by IDs such as `N.A`, `N.B`, … and, when split, `N.A.1`, `N.A.2`, etc.
+  - Each subtask line uses one prefix to indicate its role:
+    - `[PLAN]`, `[RESEARCH]`, `[IMPLEMENT]`, `[VALIDATE]`, or `[DOC]`.
+  - Example: `- [ ] Subtask 2.C [IMPLEMENT] — Add exponential backoff ... (P1, M, serena)`.
+- Research→action pairing:
+  - Every `[PLAN]` or `[RESEARCH]` subtask must explicitly cite at least one `[IMPLEMENT]` subtask ID that will realize it (one `[IMPLEMENT]` may serve multiple upstream items if each link is documented).
+  - Every `[IMPLEMENT]` subtask must cite at least one `[VALIDATE]` subtask ID that proves the change (tests, benchmarks, artifact diffs). Each `[VALIDATE]` subtask must list all `[IMPLEMENT]` IDs it covers, so the mapping remains unambiguous.
+
+
+## 6. Validation of Checklist Quality
 
 Before finishing:
 
