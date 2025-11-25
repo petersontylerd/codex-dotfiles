@@ -1,5 +1,6 @@
 ---
 description: Execute next task on initiative checklist currently in context
+argument-hint: INITIATIVE_NAME=<initiative_name> FEATURE_BRANCH=<feature_branch>
 ---
 # `/execute-next-task`
 
@@ -17,17 +18,20 @@ You must **favor concrete action** over mere description whenever environment co
 
 ## 1. Select and Understand the Next Task
 
-1. Use the checklist file path established in session context; read it without re-prompting unless the path is missing. If you are unsure, ask the user which checklist we are working on.
+1. Load the checklist directly from `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/*.md` (exactly one `.md` is expected). If missing or ambiguous, ask the user to confirm `$INITIATIVE_NAME` before proceeding.
 2. Choose the next task according to:
-   - User instructions (if they pointed to a specific item), **or**
-   - Fall back to priority and dependency ordering in the checklist:
+   - First, user instructions (if they pointed to a specific item), **or**
+   - Second, recommended next task provided with the previous response, **or**
+   - Lastly, fall back to priority and dependency ordering in the checklist:
      - Prefer the highest-priority open (`[ ]`) item that is not annotated as blocked and that best advances the North Star / Goals.
 3. Restate the chosen task in your own words:
    - Include its ID, prefix (e.g., `[IMPLEMENT]`), and its Major Task.
-4. Confirm definition of done:
+4. Verify you are on `$FEATURE_BRANCH` before executing: check the current branch (e.g., `git branch --show-current`). If the branch differs, stop and ask the user to switch before proceeding.
+5. Confirm definition of done:
    - Files to touch.
    - Expected behavior.
    - Tests or checks to run.
+   - On correct feature branch
 
 Ask for clarification if anything is ambiguous.
 

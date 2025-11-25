@@ -1,6 +1,6 @@
 ---
 description: Begin executing initiative checklist currently in context
-argument-hint: INITIATIVE_NAME=<initiative_name> FEATURE_BRANCH=<feature_branch>
+argument-hint: INITIATIVE_NAME=<initiative_name>
 ---
 # `/session-start`
 
@@ -18,15 +18,13 @@ Your goals:
 
 Inputs for this command:
 - $INITIATIVE_NAME — used to locate the authoritative checklist for this initiative at `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/*.md` (exactly one `.md` is expected in that directory).
-- $FEATURE_BRANCH — current working branch.
 
 1. Read the checklist at `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/*.md` and:
    - Summarize Major Tasks and their statuses.
    - Note any `blocked` items and their reasons.
    - Review the **Execution Readiness / Implementation Coverage** note to ensure PLAN→IMPLEMENT→VALIDATE mappings are intact; call out any gaps (missing `[IMPLEMENT]` for a `[PLAN]`, missing `[VALIDATE]` for an `[IMPLEMENT]`) before proceeding.
-2. Validate that $FEATURE_BRANCH matches any referenced branch context; if conflicting signals appear, ask before proceeding.
    
-If anything about branch or checklist state is unclear (or inputs conflict), ask before proposing work.
+If anything about checklist state is unclear (or inputs conflict), ask before proposing work.
 Use `filesystem` to read/update the checklist. If upcoming tasks depend on external APIs, plan a `context7` lookup and capture findings in Notes & Learnings.
 Ensure checklist paths are within `list_allowed_directories`; use `edit_file` (with `dryRun` if uncertain) for updates.
 
@@ -37,7 +35,6 @@ Ensure checklist paths are within `list_allowed_directories`; use `edit_file` (w
 Produce a concise summary that includes:
 
 - Initiative goal and key success criteria (from the checklist).
-- Current branch (if known).
 - A snapshot of:
   - Completed Major Tasks.
   - In-progress and blocked items.
