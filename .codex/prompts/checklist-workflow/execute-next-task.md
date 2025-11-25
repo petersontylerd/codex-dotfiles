@@ -25,6 +25,7 @@ You must **favor concrete action** over mere description whenever environment co
      - Prefer the highest-priority open (`[ ]`) item that is not annotated as blocked and that best advances the North Star / Goals.
 2. Restate the chosen task in your own words:
    - Include its ID, prefix (e.g., `[IMPLEMENT]`), and its Major Task.
+   - If the subtask scope is broad or ambiguous (e.g., “apply docstrings across modules”), first decompose it into concrete sub-subtasks (and sub-sub-subtasks if needed) scoped to specific directories/files/themes with explicit validation commands. Add these to the checklist, keep IDs/prefixes stable, and select the first new child to execute in this invocation. Do not proceed with code changes until this breakdown exists.
 3. Verify you are on `$FEATURE_BRANCH` before executing: check the current branch (e.g., `git branch --show-current`). If the branch differs, stop and ask the user to switch before proceeding.
 4. Confirm definition of done:
    - Files to touch.
@@ -41,6 +42,7 @@ Ask for clarification if anything is ambiguous.
 1. Use **Sequential Thinking** to draft a 3–7 step micro-plan:
    - Context gathering.
    - Design decisions (if any).
+   - Decomposition of any broad subtask into specific sub-subtasks with file/test scope and acceptance criteria (if not already decomposed), and add those decomposed items to the checklist as open tasks.
    - File edits with `serena`/`filesystem`.
    - Tests/validation commands.
    - Checklist/notes updates.
@@ -63,6 +65,7 @@ Follow your micro-plan step-by-step:
    - Respect repo style.
    - Stay within `list_allowed_directories`; for filesystem edits, prefer `edit_file` with `dryRun` before applying; use `write_file` only for new/overwrite cases.
    - For discovery, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
+   - If you decomposed a broad task, update the checklist first with the new sub-subtasks and execute only the selected child subtask in this invocation.
 3. When you need to run commands (tests, linters, scripts):
    - Attempt them if allowed by the environment.
    - If blocked by network/permissions/timeout:
@@ -102,6 +105,7 @@ Assuming you have enough information to update the checklist:
 1. Modify the checklist file:
    - Mark the executed subtask as `[x]` when appropriate.
    - Add or adjust file paths, tests, and Branch references if they became concrete.
+   - If you decomposed a broad task, ensure the new sub-subtasks are added with IDs/prefixes, scoped descriptions, and validation commands; leave unexecuted children open.
    - Update the **Execution Readiness / Implementation Coverage** paragraph if you added or re-linked any `[PLAN]`, `[IMPLEMENT]`, or `[VALIDATE]` tasks so the PLAN→IMPLEMENT→VALIDATE mapping stays accurate.
 2. Under **Notes & Learnings**, add a dated entry describing:
    - What you implemented.
@@ -116,7 +120,9 @@ Use `filesystem` to write only the minimal necessary changes to the checklist fi
 
 ## 6. Propose the Next Task
 
-End with a concise sentence naming a single *Recommended next subtask* that should follow, along with a short rationale. Derive this strictly from explicit user instructions or, if none exist, the highest-priority unblocked item in the checklist—no special markers or stored notes are required.
+Re-read the current checklist in its entirety to understand the current state of the checklist. Review all open items, and determine what should be the single *Recommended next subtask*.
+
+End with a concise sentence naming the single *Recommended next subtask* that should follow, along with a short rationale. Derive this strictly from explicit user instructions or, if none exist, the highest-priority unblocked item in the checklist—no special markers or stored notes are required.
 
 Choose a next task that:
 

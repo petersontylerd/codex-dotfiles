@@ -25,6 +25,12 @@ Your assessment **must** include and confine feedback to these dimensions of qua
    - For each weakness, propose a clear remediation:
      - Explain *why* it is a weakness.
      - Provide a concrete suggestion or example of how to fix it (e.g., revised wording, added constraints, improved structure).
+     - When work implied by the checklist is incomplete or split across unclear steps, add the required work directly into the checklist: create new Subtasks under the correct Major Task, and when execution needs multiple steps, add sub-subtasks under the affected Subtask to make the sequence explicit. Keep IDs/prefixes stable where possible.
+     - Default stance: checked items are incomplete until proven. Require evidence for each audited subtask (file/symbol path, test or command outputs if validation is claimed). Apply a mini DoD: code present, tests added/updated, tests executed (command + result), docs updated (if applicable), acceptance criteria met. Any gap keeps the item open.
+     - Tag severity for each weakness (Blocker/Major/Minor) and note any security/performance/data-handling risks found while reviewing the referenced code.
+     - When asking for validation reruns, provide exact repro commands, inputs/fixtures, and expected outputs.
+     - If a subtask is overly broad (e.g., “docstrings across targeted modules”), require decomposition into concrete sub-subtasks per directory/package/theme with explicit validation commands and measurable coverage expectations (e.g., per path or %). Insert the decomposed items directly into the checklist; do not leave broad tasks un-split.
+     - Present a detailed remediation plan (tasks/IDs, files/tests to touch, commands to run). Ask the user for approval; upon approval, you must execute these remediations in follow-up commands.
 
 3. **Deviations from the Instruction Set**
    - Only flag deviations that constitute critical gaps or material misalignments with the instruction set when using the `optimized plan` and `instruction set` to create the `raw checklist`.

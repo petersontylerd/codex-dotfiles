@@ -25,6 +25,11 @@ Your assessment **must** include and confine feedback to these dimensions of qua
    - For each weakness, propose a clear remediation:
      - Explain *why* it is a weakness.
      - Provide a concrete suggestion or example of how to fix it (e.g., revised wording, added constraints, improved structure).
+     - When the plan’s tasks omit necessary work or bundle multiple steps ambiguously, add the missing work directly into the plan: introduce new Subtasks under the correct Major Task, and use sub-subtasks when multiple steps are required. Keep IDs/prefixes stable where possible so downstream checklist generation remains consistent.
+     - Default stance: items are incomplete until the plan makes execution and validation explicit. Require PLAN→IMPLEMENT→VALIDATE linkage; add or clarify validation steps (tests/benchmarks/acceptance checks) where absent. Tag severity for each weakness (Blocker/Major/Minor) and flag security/performance/data-handling risks implied by the scope.
+     - When recommending future validations, specify exact commands or harnesses to run later (e.g., `uv run pytest tests/...`, `uv run ruff check .`) so they can be lifted directly into the checklist.
+     - If a plan item is broad (e.g., large-scale docstring/comment sweeps), decompose it into scoped sub-subtasks per directory/package/theme with explicit coverage expectations (per path or %), acceptance criteria, and matching validation commands. Insert these directly into the plan so downstream checklist generation inherits the granularity.
+     - Present a detailed remediation plan (tasks/IDs, files/tests to touch, commands to run). Ask the user for approval; upon approval, you must execute these remediations in follow-up commands.
 
 3. **Deviations from the Instruction Set**
    - Only flag deviations that constitute critical gaps or material misalignments with the instruction set when using the `optimized prompt` and `instruction set` to create the `raw plan`.

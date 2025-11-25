@@ -173,10 +173,11 @@ Do not invent names or IDs.
   - Numbered (`1`, `2`, `3`, …) and titled like `**Major Task N — <short verb phrase>** (tags)`.
   - May carry tags such as priority `(P1|P2)` and complexity `(S|M|L)`.
 - Subtasks:
-  - Identified by IDs such as `N.A`, `N.B`, … and, when split, `N.A.1`, `N.A.2`, etc.
+  - Identified by IDs such as `N.A`, `N.B`, … and, when split, `N.A.1`, `N.A.2`, etc. Deeper nesting is allowed using additional dot/alpha suffixes (e.g., `N.A.1.a`).
   - Each subtask line uses one prefix to indicate its role:
     - `[PLAN]`, `[RESEARCH]`, `[IMPLEMENT]`, `[VALIDATE]`, or `[DOC]`.
   - Example: `- [ ] Subtask 2.C [IMPLEMENT] — Add exponential backoff ... (P1, M, serena)`.
+  - Every nested item must retain the checkbox + prefix, specify scope (files/dirs) and validation commands, and participate in PLAN→IMPLEMENT→VALIDATE mapping. When a parent is broad, split it into children; keep the parent open until all children are complete and validated.
 - Research→action pairing:
   - Every `[PLAN]` or `[RESEARCH]` subtask must explicitly cite at least one `[IMPLEMENT]` subtask ID that will realize it (one `[IMPLEMENT]` may serve multiple upstream items if each link is documented).
   - Every `[IMPLEMENT]` subtask must cite at least one `[VALIDATE]` subtask ID that proves the change (tests, benchmarks, artifact diffs). Each `[VALIDATE]` subtask must list all `[IMPLEMENT]` IDs it covers, so the mapping remains unambiguous.

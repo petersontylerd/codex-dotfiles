@@ -53,8 +53,7 @@ If you cannot find the checklist file, ask for its path.
    - Ensure existing `[PLAN]/[RESEARCH]` entries continue to reference downstream `[IMPLEMENT]` items and that every `[IMPLEMENT]` references at least one `[VALIDATE]`. Update references if you split/merge tasks.
 4. Preserve Major Task 0:
    - Keep it as the first Major Task with its blocking status.
-   - Retain the canonical fenced `.sh` block exactly as defined in `.codex/prompts/checklist-workflow/README.md` (“Major Task 0 canonical block”), substituting only `<feature-branch-slug>` as needed, and reiterate which commands the agent may vs must not run.
-
+   
 Write back minimal edits using the filesystem tools, preserving the ABOUTME header and section headings.
 Use `serena` to gather precise file/symbol references when enriching metadata. If new items depend on external APIs, consider a quick `context7` lookup and note key findings.
 If writing via filesystem MCP, ensure the path is within `list_allowed_directories`; prefer `edit_file` (with `dryRun` if uncertain) over `write_file` except for new files/intentional overwrites.
