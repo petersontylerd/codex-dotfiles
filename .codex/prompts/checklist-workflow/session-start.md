@@ -57,7 +57,7 @@ Keep this summary focused but precise.
      - Otherwise, the highest-priority unblocked task in the checklist that best advances the North Star / Goals; explain if you intentionally skip a higher-priority item.
 4. Describe your choice in plain language, and ask the user to confirm or adjust it if there is any doubt.
 
-End with a short, explicit sentence naming the single next checklist subtask you are ready to execute.
+End with a short, explicit sentence naming the single *Recommended next subtask* you are ready to execute.
 
 ## 4. MCP Servers
 

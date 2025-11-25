@@ -1,12 +1,12 @@
 ---
 description: Execute next task on initiative checklist currently in context
-argument-hint: INITIATIVE_NAME=<initiative_name> FEATURE_BRANCH=<feature_branch>
+argument-hint: FEATURE_BRANCH=<feature_branch>
 ---
 # `/execute-next-task`
 
 You are in the **Execution Loop** phase of an initiative. Your job is to:
 
-- Select the next most appropriate checklist item.
+- Select the next most appropriate checklist item based on *Recommended next subtask* in prior response or priority/dependency ordering in checklist.
 - Plan it briefly.
 - Execute it using tools and file edits.
 - Validate results.
@@ -18,16 +18,14 @@ You must **favor concrete action** over mere description whenever environment co
 
 ## 1. Select and Understand the Next Task
 
-1. Load the checklist directly from `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/*.md` (exactly one `.md` is expected). If missing or ambiguous, ask the user to confirm `$INITIATIVE_NAME` before proceeding.
-2. Choose the next task according to:
-   - First, user instructions (if they pointed to a specific item), **or**
-   - Second, recommended next task provided with the previous response, **or**
-   - Lastly, fall back to priority and dependency ordering in the checklist:
+1. Choose the next task according to:
+   - First, default to the *Recommended next subtask* provided within the previous response, **or**
+   - If prior response did not recommend a next best task, fall back to priority and dependency ordering in the checklist:
      - Prefer the highest-priority open (`[ ]`) item that is not annotated as blocked and that best advances the North Star / Goals.
-3. Restate the chosen task in your own words:
+2. Restate the chosen task in your own words:
    - Include its ID, prefix (e.g., `[IMPLEMENT]`), and its Major Task.
-4. Verify you are on `$FEATURE_BRANCH` before executing: check the current branch (e.g., `git branch --show-current`). If the branch differs, stop and ask the user to switch before proceeding.
-5. Confirm definition of done:
+3. Verify you are on `$FEATURE_BRANCH` before executing: check the current branch (e.g., `git branch --show-current`). If the branch differs, stop and ask the user to switch before proceeding.
+4. Confirm definition of done:
    - Files to touch.
    - Expected behavior.
    - Tests or checks to run.
@@ -117,7 +115,7 @@ Use `filesystem` to write only the minimal necessary changes to the checklist fi
 
 ## 6. Propose the Next Task
 
-End with a concise sentence naming the checklist subtask that should follow, along with a short rationale. Derive this strictly from explicit user instructions or, if none exist, the highest-priority unblocked item in the checklist—no special markers or stored notes are required.
+End with a concise sentence naming a single *Recommended next subtask* that should follow, along with a short rationale. Derive this strictly from explicit user instructions or, if none exist, the highest-priority unblocked item in the checklist—no special markers or stored notes are required.
 
 Choose a next task that:
 
