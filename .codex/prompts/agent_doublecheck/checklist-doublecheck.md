@@ -9,10 +9,12 @@ You are evaluating how effectively the junior engineer produced an `raw checklis
 
 You will review the following artifacts:
 
-- **Raw checklist** `raw checklist` developed by junior software engineer based on `optimized plan`, following the `instruction set`. Read the **Raw checklist** from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/raw/*.md` (only one `.md` is expected in this directory)
+- **Raw checklist** produced by the junior software engineer based on `optimized plan`, following the `instruction set`. Read the **Raw checklist** from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/raw/*.md` (only one `.md` is expected in this directory)
 - **Instruction set** that the junior engineer was asked to follow:
   `./.codex/prompts/plan-to-checklist.md`. Read this file to understand the instructions.
 - **Optimized plan** Read from the file at `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/*.md` (only one `.md` is expected in this directory). No changes or feedback needed for **Optimized plan** - it is already optimized. Simply providing as a reference artifact.
+
+If zero or multiple `.md` files are present in any of the raw or optimized checklist directories, pause and request the correct file path from the user before proceeding.
 
 Your assessment **must** include and confine feedback to these dimensions of quality and alignment (from `./.codex/prompts/plan-to-checklist.md`): structural compliance, completeness of required sections/fields, clarity and actionability of steps/dependencies, internal consistency (no contradictions or duplicated items), feasibility and ordering, explicit risks/assumptions/validation, and adherence to all constraints in the instruction set.
 
@@ -21,16 +23,19 @@ Your assessment **must** include and confine feedback to these dimensions of qua
    - Call out concrete examples where the junior engineer followed the `instruction set` well.
 
 2. **Weaknesses & Remediations**
-   - Only raise weaknesses when they represent critical gaps or material risks to structure, clarity, feasibility, or alignment.
-   - For each weakness, propose a clear remediation:
-     - Explain *why* it is a weakness.
-     - Provide a concrete suggestion or example of how to fix it (e.g., revised wording, added constraints, improved structure).
-     - When work implied by the checklist is incomplete or split across unclear steps, add the required work directly into the checklist: create new Subtasks under the correct Major Task, and when execution needs multiple steps, add sub-subtasks under the affected Subtask to make the sequence explicit. Keep IDs/prefixes stable where possible.
-     - Default stance: checked items are incomplete until proven. Require evidence for each audited subtask (file/symbol path, test or command outputs if validation is claimed). Apply a mini DoD: code present, tests added/updated, tests executed (command + result), docs updated (if applicable), acceptance criteria met. Any gap keeps the item open.
-     - Tag severity for each weakness (Blocker/Major/Minor) and note any security/performance/data-handling risks found while reviewing the referenced code.
-     - When asking for validation reruns, provide exact repro commands, inputs/fixtures, and expected outputs.
-     - If a subtask is overly broad (e.g., “docstrings across targeted modules”), require decomposition into concrete sub-subtasks per directory/package/theme with explicit validation commands and measurable coverage expectations (e.g., per path or %). Insert the decomposed items directly into the checklist; do not leave broad tasks un-split.
-     - Present a detailed remediation plan (tasks/IDs, files/tests to touch, commands to run). Ask the user for approval; upon approval, you must execute these remediations in follow-up commands.
+   - Log every material gap that blocks completeness, clarity, feasibility, or alignment; for non-material notes, add a one-line confirmation instead of omitting them.
+   - For each weakness, propose a clear remediation in one concise bullet that:
+     - Explains *why* it is a weakness.
+     - Provides a concrete fix (revised wording, added constraints, improved structure) with checklist-ready text using correct IDs/prefixes (add new IDs if needed); keep parents open until all child items are decomposed and accepted.
+     - Tags severity (Blocker/Major/Minor) and notes any security/performance/data-handling risks.
+   - When work implied by the checklist is incomplete or split across unclear steps, add the required work directly into the checklist: create new Subtasks under the correct Major Task, and when execution needs multiple steps, add sub-subtasks under the affected Subtask to make the sequence explicit. Keep IDs/prefixes stable where possible.
+   - Enforce decomposition triggers: treat a subtask as incomplete until split into sub-subtasks when **any** are true — spans more than one directory/package/component or touches more than three files; bundles multiple behaviors/acceptance criteria; needs multiple validation commands (unit vs e2e vs migration); mixes read and write paths or multiple roles/permissions; involves external integration plus internal change; carries distinct performance or security acceptance; spans multiple user flows/platforms. Do **not** split when change is single-file, single-behavior, covered by one validation command, or behavior-neutral refactor/docs-only tied to one change.
+  - Leave parent IDs unchecked and note “parent open pending child completion” until all child sub-subtasks are decomposed with planned code/test work and validation commands documented; execution evidence will be captured during implementation.
+  - Default stance: checked items are incomplete until proven. Require planned evidence for each audited subtask (e.g., intended file/symbol path to touch, commands to run with expected exit/result notes, docs to update). Apply a mini DoD: planned code changes, planned tests to add/update with commands, planned doc updates (if applicable), and acceptance criteria; actual execution evidence will be captured during implementation. Any gap keeps the item open.
+   - When asking for validation reruns, provide exact repro commands, inputs/fixtures, and expected outputs.
+   - If a subtask is overly broad (e.g., “docstrings across targeted modules”), require decomposition into concrete sub-subtasks per directory/package/theme with explicit validation commands and measurable coverage expectations (e.g., per path or %). Insert the decomposed items directly into the checklist; do not leave broad tasks un-split.
+  - Present a detailed remediation plan (tasks/IDs, files/tests to touch, commands to run). Ask the user for approval; upon approval, provide the refined checklist only—execution occurs later in the main workflow.
+   - Every observation (including strengths that hide risks) must have an explicit remediation or confirmation statement linked to the relevant checklist ID(s) and, where validation is claimed, the exact command/output expected.
 
 3. **Deviations from the Instruction Set**
    - Only flag deviations that constitute critical gaps or material misalignments with the instruction set when using the `optimized plan` and `instruction set` to create the `raw checklist`.
@@ -54,9 +59,17 @@ Structure your response using clear sections with headings, for example:
 - `Weaknesses and Remediations`
 - `Deviations from the Instruction Set (Critical) and Optimized Plan (Critical), w/ Remediations`
 - `Overall Evaluation`
+- `Decision Requests` — table each observation with: Observation, Affected IDs, Proposed remediation (checklist-ready text), Validation/Acceptance evidence, Decomposition required? (Y/N), Approval needed (Approve/Reject/Clarify).
 
 Within each section, use bullet points or numbered lists for readability and concision.
 
-At the end of your assessment, provide an outline of your recommended changes and then ask the user:
+At the end of your assessment, provide an outline of your recommended changes, surface the Decision Requests table for approval, and then ask the user:
 
 > Would you like me to save the updated checklist (same filename) as a new `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/`, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `./.codex/prompts/plan-to-checklist.md`?
+
+### Decomposition Checklist (mark Y/N; any Y ⇒ create sub-subtasks before marking parent complete)
+
+| Multi-dir/pkg/component or >3 files? | Multiple behaviors/criteria? | Multiple validations needed? | Read + write or multi-role? | External integration present? | Perf/Sec requirement distinct? | Cross-flow/platform regression risk? |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+Fill Y/N per column for each reviewed subtask; any Y requires sub-subtasks before closure.

@@ -32,6 +32,7 @@ You must **favor concrete action** over mere description whenever environment co
    - Expected behavior.
    - Tests or checks to run.
    - On correct feature branch
+   - If any item is unknown, stop and ask the user to supply it before proceeding.
 
 Ask for clarification if anything is ambiguous.
 
@@ -42,7 +43,7 @@ Ask for clarification if anything is ambiguous.
 1. Use **Sequential Thinking** to draft a 3–7 step micro-plan:
    - Context gathering.
    - Design decisions (if any).
-   - Decomposition of any broad subtask into specific sub-subtasks with file/test scope and acceptance criteria (if not already decomposed), and add those decomposed items to the checklist as open tasks.
+   - Note any decomposition work already added to the checklist in Step 1; only reference it here, do not restate or duplicate instructions.
    - File edits with `serena`/`filesystem`.
    - Tests/validation commands.
    - Checklist/notes updates.
@@ -65,7 +66,7 @@ Follow your micro-plan step-by-step:
    - Respect repo style.
    - Stay within `list_allowed_directories`; for filesystem edits, prefer `edit_file` with `dryRun` before applying; use `write_file` only for new/overwrite cases.
    - For discovery, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
-   - If you decomposed a broad task, update the checklist first with the new sub-subtasks and execute only the selected child subtask in this invocation.
+   - If you decomposed a broad task, ensure the new sub-subtasks from Step 1 are already in the checklist before execution; after execution, only mark status/results—do not duplicate updates.
 3. When you need to run commands (tests, linters, scripts):
    - Attempt them if allowed by the environment.
    - If blocked by network/permissions/timeout:
@@ -83,9 +84,7 @@ Use `context7` before implementing against external APIs to confirm signatures/b
 
 ## 4. Validate and Record Outcomes
 
-1. Run targeted validations:
-   - Prefer the narrowest reasonable scope first (for example, tests for affected modules or directories).
-   - As appropriate, run broader commands such as `uv run pytest` for affected tests/directories and `uv run ruff check` or other relevant checks when you have edited Python code.
+1. Run targeted validations, preferring narrow scope first (e.g., module tests) and broadening as needed (e.g., `uv run pytest`, `uv run ruff check`).
 2. Capture results:
    - Pass/fail and any notable errors.
    - If validations fail, stop and focus on fixing the failure before moving on.
