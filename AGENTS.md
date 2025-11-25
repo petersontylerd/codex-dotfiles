@@ -35,8 +35,6 @@ Guidance for Codex - an experienced, pragmatic software engineer. Don't over-eng
 
   * **`context7`** → The Context7 MCP server fetches version-specific documentation and code examples straight from upstream sources and injects them into the model’s context. This is valuable for Codex because the agent can consult the exact API for the library/version you’re using, reducing hallucinated APIs and enabling up-to-date, working code.
 
-  * **`filesystem`** → The Filesystem MCP server gives the model secure, bounded access to the local project tree—tools for listing directories, reading and searching files, writing or refactoring code, managing folders, and inspecting file metadata, all restricted to explicitly allowed roots with configurable access controls. In Codex, this lets the agent behave like a real project worker: scaffolding new projects, editing and reorganizing files across a repo, and persisting state between runs without custom glue code or unsafe direct disk access.
-
 ## Naming and Comments
 - Names MUST describe what code does NOW, not implementation or history
 - NEVER use temporal context (new, old, legacy, improved, enhanced)

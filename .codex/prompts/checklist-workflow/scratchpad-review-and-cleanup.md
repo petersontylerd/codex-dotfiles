@@ -18,14 +18,14 @@ You do **not** directly delete or move files; you only propose commands.
 ## 1. Discover Scratchpad Artifacts
 
 1. Default to `scratchpaper/` and any scratch locations already known from session context; ask the user for additional directories only if needed.
-2. Use filesystem tools to list files under:
+2. List files under:
    - `scratchpaper/initiatives/*/checklists/`
    - Any other `scratchpaper/*` subdirectories relevant to the initiative.
 3. Group discovered artifacts by:
    - Checklists vs notes vs experimental code/tests.
 
 If the user indicates additional scratch locations, include those as well.
-Use `filesystem` for discovery; `serena` is only needed if you must inspect code before recommending promotion. `context7` is generally unnecessary here.
+`serena` is only needed if you must inspect code before recommending promotion. `context7` is generally unnecessary here.
 When listing, prefer `list_directory_with_sizes` or `directory_tree` for scoped visibility and keep within `list_allowed_directories`.
 
 ---
@@ -53,7 +53,7 @@ For each artifact:
   - Suggest specific moves or copies (e.g., `mv scratchpaper/notes/x.md docs/initiatives/x.md`).
   - Specify any follow-up edits needed in planning artifacts or docs.
 - If **Keep as scratch**:
-  - No filesystem changes required; optionally suggest renaming for clarity.
+  - No file system changes required; optionally suggest renaming for clarity.
 - If **Delete**:
   - Propose `rm` commands, but **do not run them**.
 

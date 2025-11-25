@@ -37,7 +37,7 @@ Default stance: every checked item is incomplete until evidence proves otherwise
 
 1. Enumerate all `[x]` (completed) and `[~]` (in-progress) subtasks **excluding anything under Major Task 0**, which is out of audit scope. For each checked item you do review, assume it is incomplete until proven.
 2. For **every** checked item (not just a subset):
-   - Use `serena`/`filesystem` to open referenced files/symbols and confirm the described behavior exists and matches the subtask text.
+   - Use `serena` to open referenced files/symbols and confirm the described behavior exists and matches the subtask text.
    - Verify linked tests or validations were created/updated; note if missing.
    - If the checklist cites `[VALIDATE]` items, confirm those validations were actually run (capture evidence/outputs if available) or flag as unverified.
    - Record precise file paths/symbols (and line anchors if available) you inspected; if nothing is found, mark as missing. Evidence is mandatory for each audited subtask.

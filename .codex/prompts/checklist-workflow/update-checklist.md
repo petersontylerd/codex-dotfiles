@@ -54,10 +54,10 @@ If you cannot find the checklist file, ask for its path.
 4. Preserve Major Task 0:
    - Keep it as the first Major Task with its blocking status.
    
-Write back minimal edits using the filesystem tools, preserving the ABOUTME header and section headings.
+Write back minimal edits using the appropirate tools, preserving the ABOUTME header and section headings.
 Use `serena` to gather precise file/symbol references when enriching metadata. If new items depend on external APIs, consider a quick `context7` lookup and note key findings.
-If writing via filesystem MCP, ensure the path is within `list_allowed_directories`; prefer `edit_file` (with `dryRun` if uncertain) over `write_file` except for new files/intentional overwrites.
-For discovery before edits, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
+When editing, stay within the repo; prefer `apply_patch` or `serena` edits, and only create/overwrite files intentionally.
+For discovery before edits, use scoped shell tools (`rg --files`, `ls`, `find`, `rg pattern path`) limited to relevant paths.
 
 ---
 

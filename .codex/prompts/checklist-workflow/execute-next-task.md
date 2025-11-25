@@ -44,7 +44,7 @@ Ask for clarification if anything is ambiguous.
    - Context gathering.
    - Design decisions (if any).
    - Note any decomposition work already added to the checklist in Step 1; only reference it here, do not restate or duplicate instructions.
-   - File edits with `serena`/`filesystem`.
+   - File edits with `serena`.
    - Tests/validation commands.
    - Checklist/notes updates.
 2. sanity-check the plan:
@@ -60,12 +60,12 @@ If external APIs or libraries are involved, plan a `context7` lookup and record 
 
 Follow your micro-plan step-by-step:
 
-1. Use `serena` and `filesystem` to inspect and edit relevant files.
+1. Use `serena` to inspect and edit relevant files.
 2. When changing code or prompts:
    - Make small, focused edits.
    - Respect repo style.
-   - Stay within `list_allowed_directories`; for filesystem edits, prefer `edit_file` with `dryRun` before applying; use `write_file` only for new/overwrite cases.
-   - For discovery, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
+   - Work only inside the repo and relevant subpaths; use `apply_patch` (preferred) or `serena` file edits; only create/overwrite files when necessary.
+   - For discovery, use shell tools scoped to the task (`rg --files`, `ls`, `find`, `rg pattern path`).
    - If you decomposed a broad task, ensure the new sub-subtasks from Step 1 are already in the checklist before execution; after execution, only mark status/results—do not duplicate updates.
 3. When you need to run commands (tests, linters, scripts):
    - Attempt them if allowed by the environment.
@@ -113,7 +113,7 @@ Assuming you have enough information to update the checklist:
    - Update its status and note why (e.g., waiting on external command output).
    - Add follow-up subtasks if new work was discovered.
 
-Use `filesystem` to write only the minimal necessary changes to the checklist file.
+Write only the minimal necessary changes to the checklist file.
 
 ---
 

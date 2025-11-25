@@ -39,7 +39,7 @@ Keep this summary focused on concrete work and outcomes.
 4. Refresh the **Execution Readiness / Implementation Coverage** section so that every `[PLAN]/[RESEARCH]` still cites downstream `[IMPLEMENT]` IDs, every `[IMPLEMENT]` cites its `[VALIDATE]` IDs, and shared validations are called out explicitly.
 5. Update the **Validation Gate** entries to reflect validations run (pass/fail/pending) during this session, keeping them aligned with the `[VALIDATE]` subtasks they correspond to.
 
-Use the filesystem tools to apply small, careful edits.
+Use the appropriate tools to apply small, careful edits.
 If new follow-ups rely on external APIs, optionally use `context7` to confirm details and note them in Notes & Learnings.
 Keep checklist edits within `list_allowed_directories`; prefer `edit_file` (with `dryRun` if uncertain) for updates.
 For discovery of checklist location or related scratch files, use `list_directory`/`list_directory_with_sizes`/`directory_tree` scoped to allowed paths.

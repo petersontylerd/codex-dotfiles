@@ -17,7 +17,7 @@ Your job is to **create the canonical checklist** (as a new markdown file) that 
    - Propose the filename `<YYYY-MM-DD>-<initiative-or-feature-name>-checklist.md`.
    - Confirm the final path under `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/raw/`.
 
-Use `filesystem` for all writes and `create_directory` for missing directories as needed. You do **not** merge into an existing checklist in this command; you create a new file.
+Use appropriate tools for all writes and `create_directory` for missing directories as needed. You do **not** merge into an existing checklist in this command; you create a new file.
 
 ---
 
@@ -147,7 +147,7 @@ When writing the new checklist file:
      - **Feature Development Finalization** — The final task on the checklist must always define the need to carefully commit our finalized feature additions and merge to main. The agent must not run these git commands themselves. Instead, the agent must provide detailed instructions for the user to review, and commands for the user to copy/paste into a separate terminal.
 2. Insert the **Sequential Task Breakdown** section with your Major Tasks and Subtasks.
 3. Immediately after the Sequential Task Breakdown, add a short **Execution Readiness / Implementation Coverage** paragraph that summarizes the mapping for each Major Task (e.g., “`1.B` → `1.D` `[IMPLEMENT]` → `1.E` `[VALIDATE]`”, noting any shared validations) and reiterates that code/test changes are required before any documentation-only pass.
-Use `filesystem` MCP to write the new .md checklist file to `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/raw/`. When adding or adjusting file/symbol references, use `serena` to gather accurate paths/names. For discovery, prefer `list_directory`, `list_directory_with_sizes`, or `directory_tree` scoped to relevant paths.
+Use appropirate tools to write the new .md checklist file to `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/raw/`. When adding or adjusting file/symbol references, use `serena` to gather accurate paths/names. 
 
 ---
 
