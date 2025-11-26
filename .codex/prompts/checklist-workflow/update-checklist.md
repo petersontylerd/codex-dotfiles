@@ -45,6 +45,7 @@ If you cannot find the checklist file, ask for its path.
      - Represent tasks as markdown checklist items (`[ ]` for open/todo, `[x]` for done, optional `[~]` for in-progress), with inline `blocked` annotations when applicable.
    - Split complex items into smaller, well-scoped subtasks (use IDs like `2.C.1`, `2.C.2`).
    - Reorder tasks to reflect new priorities and dependencies.
+   - Enforce ordering within each Major Task as `[PLAN]/[RESEARCH]` → `[IMPLEMENT]` → `[VALIDATE]`; treat any `[VALIDATE]` that precedes its referenced `[IMPLEMENT]` as blocked until reordered after the implementation.
    - If you believe new scope needs to be introduced beyond what the user just clarified, pause and confirm that addition before editing the checklist.
 2. Maintain existing IDs and prefixes where possible:
    - Update descriptions and tags rather than renaming IDs.
@@ -67,6 +68,7 @@ For discovery before edits, use scoped shell tools (`rg --files`, `ls`, `find`, 
    - File paths.
    - Symbols or endpoints.
    - Branch references.
+   - Ordering of `[VALIDATE]` items so they appear after all referenced `[IMPLEMENT]` tasks.
 2. Refresh the **Execution Readiness / Implementation Coverage** note so it reflects the current PLAN→IMPLEMENT→VALIDATE mappings (including any shared validations) after your edits.
 3. Ensure the **Validation Gate** and **Definition of Done** sections still accurately describe how the initiative will be validated, and update individual `[VALIDATE]` subtasks (and their references) accordingly if the validation strategy changed.
 

@@ -30,6 +30,8 @@ Your assessment **must** include and confine feedback to these dimensions of qua
      - When recommending future validations, specify exact commands or harnesses to run later (e.g., `uv run pytest tests/...`, `uv run ruff check .`) so they can be lifted directly into the checklist.
      - If a plan item is broad (e.g., large-scale docstring/comment sweeps), decompose it into scoped sub-subtasks per directory/package/theme with explicit coverage expectations (per path or %), acceptance criteria, and matching validation commands. Insert these directly into the plan so downstream checklist generation inherits the granularity.
      - Present a detailed remediation plan (tasks/IDs, files/tests to touch, commands to run). Ask the user for approval; upon approval, you must execute these remediations in follow-up commands.
+     - Enforce ordering per Major Task as `[PLAN]/[RESEARCH]` → `[IMPLEMENT]` → `[VALIDATE]`; flag and reorder any `[VALIDATE]` that precedes its referenced `[IMPLEMENT]` and keep parents open until sequencing and coverage are correct.
+     - Do not proceed to checklist creation until critical weaknesses are either applied or explicitly waived with rationale documented in Notes & Learnings for the initiative.
 
 3. **Deviations from the Instruction Set**
    - Only flag deviations that constitute critical gaps or material misalignments with the instruction set when using the `optimized prompt` and `instruction set` to create the `raw plan`.
@@ -58,4 +60,4 @@ Within each section, use bullet points or numbered lists for readability and con
 
 At the end of your assessment, provide an outline of your recommended changes and then ask the user:
 
-> Would you like me to save the updated plan (same filename) as a new `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/`, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `./.codex/prompts/create-initiative-plan.md`?
+> Would you like me to apply the recommended changes, then save the updated plan (same filename) as a new `.md` file to `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/`, adhering to the critical requirement that all changes strictly adhere to the structure, rules, and requirements of `./.codex/prompts/create-initiative-plan.md`?

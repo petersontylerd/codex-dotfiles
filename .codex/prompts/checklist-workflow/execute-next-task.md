@@ -23,6 +23,7 @@ You must **favor concrete action** over mere description whenever environment co
    - First, default to the *Recommended next subtask* provided within the previous response, **or**
    - If prior response did not recommend a next best task, fall back to priority and dependency ordering in the checklist:
      - Prefer the highest-priority open (`[ ]`) item that is not annotated as blocked and that best advances the North Star / Goals.
+   - If the chosen item is `[VALIDATE]`, confirm every referenced `[IMPLEMENT]` task is complete; otherwise, mark the validation as blocked and switch to the earliest incomplete `[IMPLEMENT]` it depends on.
 2. Restate the chosen task in your own words:
    - Include its ID, prefix (e.g., `[IMPLEMENT]`), and its Major Task.
    - If the subtask scope is broad or ambiguous (e.g., “apply docstrings across modules”), first decompose it into concrete sub-subtasks (and sub-sub-subtasks if needed) scoped to specific directories/files/themes with explicit validation commands. Add these to the checklist, keep IDs/prefixes stable, and select the first new child to execute in this invocation. Do not proceed with code changes until this breakdown exists.
@@ -88,6 +89,7 @@ Use `context7` before implementing against external APIs to confirm signatures/b
 2. Capture results:
    - Pass/fail and any notable errors.
    - If validations fail, stop and focus on fixing the failure before moving on.
+   - If implementations tied to the `[VALIDATE]` task are not yet complete, mark the validation as `blocked` and do not execute it.
 3. In your response:
    - Summarize what changed (files, key logic).
    - Summarize validation results and confidence level, explicitly calling out which checklist `[VALIDATE]` subtask(s) you satisfied (or why they remain pending).

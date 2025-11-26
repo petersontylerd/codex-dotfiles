@@ -32,12 +32,13 @@ Keep this summary focused on concrete work and outcomes.
 ## 2. Update the Checklist
 
 1. Mark completed tasks `[x]` and update statuses for partially done items.
-2. - If you identify any critical Subtasks that should be included on the checklist but are missing, propose the Subtask(s) and specify the related Major Task, Subtask text, and Subtask purpose. Verify your proposal with the user before making any additions.
-3. Strengthen references:
+2. Reopen or mark `blocked` any `[VALIDATE]` items whose referenced `[IMPLEMENT]` tasks are not complete, and reorder so `[VALIDATE]` entries stay after their implementations.
+3. If you identify any critical Subtasks that should be included on the checklist but are missing, propose the Subtask(s) and specify the related Major Task, Subtask text, and Subtask purpose. Verify your proposal with the user before making any additions.
+4. Strengthen references:
    - Add file paths, commits, and test references where relevant.
    - Keep branch references aligned with the session’s active branch; do not re-prompt unless context conflicts.
-4. Refresh the **Execution Readiness / Implementation Coverage** section so that every `[PLAN]/[RESEARCH]` still cites downstream `[IMPLEMENT]` IDs, every `[IMPLEMENT]` cites its `[VALIDATE]` IDs, and shared validations are called out explicitly.
-5. Update the **Validation Gate** entries to reflect validations run (pass/fail/pending) during this session, keeping them aligned with the `[VALIDATE]` subtasks they correspond to.
+5. Refresh the **Execution Readiness / Implementation Coverage** section so that every `[PLAN]/[RESEARCH]` still cites downstream `[IMPLEMENT]` IDs, every `[IMPLEMENT]` cites its `[VALIDATE]` IDs, and shared validations are called out explicitly.
+6. Update the **Validation Gate** entries to reflect validations run (pass/fail/pending) during this session, keeping them aligned with the `[VALIDATE]` subtasks they correspond to.
 
 Use the appropriate tools to apply small, careful edits.
 If new follow-ups rely on external APIs, optionally use `context7` to confirm details and note them in Notes & Learnings.

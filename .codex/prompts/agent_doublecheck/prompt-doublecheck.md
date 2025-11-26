@@ -25,6 +25,7 @@ Your assessment **must** include:
    - For each weakness, propose a clear remediation:
      - Explain *why* it is a weakness.
      - Provide a concrete suggestion or example of how to fix it (e.g., revised wording, added constraints, improved structure).
+   - Do not advance the initiative until each critical weakness is either applied or explicitly waived with rationale; if waived, record the waiver so downstream steps know the optimized prompt is accepted as-is.
 
 3. **Deviations from the Instruction Set**
    - Only flag deviations that constitute critical gaps or material misalignments with the instruction set when transforming the `raw prompt` into the `optimized prompt`.

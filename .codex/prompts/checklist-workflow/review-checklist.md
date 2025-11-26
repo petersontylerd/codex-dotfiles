@@ -40,6 +40,7 @@ Default stance: every checked item is incomplete until evidence proves otherwise
    - Use `serena` to open referenced files/symbols and confirm the described behavior exists and matches the subtask text.
    - Verify linked tests or validations were created/updated; note if missing.
    - If the checklist cites `[VALIDATE]` items, confirm those validations were actually run (capture evidence/outputs if available) or flag as unverified.
+   - Flag as incomplete any `[VALIDATE]` item that appears before or is marked complete ahead of its referenced `[IMPLEMENT]`; require the implementation evidence first and reorder so VALIDATE trails IMPLEMENT.
    - Record precise file paths/symbols (and line anchors if available) you inspected; if nothing is found, mark as missing. Evidence is mandatory for each audited subtask.
    - Apply a mini DoD check per subtask: code present, tests added/updated, tests executed (command + result), docs updated (if applicable), acceptance criteria met. Any missing item → mark as incomplete.
    - Use git-changed files (if available) to prioritize inspection, but do not skip any checked item; every completed subtask must be verified.
@@ -72,6 +73,7 @@ Using your findings:
 1. For each affected Major Task/Subtask (excluding Major Task 0):
    - Propose reopen/adjustments when evidence is missing or weak; default to “not done” if in doubt.
    - Keep IDs and prefixes stable; prefer tightening descriptions over broad rewrites.
+   - Reorder or block any `[VALIDATE]` that precedes its referenced `[IMPLEMENT]`; keep the parent open until IMPLEMENT evidence exists and sequencing is correct.
    - When work is incomplete, **add new subtask(s) under the associated Major Task** to capture the required work. If the missing work should be executed in multiple steps, **add sub-subtasks under the associated subtask** to make the steps explicit. In `/review-checklist`, present these edits for approval before applying.
    - For large-scope work (e.g., repo-wide docstrings/comments), partition by package/module and specify measurable coverage expectations and validation commands per partition. Limit each sub-subtask to a tractable scope (e.g., a directory or thematic slice).
    - Ensure nesting follows the ID/prefix rules (`N.A`, `N.A.1`, `N.A.1.a`, etc.), each with scope and validation commands. Keep parents open until all children are verified. Update PLAN→IMPLEMENT→VALIDATE mappings to include nested IDs explicitly.

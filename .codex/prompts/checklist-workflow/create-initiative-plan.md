@@ -97,6 +97,7 @@ Based on your analysis:
 3. Ensure **research→action pairing**:
    - For every `[PLAN]` or `[RESEARCH]` subtask, explicitly cite at least one `[IMPLEMENT]` subtask ID that will apply its findings. One `[IMPLEMENT]` may satisfy multiple upstream subtasks, but each pairing must be listed so that no research item is left without execution --> **FAILURE ON THIS STEP MEANS FAILING THE PROJECT**
    - For every `[IMPLEMENT]` subtask, specify at least one `[VALIDATE]` subtask (tests, artifact diffs, benchmarks, etc.) that will prove the change works. A `[VALIDATE]` subtask may cover multiple implementations, but it must explicitly cite every `[IMPLEMENT]` ID it verifies. --> **FAILURE ON THIS STEP MEANS FAILING THE PROJECT**
+   - Within each Major Task, order subtasks as `[PLAN]/[RESEARCH]` → `[IMPLEMENT]` → `[VALIDATE]`; treat any `[VALIDATE]` listed before its referenced `[IMPLEMENT]` as blocked until reordered after the implementation.
 4. Treat the documentation-only pass (if requested) as the final sequencing step. All earlier Major Tasks must observe the subtask-level pairing rules above—no `[PLAN]`/`[RESEARCH]` item may exist without downstream `[IMPLEMENT]` coverage, and every `[IMPLEMENT]` must declare its verification path before the doc-only phase begins.
 
 You are **not** writing the final checklist file yet; you are drafting the structure that will be converted in the next step.
@@ -110,7 +111,7 @@ Before moving forward:
 1. Build a mapping that lists:
    - Each `[PLAN]`/`[RESEARCH]` subtask alongside the `[IMPLEMENT]` IDs that fulfill it (one-to-many allowed, but no research item may lack at least one implementer).
    - Each `[IMPLEMENT]` subtask alongside the `[VALIDATE]` IDs that prove it (one `[IMPLEMENT]` may reference multiple validations, but zero is forbidden).
-2. If any entry is missing either side of the mapping, revise the subtasks immediately. If the gap cannot be resolved due to missing information, stop and ask the user for clarification before proceeding.
+2. If any entry is missing either side of the mapping, or if any `[VALIDATE]` is positioned before its referenced `[IMPLEMENT]`, revise the subtasks immediately. If the gap cannot be resolved due to missing information, stop and ask the user for clarification before proceeding.
 3. Record both the mapping and the aggregate counts of `[PLAN]`/`[RESEARCH]` vs `[IMPLEMENT]`/`[VALIDATE]` so downstream prompts can audit coverage quickly. Note when a single `[VALIDATE]` entry covers multiple implementations and ensure each relationship is enumerated.
 
 ---

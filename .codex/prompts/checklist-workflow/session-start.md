@@ -23,6 +23,8 @@ Inputs for this command:
    - Summarize Major Tasks and their statuses.
    - Note any `blocked` items and their reasons.
    - Review the **Execution Readiness / Implementation Coverage** note to ensure PLAN→IMPLEMENT→VALIDATE mappings are intact; call out any gaps (missing `[IMPLEMENT]` for a `[PLAN]`, missing `[VALIDATE]` for an `[IMPLEMENT]`) before proceeding.
+   - Confirm exactly one optimized checklist file exists; if multiple or none exist, pause and resolve before continuing.
+   - Confirm Major Task 0 (feature branch establishment) is complete or explicitly blocked; do not proceed to execution if branch readiness is incomplete.
    
 If anything about checklist state is unclear (or inputs conflict), ask before proposing work.
 Use appropriate tools to read/update the checklist. If upcoming tasks depend on external APIs, plan a `context7` lookup and capture findings in Notes & Learnings.
@@ -55,6 +57,7 @@ Keep this summary focused but precise.
    - Prefer, in order:
      - Any explicit user instructions.
      - Otherwise, the highest-priority unblocked task in the checklist that best advances the North Star / Goals; explain if you intentionally skip a higher-priority item.
+   - Do not recommend a `[VALIDATE]` task unless every referenced `[IMPLEMENT]` item is already complete; if not, surface the dependency and pick the earliest incomplete `[IMPLEMENT]` instead.
 4. Describe your choice in plain language, and ask the user to confirm or adjust it if there is any doubt.
 
 End with a short, explicit sentence naming the single *Recommended next subtask* you are ready to execute.

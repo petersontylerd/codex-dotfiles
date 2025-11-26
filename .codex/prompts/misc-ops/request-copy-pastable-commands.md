@@ -1,8 +1,8 @@
-You appear to be running into permission or network-access issues in your current environment.
+You appear to be running into a permission error, network-access issue, or a command timeout barrier.
 
 For **this operation**, instead of trying to execute it yourself, please:
 
-* Generate the **exact shell command(s)** I should run in my own terminal (which has the required permissions and network access).
+* Generate the **exact shell command(s)** I should run in my own terminal (which has the required permissions, network access, and avoids timeout barriers).
 
 * Put the commands in a single fenced code block, e.g.:
 
@@ -11,6 +11,8 @@ For **this operation**, instead of trying to execute it yourself, please:
   ```
 
 * If multiple commands are required, list them **in the exact order** they should be executed.
+
+* Use \ to break long commands into multi-line commands
 
 * Keep inline comments to a minimum and avoid extra narrative outside the code block unless strictly necessary (e.g., to call out a destructive operation).
 

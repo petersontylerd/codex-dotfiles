@@ -3,11 +3,12 @@ ABOUTME: Specifies command paths by inlining $INITIATIVE_NAME; assumes one .md f
 
 **NOTE**
 - `INITIATIVE_NAME` value is repeated for each command.
-- Each stage directory is expected to hold at most one `.md`, so the `*.md` globs remain unambiguous.
+- Each stage directory is expected to hold at most one `.md`, so the `*.md` globs remain unambiguous. After each creation/review step, confirm exactly one `.md` exists in that stage; resolve duplicates before proceeding.
 
 ## Create initiative scaffold
 
 1) **IN TERMINAL 1** Run `bash ./scripts/initiative-scaffold.sh "$INITIATIVE_NAME"` to create the new initiative artifact scaffold directory
+   - Verify scaffolded directories exist under `scratchpaper/initiatives/$INITIATIVE_NAME/` before continuing.
 
 
 ## Create optimized prompt
@@ -22,8 +23,8 @@ ABOUTME: Specifies command paths by inlining $INITIATIVE_NAME; assumes one .md f
 4) **IN TERMINAL 1** Run `/prompts:improve-prompt INITIATIVE_NAME="$INITIATIVE_NAME"` within codex (creates optimized prompt under `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/`)
     
 5) **SECOND OPINION = IN TERMINAL 2** Run `/prompts:prompt-doublecheck INITIATIVE_NAME="$INITIATIVE_NAME"` within codex  
-    - If remediations are approved, let the agent save the updated optimized prompt.  
-    - If no changes are applied, explicitly confirm an optimized prompt file exists in `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/`; if it does not, copy the raw prompt there so downstream steps have a source.
+    - Apply all approved remediations OR explicitly record any waived issues with rationale in Notes & Learnings for the initiative.  
+    - Do not proceed until a single optimized prompt file exists in `./scratchpaper/initiatives/$INITIATIVE_NAME/prompts/optimized/`. If missing, copy the raw prompt there only after documenting any waivers.
 
 
 ## Create optimized plan
@@ -31,8 +32,8 @@ ABOUTME: Specifies command paths by inlining $INITIATIVE_NAME; assumes one .md f
 6) **IN TERMINAL 1** Run `/prompts:create-initiative-plan INITIATIVE_NAME="$INITIATIVE_NAME"` within codex (creates raw plan under `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/raw/`)
     
 7) **SECOND OPINION = IN TERMINAL 2** run `/prompts:plan-doublecheck INITIATIVE_NAME="$INITIATIVE_NAME"` within codex (creates optimized plan under `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/`)
-    - If remediations are approved, let the agent save the updated optimized plan.  
-    - If no changes are applied, explicitly confirm an optimized plan file exists; if missing, copy the raw plan to `plans/optimized/` before proceeding.
+    - Apply all approved remediations OR explicitly record any waived issues with rationale in Notes & Learnings.  
+    - Do not proceed until a single optimized plan file exists in `./scratchpaper/initiatives/$INITIATIVE_NAME/plans/optimized/`. If missing, copy the raw plan there only after documenting any waivers.
 
 
 ## Create optimized checklist
@@ -40,10 +41,11 @@ ABOUTME: Specifies command paths by inlining $INITIATIVE_NAME; assumes one .md f
 8) **IN TERMINAL 1** Run `/prompts:plan-to-checklist INITIATIVE_NAME="$INITIATIVE_NAME"` within codex (creates raw checklist under `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/raw/`)
     
 9) **SECOND OPINION = IN TERMINAL 2** run `/prompts:checklist-doublecheck INITIATIVE_NAME="$INITIATIVE_NAME"` within codex (creates optimized checklist under `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/`)
-    - If remediations are approved, let the agent save the updated optimized checklist.  
-    - If no changes are applied, explicitly confirm an optimized checklist file exists; if missing, copy the raw checklist to `checklists/optimized/` so session-start has an input.
+    - Apply all approved remediations OR explicitly record any waived issues with rationale in Notes & Learnings.  
+    - Do not proceed until a single optimized checklist file exists in `./scratchpaper/initiatives/$INITIATIVE_NAME/checklists/optimized/`. If missing, copy the raw checklist there only after documenting any waivers.
 
 
 ## Start developing
 
-10) Run `/prompts:session-start`
+10) Run `/prompts:session-start` (requires optimized checklist, single-file check, and Major Task 0 branch readiness complete or explicitly blocked)
+11) Enter execution loop: iterate `/prompts:execute-next-task` → `/prompts:update-checklist` → `/prompts:session-end`; run `/prompts:review-checklist` after meaningful increments or before merging. Perform scratchpad hygiene via `/prompts:scratchpad-review-and-cleanup` as needed.

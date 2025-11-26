@@ -41,6 +41,7 @@ Using the `new initiative plan` loaded from `./scratchpaper/initiatives/$INITIAT
    - For each `[PLAN]`/`[RESEARCH]` subtask, explicitly cite the `[IMPLEMENT]` ID(s) that will execute its findings. One `[IMPLEMENT]` may satisfy multiple upstream subtasks, but every research item must name at least one downstream execution subtask.
    - For each `[IMPLEMENT]` subtask, explicitly cite the `[VALIDATE]` ID(s) that prove it succeeded (tests, benchmarks, artifact diffs, etc.). No `[IMPLEMENT]` is allowed without at least one validation step, and each `[VALIDATE]` entry must list every `[IMPLEMENT]` it covers (one-to-many allowed when explicitly enumerated).
    - If the upstream initiative plan omitted `[IMPLEMENT]` or `[VALIDATE]` items, derive them now—translate the research/planning findings into concrete execution tasks and the execution tasks into concrete validation steps. Never carry the omission forward.
+   - Maintain ordering within each Major Task as `[PLAN]/[RESEARCH]` → `[IMPLEMENT]` → `[VALIDATE]`. Treat any `[VALIDATE]` that appears before its referenced `[IMPLEMENT]` as blocked until reordered after the implementation.
 
 Do this mapping explicitly before modifying any files.
 If tasks depend on external libraries or APIs, call `context7` to confirm signatures/behaviors and include key findings in Notes & Learnings. Otherwise, you risk using outdated documentation, or making up incorrect signatures/behaviors. That would be a process failure leading to complicated bugs and refactoring, which we must avoid.
@@ -191,6 +192,7 @@ Before finishing:
    - Each Major Task carries enough Subtasks to cover PLAN→IMPLEMENT→VALIDATE pairings (typically 5 or more, but allow fewer when the scope is legitimately smaller).
    - There is a balanced mix of `[PLAN]/[RESEARCH]` and `[IMPLEMENT]/[VALIDATE]` across the initiative.
    - Every `[PLAN]`/`[RESEARCH]` subtask explicitly references at least one `[IMPLEMENT]` subtask, and every `[IMPLEMENT]` subtask explicitly references at least one `[VALIDATE]` subtask. Treat any missing reference as a blocker.
+   - Every `[VALIDATE]` subtask is listed after all `[IMPLEMENT]` IDs it covers; ordering violations are blockers until fixed.
    - Any failure of the above bullets is a blocker. Revise the checklist before concluding; never finalize this command while a Major Task lacks `[IMPLEMENT]` coverage, while an `[IMPLEMENT]` lacks `[VALIDATE]`, or while the mappings/counts are missing from the Execution Readiness / Implementation Coverage note.
    - Major Task 0 appears first, includes the mandated subtasks, states that the agent must not run the commands, and contains the canonical `.sh` fence with only the branch slug substituted.
    - The first task properly advises the user on carefully handling any uncommitted changes currently in the repository and creating a new feature branch to ensure a clean slate.
