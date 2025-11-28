@@ -65,9 +65,29 @@ Follow your micro-plan step-by-step:
 2. When changing code or prompts:
    - Make small, focused edits.
    - Respect repo style.
+   - For any new or modified Python functions or classes, add or update a Google-style docstring that documents `Args`, `Returns`, and `Raises` (or state “None” explicitly); treat missing docstrings as an incomplete change.
    - Work only inside the repo and relevant subpaths; use `apply_patch` (preferred) or `serena` file edits; only create/overwrite files when necessary.
    - For discovery, use shell tools scoped to the task (`rg --files`, `ls`, `find`, `rg pattern path`).
    - If you decomposed a broad task, ensure the new sub-subtasks from Step 1 are already in the checklist before execution; after execution, only mark status/results—do not duplicate updates.
+
+### Google-style docstring quick example
+```py
+def fetch_user_profile(user_id: str, include_inactive: bool = False) -> dict:
+    """Fetch a user profile from the data store.
+
+    Args:
+        user_id (str): Unique identifier of the user.
+        include_inactive (bool, optional): Include inactive/soft-deleted users. Defaults to False.
+
+    Returns:
+        dict: Profile data, e.g. {"id": "12345", "name": "Jane Doe", "is_active": True}.
+
+    Raises:
+        ValueError: If user_id is empty.
+        UserNotFoundError: If no user exists.
+    """
+```
+
 3. When you need to run commands (tests, linters, scripts):
    - Attempt them if allowed by the environment.
    - If blocked by network/permissions/timeout:

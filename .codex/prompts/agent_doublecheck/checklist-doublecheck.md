@@ -28,7 +28,26 @@ Your assessment **must** include and confine feedback to these dimensions of qua
      - Explains *why* it is a weakness.
      - Provides a concrete fix (revised wording, added constraints, improved structure) with checklist-ready text using correct IDs/prefixes (add new IDs if needed); keep parents open until all child items are decomposed and accepted.
      - Tags severity (Blocker/Major/Minor) and notes any security/performance/data-handling risks.
-   - When work implied by the checklist is incomplete or split across unclear steps, add the required work directly into the checklist: create new Subtasks under the correct Major Task, and when execution needs multiple steps, add sub-subtasks under the affected Subtask to make the sequence explicit. Keep IDs/prefixes stable where possible.
+   - Treat missing or outdated Google-style docstrings for new/modified Python functions/classes as a Major weakness; require checklist items to capture adding/updating docstrings (`Args`, `Returns`, `Raises`) and a validation step to enforce it.
+   - Docstring reference (keep concise when embedding in checklists):
+     ```py
+     def paginate_results(items, page: int, per_page: int = 20) -> dict:
+         \"\"\"Return a single page of items from a sequence.
+
+         Args:
+             items (Sequence[Any]): Indexable collection.
+             page (int): Page number (>=1).
+             per_page (int, optional): Items per page. Defaults to 20.
+
+         Returns:
+             dict: Page slice plus metadata (items, page, per_page, total_items, total_pages, has_next, has_prev).
+
+         Raises:
+             ValueError: If page < 1 or per_page < 1.
+             TypeError: If items is not indexable.
+         \"\"\"
+     ```
+    - When work implied by the checklist is incomplete or split across unclear steps, add the required work directly into the checklist: create new Subtasks under the correct Major Task, and when execution needs multiple steps, add sub-subtasks under the affected Subtask to make the sequence explicit. Keep IDs/prefixes stable where possible.
   - Enforce decomposition triggers: treat a subtask as incomplete until split into sub-subtasks when **any** are true — spans more than one directory/package/component or touches more than three files; bundles multiple behaviors/acceptance criteria; needs multiple validation commands (unit vs e2e vs migration); mixes read and write paths or multiple roles/permissions; involves external integration plus internal change; carries distinct performance or security acceptance; spans multiple user flows/platforms. Do **not** split when change is single-file, single-behavior, covered by one validation command, or behavior-neutral refactor/docs-only tied to one change.
   - Leave parent IDs unchecked and note “parent open pending child completion” until all child sub-subtasks are decomposed with planned code/test work and validation commands documented; execution evidence will be captured during implementation.
   - Enforce ordering within each Major Task as `[PLAN]/[RESEARCH]` → `[IMPLEMENT]` → `[VALIDATE]`; flag any `[VALIDATE]` that precedes its referenced `[IMPLEMENT]`, require reordering, and keep the parent open until sequencing and evidence align.

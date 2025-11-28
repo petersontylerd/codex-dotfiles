@@ -140,7 +140,24 @@ When writing the new checklist file:
      - **Sequential Task Breakdown** — convert the “Proposed Major Tasks & Subtasks” section from the loaded plan into checklist Major Tasks and Subtasks using the canonical IDs, prefixes, and status schema. You must maintain all detail. Summariziation risks creating ambiguity, and will adversely effect downstream activities.
      - **Notes & Learnings** — seed with any important findings or constraints from the loaded plan (for example, key risks or decisions), and add a dated entry describing the creation or update of this checklist.
      - **Validation Gate** — list the concrete commands and checks (tests, lint, type checks, pre-commit) that must pass before the initiative is considered done.
-     - **Definition of Done** — describe what it means for this initiative to be complete (behavioral outcomes, documentation, and Validation Gate conditions).
+     - **Validation Gate** — list the concrete commands and checks (tests, lint, type checks, pre-commit) that must pass before the initiative is considered done. Include checks that ensure every new or modified Python function/class has an up-to-date Google-style docstring with `Args`, `Returns`, and `Raises` (or “None” where applicable). Feel free to embed a short reference example like:
+       ```py
+       def fetch_user_profile(user_id: str, include_inactive: bool = False) -> dict:
+           """Fetch a user profile from the data store.
+
+           Args:
+               user_id (str): Unique identifier of the user.
+               include_inactive (bool, optional): Include inactive/soft-deleted users. Defaults to False.
+
+           Returns:
+               dict: Profile data, e.g. {"id": "12345", "name": "Jane Doe", "is_active": True}.
+
+           Raises:
+               ValueError: If user_id is empty.
+               UserNotFoundError: If no user exists.
+           """
+       ```
+     - **Definition of Done** — describe what it means for this initiative to be complete (behavioral outcomes, documentation, and Validation Gate conditions). Explicitly include the expectation that new or modified Python functions/classes carry Google-style docstrings covering `Args`, `Returns`, and `Raises`.
      - **Kickoff Protocol** — briefly describe how a future agent should restart work on this initiative using `session-start` and `execute-next-task`.
      - **Execution & Continuous Refinement** — note how `execute-next-task` and `review-checklist` will be used in a loop to make real changes, run validations, and refine the checklist as reality evolves.
      - **Meta-Reflection and Iteration** — indicate when to perform deeper reviews of the checklist and initiative (for example, after major milestones or meaningful risk changes).

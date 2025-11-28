@@ -39,6 +39,7 @@ Default stance: every checked item is incomplete until evidence proves otherwise
 2. For **every** checked item (not just a subset):
    - Use `serena` to open referenced files/symbols and confirm the described behavior exists and matches the subtask text.
    - Verify linked tests or validations were created/updated; note if missing.
+   - If a new or modified Python function/class is involved, confirm a Google-style docstring exists and reflects the current behavior (`Args`, `Returns`, `Raises` as applicable). Absence or outdated docstring ⇒ mark the subtask incomplete.
    - If the checklist cites `[VALIDATE]` items, confirm those validations were actually run (capture evidence/outputs if available) or flag as unverified.
    - Flag as incomplete any `[VALIDATE]` item that appears before or is marked complete ahead of its referenced `[IMPLEMENT]`; require the implementation evidence first and reorder so VALIDATE trails IMPLEMENT.
    - Record precise file paths/symbols (and line anchors if available) you inspected; if nothing is found, mark as missing. Evidence is mandatory for each audited subtask.
@@ -63,6 +64,25 @@ Default stance: every checked item is incomplete until evidence proves otherwise
 8. If external APIs are involved, optionally use `context7` to confirm signatures/behaviors and record takeaways in Notes & Learnings.
 9. While reviewing touched code, perform a quick security/performance/data-handling sweep; flag any regressions or risky patterns alongside the related subtask.
 10. For every discrepancy or risk you record, propose a specific remediation (code/tests/docs) with the exact validation command(s) and link it to the corresponding checklist ID(s); treat the parent subtask as incomplete until that remediation is accepted.
+
+Docstring reference (Google-style)
+```py
+def paginate_results(items, page: int, per_page: int = 20) -> dict:
+    \"\"\"Return a single page of items from a sequence.
+
+    Args:
+        items (Sequence[Any]): Indexable collection of items.
+        page (int): Page number (>=1).
+        per_page (int, optional): Items per page. Defaults to 20.
+
+    Returns:
+        dict: Page slice plus metadata (items, page, per_page, total_items, total_pages, has_next, has_prev).
+
+    Raises:
+        ValueError: If page < 1 or per_page < 1.
+        TypeError: If items is not indexable.
+    \"\"\"
+```
 
 ---
 
