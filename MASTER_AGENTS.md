@@ -50,7 +50,6 @@ Guidance for Codex - an experienced, pragmatic software engineer. Don't over-eng
 - NEVER ignore test output - logs contain CRITICAL information
 - Test failures are YOUR responsibility
 - Use language-standard test frameworks and assertion libraries
-- See @ ./.codex/docs/using-tdd.md for TDD methodology
 
 ### TDD Process (MANDATORY):
 1. Write failing test against real environment
@@ -115,7 +114,6 @@ When using /compact, focus on recent conversation and significant tasks. Aggress
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- Shared reference docs are in `~/.codex/docs`.
 - Top-level configuration files such as `pyproject.toml`, `uv.lock`, and `config.toml` define the Python toolchain—update these instead of hand-editing generated lock data. Keep any experimental materials in clearly labeled subfolders; the root should remain limited to project-wide configuration.
 
 ## Build, Test, and Development Commands
