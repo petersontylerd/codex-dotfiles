@@ -99,10 +99,54 @@ ALWAYS find root cause - NEVER fix symptoms or add workarounds
 
 ### CRITICAL Git Rules
 - If no git repo, STOP and ask permission to initialize
-- STOP and ask how to handle uncommitted changes when starting
-- Create WIP branch if no clear task branch exists
 - Commit frequently throughout development
 - NEVER use git add -A without git status first
+
+### Pre-Work Repository Preparation (MANDATORY)
+Before making any changes to the repository, follow this sequence:
+
+**Step 1: Check for uncommitted changes**
+The agent runs:
+```bash
+git status -sb
+```
+- If the working tree is **clean**: record this finding in Notes & Learnings and inform the user, then proceed to Step 2.
+- If **changes exist**: present the resolution options below and wait for user confirmation.
+
+**Resolution Options (user must run these commands, NOT the agent):**
+
+Option A — Commit the relevant changes:
+```bash
+git add <paths-to-commit>
+git commit -m "WIP: describe changes before branching"
+git status -sb
+```
+
+Option B — Stash the changes:
+```bash
+git stash push --include-untracked --message "<feature-branch-slug>-pre-branch"
+git status -sb
+```
+
+Option C — Clean up/discard the changes (use cautiously):
+```bash
+git restore --staged <paths-to-drop>
+git restore <paths-to-drop>
+git clean -fd -- <directories-to-drop>
+git status -sb
+```
+
+**Require confirmation** that the final `git status -sb` output shows a clean tree before proceeding.
+
+**Step 2: Create feature branch from main**
+Once the tree is confirmed clean, the agent runs:
+```bash
+git checkout main
+git pull --ff-only
+git checkout -b <feature-branch-slug>
+git status -sb
+```
+Use branch prefixes: `fix/`, `feat/`, `chore/` as appropriate for the task.
 
 ### Pre-commit Hooks
 **FORBIDDEN FLAGS**: --no-verify, --no-hooks, --no-pre-commit-hook, unless a hook is demonstrably broken or unrelated; log the issue, note the bypass in the commit description, and schedule a follow-up to fix the hook and rerun checks post-merge.
@@ -143,7 +187,7 @@ Write imperative, present-tense commit subjects (~60 characters) and bundle rela
 # Python Development Standards
 
 ## Environment Setup
-- **Python Version**: >=3.12
+- **Python Version**: >=3.14+GIL (Project Needle standard)
 - **Package Manager**: uv required. NEVER use pip, pip with venv, or poetry
 - **Dependency Management**: Use pyproject.toml, lock dependencies with uv.lock
 
